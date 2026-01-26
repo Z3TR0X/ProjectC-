@@ -34,7 +34,7 @@
   
 3. Interface utilisateur 🖥️
      Le but est d'avoir un style semblable a VS Code par exmple avec les fenetres latérales qui permettent de visualiser les projets.
-     Dans notre cas, a gauche on aura une fenetre (a voir si on peut la masquer), qui contiendra, en haut, les valeurs qui sont loggés et en bas les fenetres configurée.
+     Dans notre cas, à gauche on aura une fenetre (à voir si on peut la masquer), qui contiendra, en haut, les valeurs qui sont loggés et en bas les fenêtres configurées.
      On pourra aussi s'affranchir de cela, si on choisit de ne pas créer de projet (car ça peut être un peu lourd, si on a seulement besoin de plotter une valeur ou deux...)
      Dans ce cas on aura pas de gestion de page.
 
