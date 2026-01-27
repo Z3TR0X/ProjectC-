@@ -83,6 +83,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\IconDarkMode.png" />
+    <None Include="Resources\IconDarkMode11.png" />
+    <None Include="Resources\IconDarkMode10.png" />
     <None Include="Resources\Close_white.png" />
     <None Include="Image\Minimize_white.png" />
     <None Include="Resources\IconDarkMode9.png" />

@@ -121,16 +121,16 @@
   <data name="Restore_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Restore_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Maximize_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Maximize_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconDarkMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IconDarkMode9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Close_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Minimize_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\Minimize_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Maximize_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Maximize_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconDarkMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconDarkMode11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
