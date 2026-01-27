@@ -29,6 +29,22 @@ namespace ProjectC_
             }
         }
 
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            int preference = 2;
+            DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+        }
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -47,27 +63,6 @@ namespace ProjectC_
             }
         }
 
-
-        [DllImport("dwmapi.dll")]
-        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-
-        private const int DWMWA_WINDOW_CORNER_PREFERENCE = 33;
-
-        public enum CornerPreference
-        {
-            Default = 0,
-            DoNotRound = 1,
-            Round = 2,
-            RoundSmall = 3
-        }
-
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-            int preference = (int)CornerPreference.Round; // Tu peux tester RoundSmall pour un look plus discret
-            DwmSetWindowAttribute(this.Handle, DWMWA_WINDOW_CORNER_PREFERENCE, ref preference, sizeof(int));
-        }
-
         public Form1()
         {
             InitializeComponent();
@@ -83,19 +78,25 @@ namespace ProjectC_
             Size screen_size = Screen.FromControl(this).WorkingArea.Size;
             if (this.Size != screen_size)
             {
+                int preference = 0;
+                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+
                 last_normal_form_size = this.Size;
                 last_normal_form_position = this.Location;
                 this.Size = Screen.FromControl(this).WorkingArea.Size;
                 this.Location = new Point(0, 0);
                 button_maximize.Image = Properties.Resources.Restore_white;
-                this.Padding = new Padding(0,0,0,0);
+                
             }
             else
             {
+                int preference = 2;
+                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+
                 this.Size = last_normal_form_size;
                 this.Location = last_normal_form_position;
                 button_maximize.Image = Properties.Resources.Maximize_White;
-                this.Padding = new Padding(1,1,1,1);
+                
             }
 
         }
@@ -117,18 +118,14 @@ namespace ProjectC_
             this.WindowState = FormWindowState.Minimized;
         }
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (this.Size == Screen.FromControl(this).WorkingArea.Size)
             {
+                int preference = 2;
+                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+
                 this.Size = last_normal_form_size;
-                this.Padding = new Padding(1,1,1,1);
                 double ratio = (double)e.X / (double)Screen.GetWorkingArea(this).Size.Width;
                 Point cursorPoint = Cursor.Position;
                 int newX = cursorPoint.X - (int)(this.Width * ratio);
