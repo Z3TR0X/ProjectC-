@@ -155,16 +155,15 @@
             // PageSeparator
             // 
             this.PageSeparator.BackColor = System.Drawing.Color.White;
-            this.PageSeparator.Location = new System.Drawing.Point(0, 360);
+            this.PageSeparator.Location = new System.Drawing.Point(0, 407);
             this.PageSeparator.Name = "PageSeparator";
             this.PageSeparator.Size = new System.Drawing.Size(253, 1);
             this.PageSeparator.TabIndex = 0;
             // 
             // MainPage
             // 
-            this.MainPage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.MainPage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Location = new System.Drawing.Point(252, 36);
             this.MainPage.Name = "MainPage";
             this.MainPage.Size = new System.Drawing.Size(1146, 815);

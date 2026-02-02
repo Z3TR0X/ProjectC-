@@ -148,12 +148,9 @@ namespace ProjectC_
         {
             int header_height = 34;
             int header_width = this.Size.Width;
-            Size button_size = new Size(34, header_height);
             TopBar.Size = new Size(header_width, header_height);
-            button_close.Size = button_size;
-            button_maximize.Size = button_size;
-            button_minimize.Size = button_size;
-            logo.Size = new Size(34,34);
+            PageSeparator.Location = new Point(0, LeftPanel.Size.Height / 2);
+
         }
 
         private void button_minimize_Click(object sender, EventArgs e)
