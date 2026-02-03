@@ -37,11 +37,15 @@
             this.TopSeparator = new System.Windows.Forms.Panel();
             this.LeftSeparator = new System.Windows.Forms.Panel();
             this.LeftPanel = new System.Windows.Forms.Panel();
+            this.PageSeparatorHitBox = new System.Windows.Forms.Panel();
             this.PageSeparator = new System.Windows.Forms.Panel();
             this.MainPage = new System.Windows.Forms.Panel();
+            this.TopPage = new System.Windows.Forms.Panel();
+            this.BotPage = new System.Windows.Forms.Panel();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.LeftPanel.SuspendLayout();
+            this.PageSeparatorHitBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -144,19 +148,35 @@
             // LeftPanel
             // 
             this.LeftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(33)))), ((int)(((byte)(40)))));
-            this.LeftPanel.Controls.Add(this.PageSeparator);
+            this.LeftPanel.Controls.Add(this.PageSeparatorHitBox);
+            this.LeftPanel.Controls.Add(this.TopPage);
+            this.LeftPanel.Controls.Add(this.BotPage);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(1, 36);
             this.LeftPanel.Name = "LeftPanel";
             this.LeftPanel.Size = new System.Drawing.Size(250, 815);
             this.LeftPanel.TabIndex = 4;
-            this.LeftPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.LeftPanel_Paint);
+            // 
+            // PageSeparatorHitBox
+            // 
+            this.PageSeparatorHitBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PageSeparatorHitBox.Controls.Add(this.PageSeparator);
+            this.PageSeparatorHitBox.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.PageSeparatorHitBox.Location = new System.Drawing.Point(0, 400);
+            this.PageSeparatorHitBox.Name = "PageSeparatorHitBox";
+            this.PageSeparatorHitBox.Size = new System.Drawing.Size(253, 5);
+            this.PageSeparatorHitBox.TabIndex = 1;
+            this.PageSeparatorHitBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseDown);
+            this.PageSeparatorHitBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseMove);
+            this.PageSeparatorHitBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseUp);
             // 
             // PageSeparator
             // 
-            this.PageSeparator.BackColor = System.Drawing.Color.White;
-            this.PageSeparator.Location = new System.Drawing.Point(0, 407);
+            this.PageSeparator.BackColor = System.Drawing.Color.DarkGray;
+            this.PageSeparator.Cursor = System.Windows.Forms.Cursors.Default;
+            this.PageSeparator.Location = new System.Drawing.Point(0, 2);
             this.PageSeparator.Name = "PageSeparator";
+            this.PageSeparator.Padding = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.PageSeparator.Size = new System.Drawing.Size(253, 1);
             this.PageSeparator.TabIndex = 0;
             // 
@@ -166,8 +186,27 @@
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Location = new System.Drawing.Point(252, 36);
             this.MainPage.Name = "MainPage";
+            this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1146, 815);
             this.MainPage.TabIndex = 5;
+            // 
+            // TopPage
+            // 
+            this.TopPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.TopPage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPage.Location = new System.Drawing.Point(0, 0);
+            this.TopPage.Name = "TopPage";
+            this.TopPage.Size = new System.Drawing.Size(250, 400);
+            this.TopPage.TabIndex = 2;
+            // 
+            // BotPage
+            // 
+            this.BotPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.BotPage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BotPage.Location = new System.Drawing.Point(0, 405);
+            this.BotPage.Name = "BotPage";
+            this.BotPage.Size = new System.Drawing.Size(250, 410);
+            this.BotPage.TabIndex = 3;
             // 
             // Form1
             // 
@@ -186,6 +225,7 @@
             this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.LeftPanel.ResumeLayout(false);
+            this.PageSeparatorHitBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,6 +241,9 @@
         private System.Windows.Forms.Panel LeftPanel;
         private System.Windows.Forms.Panel PageSeparator;
         private System.Windows.Forms.Panel MainPage;
+        private System.Windows.Forms.Panel PageSeparatorHitBox;
+        private System.Windows.Forms.Panel TopPage;
+        private System.Windows.Forms.Panel BotPage;
     }
 }
 
