@@ -17,7 +17,9 @@ namespace ProjectC_ {
 
         Size last_normal_form_size;
         Point last_normal_form_position;
-        bool IsPageResize = false;
+        bool IsPageResizeY = false;
+        bool IsPageResizeX = false;
+        float leftMenuRatio = 0.5f;
 
         //Fonction pour ajouter l'ombre autour de la fenêtre
         protected override CreateParams CreateParams {
@@ -94,6 +96,7 @@ namespace ProjectC_ {
         public Form1() {
             InitializeComponent();
             PageSeparator.Enabled = false; //Permet de désactiver les évents de PageSeparator
+            panel1.Enabled = false;
         }
 
         private void button_close_Click(object sender, EventArgs e) {
@@ -134,6 +137,13 @@ namespace ProjectC_ {
             int height = PageSeparatorHitBox.Location.Y;
             TopPage.Size = new Size(0, height + 3);
             BotPage.Size = new Size(0, LeftPanel.Size.Height - height);
+
+            int future_separator = (int)Math.Round(LeftPanel.Size.Height * leftMenuRatio);
+            if (future_separator >= 100) {
+                PageSeparatorHitBox.Location = new Point(0, future_separator);
+            }
+
+            panel1.Size = new Size(1, MainPage.Size.Height);
             
         }
 
@@ -163,23 +173,47 @@ namespace ProjectC_ {
         }
 
         private void PageSeparatorHitBox_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResize = true;
+            IsPageResizeY = true;
         }
 
         private void PageSeparatorHitBox_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResize = false;
+            IsPageResizeY = false;
+            //Permet de récuperer le ratio position / taille du conteneur du séparateur pour 
+            //Ajuster sa position dans ce conteneur si la fenêtre est resize. 
+            leftMenuRatio = ((int) ((PageSeparatorHitBox.Location.Y / (float) LeftPanel.Size.Height) * 10000))/10000.0f;
         }
 
         private void PageSeparatorHitBox_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResize) {
+            if (IsPageResizeY) {
                 Point clientPoint = this.PointToClient(Cursor.Position);
-                PageSeparatorHitBox.Location = new Point(0, clientPoint.Y-35);
-                int height = PageSeparatorHitBox.Location.Y;
-                TopPage.Size = new Size(0, height + 3);
-                BotPage.Size = new Size(0, LeftPanel.Size.Height - height);
+                if(clientPoint.Y - 35 >= 100) {
+                    PageSeparatorHitBox.Location = new Point(0, clientPoint.Y - 35);
+                    int height = PageSeparatorHitBox.Location.Y;
+                    TopPage.Size = new Size(0, height + 3);
+                    BotPage.Size = new Size(0, LeftPanel.Size.Height - height);
+                }
             }
         }
-        
+
+        private void LeftSeparator_MouseDown(object sender, MouseEventArgs e) {
+            IsPageResizeX = true;
+        }
+
+        private void LeftSeparator_MouseUp(object sender, MouseEventArgs e) {
+            IsPageResizeX = false;
+        }
+
+        private void LeftSeparator_MouseMove(object sender, MouseEventArgs e) {
+            if (IsPageResizeX) {
+                Point clientPoint = this.PointToClient(Cursor.Position);
+                if (clientPoint.X >= 100) {
+                    LeftPanel.Size = new Size(clientPoint.X, LeftPanel.Size.Height);
+                    PageSeparatorHitBox.Size = new Size(clientPoint.X, 5);
+                    PageSeparator.Size = new Size(clientPoint.X, 1);
+                }
+                
+            }
+        }
     }
 }
 
