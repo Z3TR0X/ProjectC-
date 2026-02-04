@@ -95,8 +95,8 @@ namespace ProjectC_ {
 
         public Form1() {
             InitializeComponent();
-            PageSeparator.Enabled = false; //Permet de désactiver les évents de PageSeparator
-            panel1.Enabled = false;
+            LeftBar.Enabled = false;
+            MenuSeparatorBar.Enabled = false;
         }
 
         private void button_close_Click(object sender, EventArgs e) {
@@ -134,17 +134,18 @@ namespace ProjectC_ {
             int header_width = this.Size.Width;
             TopBar.Size = new Size(header_width, header_height);
 
-            int height = PageSeparatorHitBox.Location.Y;
-            TopPage.Size = new Size(0, height + 3);
-            BotPage.Size = new Size(0, LeftPanel.Size.Height - height);
 
-            int future_separator = (int)Math.Round(LeftPanel.Size.Height * leftMenuRatio);
-            if (future_separator >= 100) {
-                PageSeparatorHitBox.Location = new Point(0, future_separator);
+            LeftBar.Size = new Size(1, MainPage.Size.Height);
+
+            MenuPanel.Size = new Size(MenuPanel.Size.Width, MainPage.Size.Height-ComPanel.Height);
+
+            int MenuLocY = (int) Math.Round(MenuPanel.Height * leftMenuRatio);
+            if (MenuLocY <= 100) {
+                MenuLocY = 100;
             }
-
-            panel1.Size = new Size(1, MainPage.Size.Height);
-            
+            MenuSeparator.Location = new Point(0, MenuLocY);
+            VarPanel.Size = new Size(VarPanel.Width, MenuLocY);
+            PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - MenuLocY - 5);
         }
 
         private void button_minimize_Click(object sender, EventArgs e) {
@@ -172,29 +173,6 @@ namespace ProjectC_ {
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void PageSeparatorHitBox_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResizeY = true;
-        }
-
-        private void PageSeparatorHitBox_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResizeY = false;
-            //Permet de récuperer le ratio position / taille du conteneur du séparateur pour 
-            //Ajuster sa position dans ce conteneur si la fenêtre est resize. 
-            leftMenuRatio = ((int) ((PageSeparatorHitBox.Location.Y / (float) LeftPanel.Size.Height) * 10000))/10000.0f;
-        }
-
-        private void PageSeparatorHitBox_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResizeY) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-                if(clientPoint.Y - 35 >= 100) {
-                    PageSeparatorHitBox.Location = new Point(0, clientPoint.Y - 35);
-                    int height = PageSeparatorHitBox.Location.Y;
-                    TopPage.Size = new Size(0, height + 3);
-                    BotPage.Size = new Size(0, LeftPanel.Size.Height - height);
-                }
-            }
-        }
-
         private void LeftSeparator_MouseDown(object sender, MouseEventArgs e) {
             IsPageResizeX = true;
         }
@@ -208,11 +186,32 @@ namespace ProjectC_ {
                 Point clientPoint = this.PointToClient(Cursor.Position);
                 if (clientPoint.X >= 100) {
                     LeftPanel.Size = new Size(clientPoint.X, LeftPanel.Size.Height);
-                    PageSeparatorHitBox.Size = new Size(clientPoint.X, 5);
-                    PageSeparator.Size = new Size(clientPoint.X, 1);
+                    MenuSeparator.Size = new Size(clientPoint.X, 5);
+                    MenuSeparatorBar.Size = new Size(clientPoint.X, 1);
                 }
                 
             }
+        }
+
+        private void MenuSeparator_MouseDown(object sender, MouseEventArgs e) {
+            IsPageResizeY = true;
+        }
+
+        private void MenuSeparator_MouseMove(object sender, MouseEventArgs e) {
+            if (IsPageResizeY) {
+                Point clientPoint = this.PointToClient(Cursor.Position);
+                int menuloc = clientPoint.Y - ComPanel.Height - 38;
+                if (menuloc >= 100) {
+                    MenuSeparator.Location = new Point(0, menuloc);
+                    VarPanel.Size = new Size(VarPanel.Width, menuloc);
+                    PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height-menuloc-5);
+                }
+            }
+        }
+
+        private void MenuSeparator_MouseUp(object sender, MouseEventArgs e) {
+            IsPageResizeY = false;
+            leftMenuRatio = ((int) (((float) MenuSeparator.Location.Y / MenuPanel.Height)*100))/100.0f;
         }
     }
 }

@@ -36,18 +36,22 @@
             this.button_close = new System.Windows.Forms.Button();
             this.TopSeparator = new System.Windows.Forms.Panel();
             this.LeftSeparator = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.LeftBar = new System.Windows.Forms.Panel();
             this.LeftPanel = new System.Windows.Forms.Panel();
-            this.PageSeparatorHitBox = new System.Windows.Forms.Panel();
-            this.PageSeparator = new System.Windows.Forms.Panel();
-            this.TopPage = new System.Windows.Forms.Panel();
-            this.BotPage = new System.Windows.Forms.Panel();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.ComPanel = new System.Windows.Forms.Panel();
             this.MainPage = new System.Windows.Forms.Panel();
+            this.ComSeparator = new System.Windows.Forms.Panel();
+            this.MenuSeparator = new System.Windows.Forms.Panel();
+            this.MenuSeparatorBar = new System.Windows.Forms.Panel();
+            this.VarPanel = new System.Windows.Forms.Panel();
+            this.PagePanel = new System.Windows.Forms.Panel();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
-            this.PageSeparatorHitBox.SuspendLayout();
+            this.MenuPanel.SuspendLayout();
+            this.MenuSeparator.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -141,7 +145,7 @@
             // LeftSeparator
             // 
             this.LeftSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.LeftSeparator.Controls.Add(this.panel1);
+            this.LeftSeparator.Controls.Add(this.LeftBar);
             this.LeftSeparator.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.LeftSeparator.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftSeparator.Location = new System.Drawing.Point(251, 36);
@@ -152,67 +156,46 @@
             this.LeftSeparator.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LeftSeparator_MouseMove);
             this.LeftSeparator.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LeftSeparator_MouseUp);
             // 
-            // panel1
+            // LeftBar
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1, 815);
-            this.panel1.TabIndex = 0;
+            this.LeftBar.BackColor = System.Drawing.Color.DarkGray;
+            this.LeftBar.Location = new System.Drawing.Point(0, 0);
+            this.LeftBar.Name = "LeftBar";
+            this.LeftBar.Size = new System.Drawing.Size(1, 815);
+            this.LeftBar.TabIndex = 0;
             // 
             // LeftPanel
             // 
             this.LeftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(33)))), ((int)(((byte)(40)))));
-            this.LeftPanel.Controls.Add(this.PageSeparatorHitBox);
-            this.LeftPanel.Controls.Add(this.TopPage);
-            this.LeftPanel.Controls.Add(this.BotPage);
+            this.LeftPanel.Controls.Add(this.MenuPanel);
+            this.LeftPanel.Controls.Add(this.ComSeparator);
+            this.LeftPanel.Controls.Add(this.ComPanel);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(1, 36);
             this.LeftPanel.Name = "LeftPanel";
             this.LeftPanel.Size = new System.Drawing.Size(250, 815);
             this.LeftPanel.TabIndex = 4;
             // 
-            // PageSeparatorHitBox
+            // MenuPanel
             // 
-            this.PageSeparatorHitBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.PageSeparatorHitBox.Controls.Add(this.PageSeparator);
-            this.PageSeparatorHitBox.Cursor = System.Windows.Forms.Cursors.SizeNS;
-            this.PageSeparatorHitBox.Location = new System.Drawing.Point(0, 400);
-            this.PageSeparatorHitBox.Name = "PageSeparatorHitBox";
-            this.PageSeparatorHitBox.Size = new System.Drawing.Size(253, 5);
-            this.PageSeparatorHitBox.TabIndex = 1;
-            this.PageSeparatorHitBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseDown);
-            this.PageSeparatorHitBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseMove);
-            this.PageSeparatorHitBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PageSeparatorHitBox_MouseUp);
+            this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.MenuPanel.Controls.Add(this.PagePanel);
+            this.MenuPanel.Controls.Add(this.VarPanel);
+            this.MenuPanel.Controls.Add(this.MenuSeparator);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 201);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(250, 615);
+            this.MenuPanel.TabIndex = 1;
             // 
-            // PageSeparator
+            // ComPanel
             // 
-            this.PageSeparator.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.PageSeparator.BackColor = System.Drawing.Color.DarkGray;
-            this.PageSeparator.Cursor = System.Windows.Forms.Cursors.Default;
-            this.PageSeparator.Location = new System.Drawing.Point(0, 2);
-            this.PageSeparator.Name = "PageSeparator";
-            this.PageSeparator.Padding = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.PageSeparator.Size = new System.Drawing.Size(253, 1);
-            this.PageSeparator.TabIndex = 0;
-            // 
-            // TopPage
-            // 
-            this.TopPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.TopPage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopPage.Location = new System.Drawing.Point(0, 0);
-            this.TopPage.Name = "TopPage";
-            this.TopPage.Size = new System.Drawing.Size(250, 400);
-            this.TopPage.TabIndex = 2;
-            // 
-            // BotPage
-            // 
-            this.BotPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.BotPage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BotPage.Location = new System.Drawing.Point(0, 405);
-            this.BotPage.Name = "BotPage";
-            this.BotPage.Size = new System.Drawing.Size(250, 410);
-            this.BotPage.TabIndex = 3;
+            this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.ComPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ComPanel.Location = new System.Drawing.Point(0, 0);
+            this.ComPanel.Name = "ComPanel";
+            this.ComPanel.Size = new System.Drawing.Size(250, 200);
+            this.ComPanel.TabIndex = 0;
             // 
             // MainPage
             // 
@@ -223,6 +206,54 @@
             this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1144, 815);
             this.MainPage.TabIndex = 5;
+            // 
+            // ComSeparator
+            // 
+            this.ComSeparator.BackColor = System.Drawing.Color.DarkGray;
+            this.ComSeparator.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ComSeparator.Location = new System.Drawing.Point(0, 200);
+            this.ComSeparator.Name = "ComSeparator";
+            this.ComSeparator.Size = new System.Drawing.Size(250, 1);
+            this.ComSeparator.TabIndex = 0;
+            // 
+            // MenuSeparator
+            // 
+            this.MenuSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.MenuSeparator.Controls.Add(this.MenuSeparatorBar);
+            this.MenuSeparator.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.MenuSeparator.Location = new System.Drawing.Point(0, 271);
+            this.MenuSeparator.Name = "MenuSeparator";
+            this.MenuSeparator.Size = new System.Drawing.Size(250, 5);
+            this.MenuSeparator.TabIndex = 0;
+            this.MenuSeparator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseDown);
+            this.MenuSeparator.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseMove);
+            this.MenuSeparator.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseUp);
+            // 
+            // MenuSeparatorBar
+            // 
+            this.MenuSeparatorBar.BackColor = System.Drawing.Color.DarkGray;
+            this.MenuSeparatorBar.Location = new System.Drawing.Point(0, 2);
+            this.MenuSeparatorBar.Name = "MenuSeparatorBar";
+            this.MenuSeparatorBar.Size = new System.Drawing.Size(250, 1);
+            this.MenuSeparatorBar.TabIndex = 0;
+            // 
+            // VarPanel
+            // 
+            this.VarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.VarPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.VarPanel.Location = new System.Drawing.Point(0, 0);
+            this.VarPanel.Name = "VarPanel";
+            this.VarPanel.Size = new System.Drawing.Size(250, 271);
+            this.VarPanel.TabIndex = 1;
+            // 
+            // PagePanel
+            // 
+            this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PagePanel.Location = new System.Drawing.Point(0, 276);
+            this.PagePanel.Name = "PagePanel";
+            this.PagePanel.Size = new System.Drawing.Size(250, 339);
+            this.PagePanel.TabIndex = 2;
             // 
             // Form1
             // 
@@ -242,7 +273,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.LeftSeparator.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
-            this.PageSeparatorHitBox.ResumeLayout(false);
+            this.MenuPanel.ResumeLayout(false);
+            this.MenuSeparator.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -256,12 +288,15 @@
         private System.Windows.Forms.Panel TopSeparator;
         private System.Windows.Forms.Panel LeftSeparator;
         private System.Windows.Forms.Panel LeftPanel;
-        private System.Windows.Forms.Panel PageSeparator;
         private System.Windows.Forms.Panel MainPage;
-        private System.Windows.Forms.Panel PageSeparatorHitBox;
-        private System.Windows.Forms.Panel TopPage;
-        private System.Windows.Forms.Panel BotPage;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel LeftBar;
+        private System.Windows.Forms.Panel ComPanel;
+        private System.Windows.Forms.Panel MenuPanel;
+        private System.Windows.Forms.Panel ComSeparator;
+        private System.Windows.Forms.Panel MenuSeparator;
+        private System.Windows.Forms.Panel MenuSeparatorBar;
+        private System.Windows.Forms.Panel PagePanel;
+        private System.Windows.Forms.Panel VarPanel;
     }
 }
 
