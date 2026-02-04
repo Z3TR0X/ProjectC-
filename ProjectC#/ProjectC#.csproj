@@ -86,15 +86,6 @@
     <None Include="Resources\IconDarkMode11.png" />
     <None Include="Resources\Close_white.png" />
     <None Include="Image\Minimize_white.png" />
-    <None Include="Resources\IconDarkMode9.png" />
-    <None Include="Resources\IconDarkMode8.png" />
-    <None Include="Resources\IconDarkMode7.png" />
-    <None Include="Resources\IconDarkMode6.png" />
-    <None Include="Resources\IconDarkMode5.png" />
-    <None Include="Resources\IconDarkMode4.png" />
-    <None Include="Resources\IconDarkMode3.png" />
-    <None Include="Resources\IconDarkMode2.png" />
-    <None Include="Resources\IconDarkMode.png" />
     <None Include="Resources\Maximize_White.png" />
     <None Include="Resources\Restore_white.png" />
     <None Include="Properties\Close_white.png" />
