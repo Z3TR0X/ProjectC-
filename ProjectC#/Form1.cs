@@ -213,6 +213,10 @@ namespace ProjectC_ {
             IsPageResizeY = false;
             leftMenuRatio = ((int) (((float) MenuSeparator.Location.Y / MenuPanel.Height)*100))/100.0f;
         }
+
+        private void BaudLabel_TextChanged(object sender, EventArgs e) {
+
+        }
     }
 }
 
