@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TopBar = new System.Windows.Forms.Panel();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.button_minimize = new System.Windows.Forms.Button();
+            this.button_maximize = new System.Windows.Forms.Button();
+            this.button_close = new System.Windows.Forms.Button();
             this.TopSeparator = new System.Windows.Forms.Panel();
             this.LeftSeparator = new System.Windows.Forms.Panel();
             this.LeftBar = new System.Windows.Forms.Panel();
@@ -41,24 +46,23 @@
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ComPanel = new System.Windows.Forms.Panel();
-            this.MainPage = new System.Windows.Forms.Panel();
+            this.ButtonConnect = new System.Windows.Forms.Button();
             this.SerialLabel = new System.Windows.Forms.TextBox();
             this.SerialSelectorMargin = new System.Windows.Forms.Panel();
             this.SerialSelector = new System.Windows.Forms.Panel();
             this.SerialText = new System.Windows.Forms.Label();
+            this.SerialExpand = new System.Windows.Forms.Button();
             this.BaudLabel = new System.Windows.Forms.TextBox();
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
             this.BaudSelector = new System.Windows.Forms.Panel();
             this.BaudText = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.SerialExpand = new System.Windows.Forms.Button();
             this.BaudExpand = new System.Windows.Forms.Button();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.button_minimize = new System.Windows.Forms.Button();
-            this.button_maximize = new System.Windows.Forms.Button();
-            this.button_close = new System.Windows.Forms.Button();
+            this.MainPage = new System.Windows.Forms.Panel();
+            this.SerialConn = new System.IO.Ports.SerialPort(this.components);
+            this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -68,7 +72,6 @@
             this.SerialSelector.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
             this.BaudSelector.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBar
@@ -84,6 +87,71 @@
             this.TopBar.Size = new System.Drawing.Size(1397, 34);
             this.TopBar.TabIndex = 0;
             this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // logo
+            // 
+            this.logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(0, 0);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(34, 34);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 1;
+            this.logo.TabStop = false;
+            // 
+            // button_minimize
+            // 
+            this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_minimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_minimize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_minimize.FlatAppearance.BorderSize = 0;
+            this.button_minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
+            this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_minimize.Image = global::ProjectC_.Properties.Resources.Minimize_white;
+            this.button_minimize.Location = new System.Drawing.Point(1268, 0);
+            this.button_minimize.Margin = new System.Windows.Forms.Padding(0);
+            this.button_minimize.Name = "button_minimize";
+            this.button_minimize.Size = new System.Drawing.Size(43, 34);
+            this.button_minimize.TabIndex = 3;
+            this.button_minimize.UseVisualStyleBackColor = false;
+            this.button_minimize.Click += new System.EventHandler(this.button_minimize_Click);
+            // 
+            // button_maximize
+            // 
+            this.button_maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_maximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_maximize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_maximize.FlatAppearance.BorderSize = 0;
+            this.button_maximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
+            this.button_maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_maximize.Image = global::ProjectC_.Properties.Resources.Maximize_White;
+            this.button_maximize.Location = new System.Drawing.Point(1311, 0);
+            this.button_maximize.Margin = new System.Windows.Forms.Padding(0);
+            this.button_maximize.Name = "button_maximize";
+            this.button_maximize.Size = new System.Drawing.Size(43, 34);
+            this.button_maximize.TabIndex = 2;
+            this.button_maximize.UseVisualStyleBackColor = false;
+            this.button_maximize.Click += new System.EventHandler(this.button_maximize_Click);
+            // 
+            // button_close
+            // 
+            this.button_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_close.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_close.FlatAppearance.BorderSize = 0;
+            this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
+            this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
+            this.button_close.Location = new System.Drawing.Point(1354, 0);
+            this.button_close.Margin = new System.Windows.Forms.Padding(0);
+            this.button_close.Name = "button_close";
+            this.button_close.Size = new System.Drawing.Size(43, 34);
+            this.button_close.TabIndex = 1;
+            this.button_close.UseVisualStyleBackColor = false;
+            this.button_close.Click += new System.EventHandler(this.button_close_Click);
             // 
             // TopSeparator
             // 
@@ -191,8 +259,7 @@
             // ComPanel
             // 
             this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ComPanel.Controls.Add(this.button2);
-            this.ComPanel.Controls.Add(this.button1);
+            this.ComPanel.Controls.Add(this.ButtonConnect);
             this.ComPanel.Controls.Add(this.SerialLabel);
             this.ComPanel.Controls.Add(this.SerialSelectorMargin);
             this.ComPanel.Controls.Add(this.BaudLabel);
@@ -203,17 +270,22 @@
             this.ComPanel.Size = new System.Drawing.Size(200, 200);
             this.ComPanel.TabIndex = 0;
             // 
-            // MainPage
+            // ButtonConnect
             // 
-            this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MainPage.Location = new System.Drawing.Point(204, 36);
-            this.MainPage.Name = "MainPage";
-            this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.MainPage.Size = new System.Drawing.Size(1194, 815);
-            this.MainPage.TabIndex = 5;
+            this.ButtonConnect.BackColor = System.Drawing.Color.DarkGreen;
+            this.ButtonConnect.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.ButtonConnect.FlatAppearance.BorderSize = 0;
+            this.ButtonConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConnect.ForeColor = System.Drawing.Color.DarkGray;
+            this.ButtonConnect.Location = new System.Drawing.Point(25, 158);
+            this.ButtonConnect.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(150, 23);
+            this.ButtonConnect.TabIndex = 5;
+            this.ButtonConnect.Text = "Connexion";
+            this.ButtonConnect.UseVisualStyleBackColor = false;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // SerialLabel
             // 
@@ -263,6 +335,21 @@
             this.SerialText.Text = "COM1";
             this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // SerialExpand
+            // 
+            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.SerialExpand.FlatAppearance.BorderSize = 0;
+            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
+            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialExpand.Name = "SerialExpand";
+            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
+            this.SerialExpand.TabIndex = 1;
+            this.SerialExpand.UseVisualStyleBackColor = true;
+            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
+            // 
             // BaudLabel
             // 
             this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
@@ -274,7 +361,6 @@
             this.BaudLabel.Size = new System.Drawing.Size(150, 28);
             this.BaudLabel.TabIndex = 3;
             this.BaudLabel.Text = "Vitesse (baud/s)";
-            this.BaudLabel.TextChanged += new System.EventHandler(this.BaudLabel_TextChanged);
             // 
             // BaudSelectorMargin
             // 
@@ -312,48 +398,6 @@
             this.BaudText.Text = "115200";
             this.BaudText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DarkGreen;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DarkGray;
-            this.button1.Location = new System.Drawing.Point(75, 158);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Connexion";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::ProjectC_.Properties.Resources.Refresh_grey_16x;
-            this.button2.Location = new System.Drawing.Point(23, 157);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(25, 25);
-            this.button2.TabIndex = 6;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // SerialExpand
-            // 
-            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.SerialExpand.FlatAppearance.BorderSize = 0;
-            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
-            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialExpand.Name = "SerialExpand";
-            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
-            this.SerialExpand.TabIndex = 1;
-            this.SerialExpand.UseVisualStyleBackColor = true;
-            // 
             // BaudExpand
             // 
             this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
@@ -367,71 +411,38 @@
             this.BaudExpand.Size = new System.Drawing.Size(26, 26);
             this.BaudExpand.TabIndex = 1;
             this.BaudExpand.UseVisualStyleBackColor = true;
+            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
             // 
-            // logo
+            // MainPage
             // 
-            this.logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(0, 0);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(34, 34);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logo.TabIndex = 1;
-            this.logo.TabStop = false;
+            this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MainPage.Location = new System.Drawing.Point(204, 36);
+            this.MainPage.Name = "MainPage";
+            this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.MainPage.Size = new System.Drawing.Size(1194, 815);
+            this.MainPage.TabIndex = 5;
             // 
-            // button_minimize
+            // MenuSerialPort
             // 
-            this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_minimize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_minimize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_minimize.FlatAppearance.BorderSize = 0;
-            this.button_minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
-            this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_minimize.Image = global::ProjectC_.Properties.Resources.Minimize_white;
-            this.button_minimize.Location = new System.Drawing.Point(1268, 0);
-            this.button_minimize.Margin = new System.Windows.Forms.Padding(0);
-            this.button_minimize.Name = "button_minimize";
-            this.button_minimize.Size = new System.Drawing.Size(43, 34);
-            this.button_minimize.TabIndex = 3;
-            this.button_minimize.UseVisualStyleBackColor = false;
-            this.button_minimize.Click += new System.EventHandler(this.button_minimize_Click);
+            this.MenuSerialPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MenuSerialPort.ImageScalingSize = new System.Drawing.Size(0, 0);
+            this.MenuSerialPort.Name = "MenuSerialPort";
+            this.MenuSerialPort.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.MenuSerialPort.ShowImageMargin = false;
+            this.MenuSerialPort.Size = new System.Drawing.Size(36, 4);
+            this.MenuSerialPort.Text = "couou";
             // 
-            // button_maximize
+            // MenuSpeed
             // 
-            this.button_maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_maximize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_maximize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_maximize.FlatAppearance.BorderSize = 0;
-            this.button_maximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
-            this.button_maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_maximize.Image = global::ProjectC_.Properties.Resources.Maximize_White;
-            this.button_maximize.Location = new System.Drawing.Point(1311, 0);
-            this.button_maximize.Margin = new System.Windows.Forms.Padding(0);
-            this.button_maximize.Name = "button_maximize";
-            this.button_maximize.Size = new System.Drawing.Size(43, 34);
-            this.button_maximize.TabIndex = 2;
-            this.button_maximize.UseVisualStyleBackColor = false;
-            this.button_maximize.Click += new System.EventHandler(this.button_maximize_Click);
-            // 
-            // button_close
-            // 
-            this.button_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_close.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.FlatAppearance.BorderSize = 0;
-            this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
-            this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
-            this.button_close.Location = new System.Drawing.Point(1354, 0);
-            this.button_close.Margin = new System.Windows.Forms.Padding(0);
-            this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(43, 34);
-            this.button_close.TabIndex = 1;
-            this.button_close.UseVisualStyleBackColor = false;
-            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            this.MenuSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MenuSpeed.ImageScalingSize = new System.Drawing.Size(0, 0);
+            this.MenuSpeed.Name = "MenuSpeed";
+            this.MenuSpeed.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.MenuSpeed.ShowImageMargin = false;
+            this.MenuSpeed.Size = new System.Drawing.Size(36, 4);
             // 
             // Form1
             // 
@@ -448,6 +459,7 @@
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Resize += new System.EventHandler(this.Form1_SizeChanged);
             this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.LeftSeparator.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
@@ -458,7 +470,6 @@
             this.SerialSelector.ResumeLayout(false);
             this.BaudSelectorMargin.ResumeLayout(false);
             this.BaudSelector.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -491,8 +502,10 @@
         private System.Windows.Forms.Panel BaudSelector;
         private System.Windows.Forms.Label BaudText;
         private System.Windows.Forms.Button BaudExpand;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ButtonConnect;
+        private System.IO.Ports.SerialPort SerialConn;
+        private System.Windows.Forms.ContextMenuStrip MenuSerialPort;
+        private System.Windows.Forms.ContextMenuStrip MenuSpeed;
     }
 }
 

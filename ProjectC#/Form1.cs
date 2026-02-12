@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices;
@@ -20,6 +21,10 @@ namespace ProjectC_ {
         bool IsPageResizeY = false;
         bool IsPageResizeX = false;
         float leftMenuRatio = 0.5f;
+        int[] speed = {3600, 9600, 19200, 38400, 56000, 57600, 76800, 115200, 460800, 921600};
+        string SerialComChoosed = "";
+        int SerialSpeedChoosed = 0;
+
 
         //Fonction pour ajouter l'ombre autour de la fenêtre
         protected override CreateParams CreateParams {
@@ -95,11 +100,16 @@ namespace ProjectC_ {
 
         public Form1() {
             InitializeComponent();
+            MenuSerialPort.Renderer = new CustomSelectionRenderer();
+            MenuSpeed.Renderer = new CustomSelectionRenderer();
             LeftBar.Enabled = false;
             MenuSeparatorBar.Enabled = false;
         }
 
         private void button_close_Click(object sender, EventArgs e) {
+            if (SerialConn.IsOpen) {
+                SerialConn.Close();
+            }
             this.Close();
         }
 
@@ -214,8 +224,82 @@ namespace ProjectC_ {
             leftMenuRatio = ((int) (((float) MenuSeparator.Location.Y / MenuPanel.Height)*100))/100.0f;
         }
 
-        private void BaudLabel_TextChanged(object sender, EventArgs e) {
+        private void SerialExpand_Click(object sender, EventArgs e) {
+            MenuSerialPort.Items.Clear();
+            string[] array = SerialPort.GetPortNames();
+            int height = array.Length <= 6 ? array.Length : 6;
+            MenuSerialPort.MinimumSize = new Size(SerialSelectorMargin.Width, 0);
+            MenuSerialPort.ForeColor = Color.DarkGray;
 
+            foreach (string port in array) {
+                ToolStripItem item = MenuSerialPort.Items.Add(port, null, (s, ea) => {
+                    SerialText.Text = port;
+                    SerialComChoosed = port;
+                });
+                item.AutoSize = false;
+                item.Width = SerialSelectorMargin.Width;
+            }
+            MenuSerialPort.Show(SerialSelectorMargin, new Point(0, SerialExpand.Height));
+        }
+
+        private void BaudExpand_Click(object sender, EventArgs e) {
+            MenuSpeed.Items.Clear();
+     
+            int height = speed.Length <= 6 ? speed.Length : 6;
+            MenuSpeed.MinimumSize = new Size(BaudSelectorMargin.Width, 0);
+            MenuSpeed.ForeColor = Color.DarkGray;
+
+            foreach (int sped in speed) {
+                ToolStripItem item = MenuSpeed.Items.Add(sped.ToString(), null, (s, ea) => {
+                    BaudText.Text = sped.ToString();
+                    SerialSpeedChoosed = sped;
+                });
+                item.AutoSize = false;
+                item.Width = BaudSelectorMargin.Width;
+            }
+            MenuSpeed.Show(BaudSelectorMargin, new Point(0, BaudExpand.Height));
+        }
+
+        private void ButtonConnect_Click(object sender, EventArgs e) {
+            if (!SerialConn.IsOpen) {
+                try {
+
+                    SerialConn.PortName = SerialComChoosed; 
+                    SerialConn.BaudRate = SerialSpeedChoosed;
+
+                    SerialConn.Parity = Parity.None;
+                    SerialConn.DataBits = 8;
+                    SerialConn.StopBits = StopBits.One;
+                    SerialConn.Handshake = Handshake.None;
+
+                    SerialConn.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+
+                    // 3. Ouverture
+                    SerialConn.Open();
+
+                    // 4. Feedback visuel (Style Dark Mode)
+                    ButtonConnect.Text = "Deconnexion";
+                    ButtonConnect.BackColor = Color.FromArgb(200, 50, 50); // Rouge
+                } catch (Exception ex) {
+                    MessageBox.Show("Erreur de connexion : " + ex.Message);
+                }
+            } else {
+                SerialConn.Close();
+                ButtonConnect.Text = "Connexion";
+                ButtonConnect.BackColor = Color.DarkGreen; // Vert
+            }
+        }
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
+            // On lit la ligne envoyée par l'Arduino (qui finit par \n)
+            string data = SerialConn.ReadLine();
+
+            this.Invoke(new MethodInvoker(delegate {
+                // C'est ici que tu mettras à jour ton graphique plus tard
+
+                // Pour ton test : ajoute la donnée dans une console ou un log
+                Console.WriteLine(data);
+            }));
         }
     }
 }
@@ -223,4 +307,20 @@ namespace ProjectC_ {
 
 
 
+public class CustomSelectionRenderer : ToolStripProfessionalRenderer {
+    //Permet de changer l'apparence de la custom combo box quand on clique sur expand
 
+    protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e) {
+        if (e.Item.Selected) {
+
+            Rectangle rect = new Rectangle(2, 1, e.ToolStrip.ClientRectangle.Width - 4, e.Item.Height - 2);
+
+            using (SolidBrush brush = new SolidBrush(Color.FromArgb(50, 120, 220))) { 
+                e.Graphics.FillRectangle(brush, rect);
+            }
+        } else {
+            // Si l'item n'est pas sélectionné, on laisse le comportement normal (fond transparent)
+            base.OnRenderMenuItemBackground(e);
+        }
+    }
+}
