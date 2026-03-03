@@ -332,7 +332,7 @@
             this.ExportButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
             this.ExportButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportButton.TabIndex = 4;
-            this.ExportButton.ToolTipValues.Description = "Exporter les données ves un fichier \r\nCSV, visualisable sur Excel";
+            this.ExportButton.ToolTipValues.Description = "Exporter les données vers un fichier \r\nCSV, visualisable sur Excel";
             this.ExportButton.ToolTipValues.EnableToolTips = true;
             this.ExportButton.ToolTipValues.Heading = "Export vers CSV";
             this.ExportButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
