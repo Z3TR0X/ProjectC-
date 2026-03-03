@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ScottPlot.Colormaps;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,291 +15,32 @@ using System.Windows.Forms;
 namespace ProjectC_ {
 
     public partial class Form1 : Form {
-
-        Size last_normal_form_size;
-        Point last_normal_form_position;
-        bool IsPageResizeY = false;
-        bool IsPageResizeX = false;
-        float leftMenuRatio = 0.5f;
-        int[] speed = {3600, 9600, 19200, 38400, 56000, 57600, 76800, 115200, 460800, 921600};
-        string SerialComChoosed = "";
-        int SerialSpeedChoosed = 0;
-
-
-        //Fonction pour ajouter l'ombre autour de la fenêtre
-        protected override CreateParams CreateParams {
-            get {
-                CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= 0x20000; // Ombre portée
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
-
-        [DllImport("dwmapi.dll")]
-        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        //Fonction pour mettre les bords ronds
-        protected override void OnHandleCreated(EventArgs e) {
-            base.OnHandleCreated(e);
-            int preference = 2;
-            DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-        }
-
-        //Fonction pour resize la fenètre si la souris est dans un coin
-        protected override void WndProc(ref Message m) {
-
-            if (m.Msg == 0x84) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-
-                int tolerance = 100; //Zone dans laquelle le curseur est compté comme étant sur le bord.
-
-                /*
-                 10	Bord gauche
-                 11	Bord droit
-                 12	Bord haut
-                 14	Coin haut-droit
-                 15	Bord bas
-                 16	Coin bas-gauche
-                 17	Coin bas-droit
-                 */
-
-                // Haut Gauche
-                if (clientPoint.X <= tolerance && clientPoint.Y <= tolerance) { m.Result = (IntPtr)13; return; }
-
-                // Haut Droit
-                if (clientPoint.X >= this.Size.Width - tolerance && clientPoint.Y <= tolerance) { m.Result = (IntPtr)14; return; }
-
-                // Bas Gauche
-                if (clientPoint.X <= tolerance && clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)16; return; }
-
-                // Bas Droit
-                if (clientPoint.X >= this.Size.Width - tolerance && clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)17; return; }
-
-                // Bord Gauche
-                if (clientPoint.X <= tolerance) { m.Result = (IntPtr)10; return; }
-
-                // Bord Droit
-                if (clientPoint.X >= this.Size.Width - tolerance) { m.Result = (IntPtr)11; return; }
-
-                // Bord Haut
-                if (clientPoint.Y <= tolerance) { m.Result = (IntPtr)12; return; }
-
-                // Bord Bas
-                if (clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)15; return; }
-            }
-
-            base.WndProc(ref m);
-        }
-
         public Form1() {
             InitializeComponent();
             MenuSerialPort.Renderer = new CustomSelectionRenderer();
             MenuSpeed.Renderer = new CustomSelectionRenderer();
             LeftBar.Enabled = false;
             MenuSeparatorBar.Enabled = false;
-        }
+            SerialHander = new SerialDataReceivedEventHandler(DataReceivedHandler);
 
-        private void button_close_Click(object sender, EventArgs e) {
-            if (SerialConn.IsOpen) {
-                SerialConn.Close();
-            }
-            this.Close();
-        }
-
-        private void button_maximize_Click(object sender, EventArgs e) {
-            Size screen_size = Screen.FromControl(this).WorkingArea.Size;
-            if (this.Size != screen_size) {
-                int preference = 0;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                last_normal_form_size = this.Size;
-                last_normal_form_position = this.Location;
-                this.Size = Screen.FromControl(this).WorkingArea.Size;
-                this.Location = new Point(0, 0);
-                this.Padding = new Padding(0, 0, 0, 0);
-                button_maximize.Image = Properties.Resources.Restore_white;
-
-            } else {
-                int preference = 2;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                this.Size = last_normal_form_size;
-                this.Location = last_normal_form_position;
-                this.Padding = new Padding(1, 1, 1, 1);
-                button_maximize.Image = Properties.Resources.Maximize_White;
-
-            }
+            KryptonButtonCorrection(this.Controls);
 
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e) {
-            int header_height = 34;
-            int header_width = this.Size.Width;
-            TopBar.Size = new Size(header_width, header_height);
+        private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
+            foreach (Control control in ctrls) {
+                if (control is Krypton.Toolkit.KryptonButton btn) {
+                    btn.OverrideDefault.Back.Color1 = btn.StateCommon.Back.Color1;
+                    btn.OverrideDefault.Back.ColorStyle = btn.StateCommon.Back.ColorStyle;
 
-
-            LeftBar.Size = new Size(1, MainPage.Size.Height);
-
-            MenuPanel.Size = new Size(MenuPanel.Size.Width, MainPage.Size.Height-ComPanel.Height);
-
-            int MenuLocY = (int) Math.Round(MenuPanel.Height * leftMenuRatio);
-            if (MenuLocY <= 100) {
-                MenuLocY = 100;
-            }
-            MenuSeparator.Location = new Point(0, MenuLocY);
-            VarPanel.Size = new Size(VarPanel.Width, MenuLocY);
-            PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - MenuLocY - 5);
-        }
-
-        private void button_minimize_Click(object sender, EventArgs e) {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e) {
-            if (this.Size == Screen.FromControl(this).WorkingArea.Size) {
-                int preference = 2;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                this.Size = last_normal_form_size;
-                double ratio = (double)e.X / (double)Screen.GetWorkingArea(this).Size.Width;
-                Point cursorPoint = Cursor.Position;
-                int newX = cursorPoint.X - (int)(this.Width * ratio);
-                int newY = cursorPoint.Y - e.Y;
-
-                this.Location = new Point(newX, newY);
-                this.Padding = new Padding(1, 1, 1, 1);
-
-                button_maximize.Image = Properties.Resources.Maximize_White;
-            }
-
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void LeftSeparator_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResizeX = true;
-        }
-
-        private void LeftSeparator_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResizeX = false;
-        }
-
-        private void LeftSeparator_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResizeX) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-                if (clientPoint.X >= 100) {
-                    LeftPanel.Size = new Size(clientPoint.X, LeftPanel.Size.Height);
-                    MenuSeparator.Size = new Size(clientPoint.X, 5);
-                    MenuSeparatorBar.Size = new Size(clientPoint.X, 1);
+                    btn.OverrideDefault.Border.Color1 = btn.StateCommon.Border.Color1;
+                    btn.OverrideDefault.Border.ColorStyle = btn.StateCommon.Border.ColorStyle;
                 }
-                
-            }
-        }
 
-        private void MenuSeparator_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResizeY = true;
-        }
-
-        private void MenuSeparator_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResizeY) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-                int menuloc = clientPoint.Y - ComPanel.Height - 38;
-                if (menuloc >= 100) {
-                    MenuSeparator.Location = new Point(0, menuloc);
-                    VarPanel.Size = new Size(VarPanel.Width, menuloc);
-                    PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height-menuloc-5);
+                if (control.HasChildren) {
+                    KryptonButtonCorrection(control.Controls);
                 }
             }
-        }
-
-        private void MenuSeparator_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResizeY = false;
-            leftMenuRatio = ((int) (((float) MenuSeparator.Location.Y / MenuPanel.Height)*100))/100.0f;
-        }
-
-        private void SerialExpand_Click(object sender, EventArgs e) {
-            MenuSerialPort.Items.Clear();
-            string[] array = SerialPort.GetPortNames();
-            int height = array.Length <= 6 ? array.Length : 6;
-            MenuSerialPort.MinimumSize = new Size(SerialSelectorMargin.Width, 0);
-            MenuSerialPort.ForeColor = Color.DarkGray;
-
-            foreach (string port in array) {
-                ToolStripItem item = MenuSerialPort.Items.Add(port, null, (s, ea) => {
-                    SerialText.Text = port;
-                    SerialComChoosed = port;
-                });
-                item.AutoSize = false;
-                item.Width = SerialSelectorMargin.Width;
-            }
-            MenuSerialPort.Show(SerialSelectorMargin, new Point(0, SerialExpand.Height));
-        }
-
-        private void BaudExpand_Click(object sender, EventArgs e) {
-            MenuSpeed.Items.Clear();
-     
-            int height = speed.Length <= 6 ? speed.Length : 6;
-            MenuSpeed.MinimumSize = new Size(BaudSelectorMargin.Width, 0);
-            MenuSpeed.ForeColor = Color.DarkGray;
-
-            foreach (int sped in speed) {
-                ToolStripItem item = MenuSpeed.Items.Add(sped.ToString(), null, (s, ea) => {
-                    BaudText.Text = sped.ToString();
-                    SerialSpeedChoosed = sped;
-                });
-                item.AutoSize = false;
-                item.Width = BaudSelectorMargin.Width;
-            }
-            MenuSpeed.Show(BaudSelectorMargin, new Point(0, BaudExpand.Height));
-        }
-
-        private void ButtonConnect_Click(object sender, EventArgs e) {
-            if (!SerialConn.IsOpen) {
-                try {
-
-                    SerialConn.PortName = SerialComChoosed; 
-                    SerialConn.BaudRate = SerialSpeedChoosed;
-
-                    SerialConn.Parity = Parity.None;
-                    SerialConn.DataBits = 8;
-                    SerialConn.StopBits = StopBits.One;
-                    SerialConn.Handshake = Handshake.None;
-
-                    SerialConn.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-
-                    // 3. Ouverture
-                    SerialConn.Open();
-
-                    // 4. Feedback visuel (Style Dark Mode)
-                    ButtonConnect.Text = "Deconnexion";
-                    ButtonConnect.BackColor = Color.FromArgb(200, 50, 50); // Rouge
-                } catch (Exception ex) {
-                    MessageBox.Show("Erreur de connexion : " + ex.Message);
-                }
-            } else {
-                SerialConn.Close();
-                ButtonConnect.Text = "Connexion";
-                ButtonConnect.BackColor = Color.DarkGreen; // Vert
-            }
-        }
-
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
-            // On lit la ligne envoyée par l'Arduino (qui finit par \n)
-            string data = SerialConn.ReadLine();
-
-            this.Invoke(new MethodInvoker(delegate {
-                // C'est ici que tu mettras à jour ton graphique plus tard
-
-                // Pour ton test : ajoute la donnée dans une console ou un log
-                Console.WriteLine(data);
-            }));
         }
     }
 }
@@ -307,20 +48,3 @@ namespace ProjectC_ {
 
 
 
-public class CustomSelectionRenderer : ToolStripProfessionalRenderer {
-    //Permet de changer l'apparence de la custom combo box quand on clique sur expand
-
-    protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e) {
-        if (e.Item.Selected) {
-
-            Rectangle rect = new Rectangle(2, 1, e.ToolStrip.ClientRectangle.Width - 4, e.Item.Height - 2);
-
-            using (SolidBrush brush = new SolidBrush(Color.FromArgb(50, 120, 220))) { 
-                e.Graphics.FillRectangle(brush, rect);
-            }
-        } else {
-            // Si l'item n'est pas sélectionné, on laisse le comportement normal (fond transparent)
-            base.OnRenderMenuItemBackground(e);
-        }
-    }
-}

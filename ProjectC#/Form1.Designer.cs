@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.TopBar = new System.Windows.Forms.Panel();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.button_minimize = new System.Windows.Forms.Button();
-            this.button_maximize = new System.Windows.Forms.Button();
-            this.button_close = new System.Windows.Forms.Button();
             this.TopSeparator = new System.Windows.Forms.Panel();
             this.LeftSeparator = new System.Windows.Forms.Panel();
             this.LeftBar = new System.Windows.Forms.Panel();
@@ -45,113 +40,53 @@
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.ComSeparator = new System.Windows.Forms.Panel();
+            this.ControlPanel = new System.Windows.Forms.Panel();
+            this.OptionPanel = new System.Windows.Forms.Panel();
+            this.DataLabel = new System.Windows.Forms.Label();
+            this.AquisitionLabel = new System.Windows.Forms.Label();
+            this.ConfigurationLabel = new System.Windows.Forms.Label();
+            this.ImportConfigButton = new Krypton.Toolkit.KryptonButton();
+            this.ExportConfigButton = new Krypton.Toolkit.KryptonButton();
+            this.ExportButton = new Krypton.Toolkit.KryptonButton();
+            this.RefreshButton = new Krypton.Toolkit.KryptonButton();
+            this.DeleteButton = new Krypton.Toolkit.KryptonButton();
+            this.PausContButton = new Krypton.Toolkit.KryptonButton();
             this.ComPanel = new System.Windows.Forms.Panel();
-            this.ButtonConnect = new System.Windows.Forms.Button();
-            this.SerialLabel = new System.Windows.Forms.TextBox();
-            this.SerialSelectorMargin = new System.Windows.Forms.Panel();
-            this.SerialSelector = new System.Windows.Forms.Panel();
-            this.SerialText = new System.Windows.Forms.Label();
-            this.SerialExpand = new System.Windows.Forms.Button();
-            this.BaudLabel = new System.Windows.Forms.TextBox();
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
             this.BaudSelector = new System.Windows.Forms.Panel();
             this.BaudText = new System.Windows.Forms.Label();
             this.BaudExpand = new System.Windows.Forms.Button();
+            this.BaudLabel = new System.Windows.Forms.TextBox();
+            this.SerialSelectorMargin = new System.Windows.Forms.Panel();
+            this.SerialSelector = new System.Windows.Forms.Panel();
+            this.SerialText = new System.Windows.Forms.Label();
+            this.SerialExpand = new System.Windows.Forms.Button();
+            this.SerialLabel = new System.Windows.Forms.TextBox();
+            this.ButtonConnect = new System.Windows.Forms.Button();
             this.MainPage = new System.Windows.Forms.Panel();
             this.SerialConn = new System.IO.Ports.SerialPort(this.components);
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TopBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.TopBar = new Krypton.Toolkit.KryptonPanel();
+            this.button_minimize = new System.Windows.Forms.Button();
+            this.button_maximize = new System.Windows.Forms.Button();
+            this.button_close = new System.Windows.Forms.Button();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             this.MenuSeparator.SuspendLayout();
+            this.ControlPanel.SuspendLayout();
+            this.OptionPanel.SuspendLayout();
             this.ComPanel.SuspendLayout();
-            this.SerialSelectorMargin.SuspendLayout();
-            this.SerialSelector.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
             this.BaudSelector.SuspendLayout();
+            this.SerialSelectorMargin.SuspendLayout();
+            this.SerialSelector.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
+            this.TopBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // TopBar
-            // 
-            this.TopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.TopBar.Controls.Add(this.logo);
-            this.TopBar.Controls.Add(this.button_minimize);
-            this.TopBar.Controls.Add(this.button_maximize);
-            this.TopBar.Controls.Add(this.button_close);
-            this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopBar.Location = new System.Drawing.Point(1, 1);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(1397, 34);
-            this.TopBar.TabIndex = 0;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // logo
-            // 
-            this.logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(0, 0);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(34, 34);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logo.TabIndex = 1;
-            this.logo.TabStop = false;
-            // 
-            // button_minimize
-            // 
-            this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_minimize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_minimize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_minimize.FlatAppearance.BorderSize = 0;
-            this.button_minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
-            this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_minimize.Image = global::ProjectC_.Properties.Resources.Minimize_white;
-            this.button_minimize.Location = new System.Drawing.Point(1268, 0);
-            this.button_minimize.Margin = new System.Windows.Forms.Padding(0);
-            this.button_minimize.Name = "button_minimize";
-            this.button_minimize.Size = new System.Drawing.Size(43, 34);
-            this.button_minimize.TabIndex = 3;
-            this.button_minimize.UseVisualStyleBackColor = false;
-            this.button_minimize.Click += new System.EventHandler(this.button_minimize_Click);
-            // 
-            // button_maximize
-            // 
-            this.button_maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_maximize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_maximize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_maximize.FlatAppearance.BorderSize = 0;
-            this.button_maximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
-            this.button_maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_maximize.Image = global::ProjectC_.Properties.Resources.Maximize_White;
-            this.button_maximize.Location = new System.Drawing.Point(1311, 0);
-            this.button_maximize.Margin = new System.Windows.Forms.Padding(0);
-            this.button_maximize.Name = "button_maximize";
-            this.button_maximize.Size = new System.Drawing.Size(43, 34);
-            this.button_maximize.TabIndex = 2;
-            this.button_maximize.UseVisualStyleBackColor = false;
-            this.button_maximize.Click += new System.EventHandler(this.button_maximize_Click);
-            // 
-            // button_close
-            // 
-            this.button_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.button_close.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.FlatAppearance.BorderSize = 0;
-            this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
-            this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
-            this.button_close.Location = new System.Drawing.Point(1354, 0);
-            this.button_close.Margin = new System.Windows.Forms.Padding(0);
-            this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(43, 34);
-            this.button_close.TabIndex = 1;
-            this.button_close.UseVisualStyleBackColor = false;
-            this.button_close.Click += new System.EventHandler(this.button_close_Click);
             // 
             // TopSeparator
             // 
@@ -189,7 +124,7 @@
             this.LeftPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(33)))), ((int)(((byte)(40)))));
             this.LeftPanel.Controls.Add(this.MenuPanel);
             this.LeftPanel.Controls.Add(this.ComSeparator);
-            this.LeftPanel.Controls.Add(this.ComPanel);
+            this.LeftPanel.Controls.Add(this.ControlPanel);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(1, 36);
             this.LeftPanel.Name = "LeftPanel";
@@ -256,111 +191,238 @@
             this.ComSeparator.Size = new System.Drawing.Size(200, 1);
             this.ComSeparator.TabIndex = 0;
             // 
+            // ControlPanel
+            // 
+            this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.ControlPanel.Controls.Add(this.OptionPanel);
+            this.ControlPanel.Controls.Add(this.ComPanel);
+            this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ControlPanel.Location = new System.Drawing.Point(0, 0);
+            this.ControlPanel.Name = "ControlPanel";
+            this.ControlPanel.Size = new System.Drawing.Size(200, 200);
+            this.ControlPanel.TabIndex = 0;
+            // 
+            // OptionPanel
+            // 
+            this.OptionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.OptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.OptionPanel.Controls.Add(this.DataLabel);
+            this.OptionPanel.Controls.Add(this.AquisitionLabel);
+            this.OptionPanel.Controls.Add(this.ConfigurationLabel);
+            this.OptionPanel.Controls.Add(this.ImportConfigButton);
+            this.OptionPanel.Controls.Add(this.ExportConfigButton);
+            this.OptionPanel.Controls.Add(this.ExportButton);
+            this.OptionPanel.Controls.Add(this.RefreshButton);
+            this.OptionPanel.Controls.Add(this.DeleteButton);
+            this.OptionPanel.Controls.Add(this.PausContButton);
+            this.OptionPanel.Location = new System.Drawing.Point(0, 0);
+            this.OptionPanel.Name = "OptionPanel";
+            this.OptionPanel.Size = new System.Drawing.Size(200, 200);
+            this.OptionPanel.TabIndex = 7;
+            // 
+            // DataLabel
+            // 
+            this.DataLabel.AutoSize = true;
+            this.DataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.DataLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.DataLabel.Location = new System.Drawing.Point(10, 70);
+            this.DataLabel.Name = "DataLabel";
+            this.DataLabel.Size = new System.Drawing.Size(91, 25);
+            this.DataLabel.TabIndex = 7;
+            this.DataLabel.Text = "Données";
+            // 
+            // AquisitionLabel
+            // 
+            this.AquisitionLabel.AutoSize = true;
+            this.AquisitionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.AquisitionLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.AquisitionLabel.Location = new System.Drawing.Point(10, 130);
+            this.AquisitionLabel.Name = "AquisitionLabel";
+            this.AquisitionLabel.Size = new System.Drawing.Size(97, 25);
+            this.AquisitionLabel.TabIndex = 0;
+            this.AquisitionLabel.Text = "Aquisition";
+            // 
+            // ConfigurationLabel
+            // 
+            this.ConfigurationLabel.AutoSize = true;
+            this.ConfigurationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ConfigurationLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.ConfigurationLabel.Location = new System.Drawing.Point(10, 10);
+            this.ConfigurationLabel.Name = "ConfigurationLabel";
+            this.ConfigurationLabel.Size = new System.Drawing.Size(128, 25);
+            this.ConfigurationLabel.TabIndex = 2;
+            this.ConfigurationLabel.Text = "Configuration";
+            // 
+            // ImportConfigButton
+            // 
+            this.ImportConfigButton.Location = new System.Drawing.Point(105, 35);
+            this.ImportConfigButton.Name = "ImportConfigButton";
+            this.ImportConfigButton.Size = new System.Drawing.Size(75, 25);
+            this.ImportConfigButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.ImportConfigButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ImportConfigButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.ImportConfigButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ImportConfigButton.StateCommon.Border.Rounding = 5F;
+            this.ImportConfigButton.StateCommon.Content.AdjacentGap = 5;
+            this.ImportConfigButton.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ImportConfigButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, -1, -1);
+            this.ImportConfigButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.ImportConfigButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ImportConfigButton.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ImportConfigButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(78)))), ((int)(((byte)(85)))));
+            this.ImportConfigButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ImportConfigButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
+            this.ImportConfigButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ImportConfigButton.TabIndex = 6;
+            this.ImportConfigButton.ToolTipValues.Description = "Importer une configuration depuis un fichier SQLite";
+            this.ImportConfigButton.ToolTipValues.EnableToolTips = true;
+            this.ImportConfigButton.ToolTipValues.Heading = "Import d\'une configuration";
+            this.ImportConfigButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ImportConfigButton.Values.Image = global::ProjectC_.Properties.Resources.ImportConfig;
+            this.ImportConfigButton.Values.Text = "Import";
+            // 
+            // ExportConfigButton
+            // 
+            this.ExportConfigButton.Location = new System.Drawing.Point(18, 35);
+            this.ExportConfigButton.Name = "ExportConfigButton";
+            this.ExportConfigButton.Size = new System.Drawing.Size(75, 25);
+            this.ExportConfigButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.ExportConfigButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportConfigButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.ExportConfigButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportConfigButton.StateCommon.Border.Rounding = 5F;
+            this.ExportConfigButton.StateCommon.Content.AdjacentGap = 5;
+            this.ExportConfigButton.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ExportConfigButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, -1, -1);
+            this.ExportConfigButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.ExportConfigButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportConfigButton.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ExportConfigButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(78)))), ((int)(((byte)(85)))));
+            this.ExportConfigButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportConfigButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
+            this.ExportConfigButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportConfigButton.TabIndex = 5;
+            this.ExportConfigButton.ToolTipValues.Description = "Exporter la configuration actuelle (les données, \r\nles fenètres, les paramètres) " +
+    "au format SQLite\r\n";
+            this.ExportConfigButton.ToolTipValues.EnableToolTips = true;
+            this.ExportConfigButton.ToolTipValues.Heading = "Export de la configuration";
+            this.ExportConfigButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ExportConfigButton.Values.Image = global::ProjectC_.Properties.Resources.ExportConfig;
+            this.ExportConfigButton.Values.Text = "Export";
+            // 
+            // ExportButton
+            // 
+            this.ExportButton.Location = new System.Drawing.Point(18, 95);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(121, 25);
+            this.ExportButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.ExportButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.ExportButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportButton.StateCommon.Border.Rounding = 5F;
+            this.ExportButton.StateCommon.Content.AdjacentGap = 5;
+            this.ExportButton.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ExportButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, -1, -1);
+            this.ExportButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.ExportButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportButton.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
+            this.ExportButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(78)))), ((int)(((byte)(85)))));
+            this.ExportButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
+            this.ExportButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.ExportButton.TabIndex = 4;
+            this.ExportButton.ToolTipValues.Description = "Exporter les données ves un fichier \r\nCSV, visualisable sur Excel";
+            this.ExportButton.ToolTipValues.EnableToolTips = true;
+            this.ExportButton.ToolTipValues.Heading = "Export vers CSV";
+            this.ExportButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.ExportButton.Values.Image = global::ProjectC_.Properties.Resources.ExportCSV1;
+            this.ExportButton.Values.Text = "Export vers CSV";
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(150, 156);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(25, 25);
+            this.RefreshButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.RefreshButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.RefreshButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.RefreshButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.RefreshButton.StateCommon.Border.Rounding = 5F;
+            this.RefreshButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.RefreshButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.RefreshButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(78)))), ((int)(((byte)(85)))));
+            this.RefreshButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.RefreshButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
+            this.RefreshButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.RefreshButton.TabIndex = 3;
+            this.RefreshButton.ToolTipValues.Description = "Menu pour customiser l\'aquisition des données.\r\nPar exemple, ajout d\'un trigger p" +
+    "our démarrer l\'aquisition\r\nou d\'un timer.";
+            this.RefreshButton.ToolTipValues.EnableToolTips = true;
+            this.RefreshButton.ToolTipValues.Heading = "Aquisition Customisée";
+            this.RefreshButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.RefreshButton.Values.Image = global::ProjectC_.Properties.Resources.EditAquisition;
+            this.RefreshButton.Values.Text = "";
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(150, 94);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(25, 25);
+            this.DeleteButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.DeleteButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeleteButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.DeleteButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeleteButton.StateCommon.Border.Rounding = 5F;
+            this.DeleteButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.DeleteButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeleteButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(78)))), ((int)(((byte)(85)))));
+            this.DeleteButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeleteButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
+            this.DeleteButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeleteButton.TabIndex = 2;
+            this.DeleteButton.ToolTipValues.Description = "";
+            this.DeleteButton.ToolTipValues.EnableToolTips = true;
+            this.DeleteButton.ToolTipValues.Heading = "Effacer tous les données";
+            this.DeleteButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.DeleteButton.Values.Image = global::ProjectC_.Properties.Resources.Delete;
+            this.DeleteButton.Values.Text = "";
+            // 
+            // PausContButton
+            // 
+            this.PausContButton.Location = new System.Drawing.Point(18, 156);
+            this.PausContButton.Name = "PausContButton";
+            this.PausContButton.Size = new System.Drawing.Size(120, 25);
+            this.PausContButton.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
+            this.PausContButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.PausContButton.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PausContButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.PausContButton.StateCommon.Border.Rounding = 5F;
+            this.PausContButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.PausContButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.PausContButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PausContButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(0)))));
+            this.PausContButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.PausContButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(0)))));
+            this.PausContButton.TabIndex = 1;
+            this.PausContButton.ToolTipValues.Description = "";
+            this.PausContButton.ToolTipValues.EnableToolTips = true;
+            this.PausContButton.ToolTipValues.Heading = "Lancer/Mettre en pause l\'aquisition";
+            this.PausContButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.PausContButton.Values.Text = "Lancer";
+            // 
             // ComPanel
             // 
             this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ComPanel.Controls.Add(this.ButtonConnect);
-            this.ComPanel.Controls.Add(this.SerialLabel);
-            this.ComPanel.Controls.Add(this.SerialSelectorMargin);
-            this.ComPanel.Controls.Add(this.BaudLabel);
             this.ComPanel.Controls.Add(this.BaudSelectorMargin);
-            this.ComPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ComPanel.Controls.Add(this.BaudLabel);
+            this.ComPanel.Controls.Add(this.SerialSelectorMargin);
+            this.ComPanel.Controls.Add(this.SerialLabel);
+            this.ComPanel.Controls.Add(this.ButtonConnect);
             this.ComPanel.Location = new System.Drawing.Point(0, 0);
             this.ComPanel.Name = "ComPanel";
             this.ComPanel.Size = new System.Drawing.Size(200, 200);
-            this.ComPanel.TabIndex = 0;
-            // 
-            // ButtonConnect
-            // 
-            this.ButtonConnect.BackColor = System.Drawing.Color.DarkGreen;
-            this.ButtonConnect.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.ButtonConnect.FlatAppearance.BorderSize = 0;
-            this.ButtonConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonConnect.ForeColor = System.Drawing.Color.DarkGray;
-            this.ButtonConnect.Location = new System.Drawing.Point(25, 158);
-            this.ButtonConnect.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonConnect.Name = "ButtonConnect";
-            this.ButtonConnect.Size = new System.Drawing.Size(150, 23);
-            this.ButtonConnect.TabIndex = 5;
-            this.ButtonConnect.Text = "Connexion";
-            this.ButtonConnect.UseVisualStyleBackColor = false;
-            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
-            // 
-            // SerialLabel
-            // 
-            this.SerialLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.SerialLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SerialLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SerialLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.SerialLabel.Location = new System.Drawing.Point(10, 5);
-            this.SerialLabel.Name = "SerialLabel";
-            this.SerialLabel.Size = new System.Drawing.Size(112, 28);
-            this.SerialLabel.TabIndex = 2;
-            this.SerialLabel.Text = "Port série :";
-            // 
-            // SerialSelectorMargin
-            // 
-            this.SerialSelectorMargin.BackColor = System.Drawing.Color.DarkGray;
-            this.SerialSelectorMargin.Controls.Add(this.SerialSelector);
-            this.SerialSelectorMargin.Location = new System.Drawing.Point(35, 30);
-            this.SerialSelectorMargin.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialSelectorMargin.Name = "SerialSelectorMargin";
-            this.SerialSelectorMargin.Padding = new System.Windows.Forms.Padding(1);
-            this.SerialSelectorMargin.Size = new System.Drawing.Size(130, 28);
-            this.SerialSelectorMargin.TabIndex = 1;
-            // 
-            // SerialSelector
-            // 
-            this.SerialSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.SerialSelector.Controls.Add(this.SerialText);
-            this.SerialSelector.Controls.Add(this.SerialExpand);
-            this.SerialSelector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SerialSelector.Location = new System.Drawing.Point(1, 1);
-            this.SerialSelector.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialSelector.Name = "SerialSelector";
-            this.SerialSelector.Size = new System.Drawing.Size(128, 26);
-            this.SerialSelector.TabIndex = 0;
-            // 
-            // SerialText
-            // 
-            this.SerialText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SerialText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.SerialText.ForeColor = System.Drawing.Color.DarkGray;
-            this.SerialText.Location = new System.Drawing.Point(0, 0);
-            this.SerialText.Name = "SerialText";
-            this.SerialText.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.SerialText.Size = new System.Drawing.Size(102, 26);
-            this.SerialText.TabIndex = 0;
-            this.SerialText.Text = "COM1";
-            this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // SerialExpand
-            // 
-            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.SerialExpand.FlatAppearance.BorderSize = 0;
-            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
-            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialExpand.Name = "SerialExpand";
-            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
-            this.SerialExpand.TabIndex = 1;
-            this.SerialExpand.UseVisualStyleBackColor = true;
-            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
-            // 
-            // BaudLabel
-            // 
-            this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.BaudLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.BaudLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BaudLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.BaudLabel.Location = new System.Drawing.Point(10, 70);
-            this.BaudLabel.Name = "BaudLabel";
-            this.BaudLabel.Size = new System.Drawing.Size(150, 28);
-            this.BaudLabel.TabIndex = 3;
-            this.BaudLabel.Text = "Vitesse (baud/s)";
+            this.ComPanel.TabIndex = 6;
             // 
             // BaudSelectorMargin
             // 
@@ -404,7 +466,6 @@
             this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.BaudExpand.FlatAppearance.BorderSize = 0;
             this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
             this.BaudExpand.Location = new System.Drawing.Point(102, 0);
             this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
             this.BaudExpand.Name = "BaudExpand";
@@ -412,6 +473,97 @@
             this.BaudExpand.TabIndex = 1;
             this.BaudExpand.UseVisualStyleBackColor = true;
             this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
+            // 
+            // BaudLabel
+            // 
+            this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.BaudLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BaudLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BaudLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.BaudLabel.Location = new System.Drawing.Point(10, 70);
+            this.BaudLabel.Name = "BaudLabel";
+            this.BaudLabel.Size = new System.Drawing.Size(150, 28);
+            this.BaudLabel.TabIndex = 3;
+            this.BaudLabel.Text = "Vitesse (baud/s)";
+            // 
+            // SerialSelectorMargin
+            // 
+            this.SerialSelectorMargin.BackColor = System.Drawing.Color.DarkGray;
+            this.SerialSelectorMargin.Controls.Add(this.SerialSelector);
+            this.SerialSelectorMargin.Location = new System.Drawing.Point(35, 30);
+            this.SerialSelectorMargin.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialSelectorMargin.Name = "SerialSelectorMargin";
+            this.SerialSelectorMargin.Padding = new System.Windows.Forms.Padding(1);
+            this.SerialSelectorMargin.Size = new System.Drawing.Size(130, 28);
+            this.SerialSelectorMargin.TabIndex = 1;
+            // 
+            // SerialSelector
+            // 
+            this.SerialSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.SerialSelector.Controls.Add(this.SerialText);
+            this.SerialSelector.Controls.Add(this.SerialExpand);
+            this.SerialSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SerialSelector.Location = new System.Drawing.Point(1, 1);
+            this.SerialSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialSelector.Name = "SerialSelector";
+            this.SerialSelector.Size = new System.Drawing.Size(128, 26);
+            this.SerialSelector.TabIndex = 0;
+            // 
+            // SerialText
+            // 
+            this.SerialText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SerialText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.SerialText.ForeColor = System.Drawing.Color.DarkGray;
+            this.SerialText.Location = new System.Drawing.Point(0, 0);
+            this.SerialText.Name = "SerialText";
+            this.SerialText.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.SerialText.Size = new System.Drawing.Size(102, 26);
+            this.SerialText.TabIndex = 0;
+            this.SerialText.Text = "COM1";
+            this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // SerialExpand
+            // 
+            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.SerialExpand.FlatAppearance.BorderSize = 0;
+            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
+            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialExpand.Name = "SerialExpand";
+            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
+            this.SerialExpand.TabIndex = 1;
+            this.SerialExpand.UseVisualStyleBackColor = true;
+            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
+            // 
+            // SerialLabel
+            // 
+            this.SerialLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.SerialLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SerialLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SerialLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.SerialLabel.Location = new System.Drawing.Point(10, 5);
+            this.SerialLabel.Name = "SerialLabel";
+            this.SerialLabel.Size = new System.Drawing.Size(112, 28);
+            this.SerialLabel.TabIndex = 2;
+            this.SerialLabel.Text = "Port série :";
+            // 
+            // ButtonConnect
+            // 
+            this.ButtonConnect.BackColor = System.Drawing.Color.DarkGreen;
+            this.ButtonConnect.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.ButtonConnect.FlatAppearance.BorderSize = 0;
+            this.ButtonConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConnect.ForeColor = System.Drawing.Color.DarkGray;
+            this.ButtonConnect.Location = new System.Drawing.Point(25, 158);
+            this.ButtonConnect.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(150, 23);
+            this.ButtonConnect.TabIndex = 5;
+            this.ButtonConnect.Text = "Connexion";
+            this.ButtonConnect.UseVisualStyleBackColor = false;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // MainPage
             // 
@@ -444,6 +596,86 @@
             this.MenuSpeed.ShowImageMargin = false;
             this.MenuSpeed.Size = new System.Drawing.Size(36, 4);
             // 
+            // TopBar
+            // 
+            this.TopBar.Controls.Add(this.button_minimize);
+            this.TopBar.Controls.Add(this.button_maximize);
+            this.TopBar.Controls.Add(this.button_close);
+            this.TopBar.Controls.Add(this.logo);
+            this.TopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopBar.Location = new System.Drawing.Point(1, 1);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(1397, 34);
+            this.TopBar.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.TopBar.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.TopBar.TabIndex = 2;
+            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // button_minimize
+            // 
+            this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_minimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_minimize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_minimize.FlatAppearance.BorderSize = 0;
+            this.button_minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
+            this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_minimize.Image = global::ProjectC_.Properties.Resources.Minimize_white;
+            this.button_minimize.Location = new System.Drawing.Point(1268, 0);
+            this.button_minimize.Margin = new System.Windows.Forms.Padding(0);
+            this.button_minimize.Name = "button_minimize";
+            this.button_minimize.Size = new System.Drawing.Size(43, 34);
+            this.button_minimize.TabIndex = 3;
+            this.button_minimize.UseVisualStyleBackColor = false;
+            this.button_minimize.Click += new System.EventHandler(this.button_minimize_Click);
+            // 
+            // button_maximize
+            // 
+            this.button_maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_maximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_maximize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_maximize.FlatAppearance.BorderSize = 0;
+            this.button_maximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
+            this.button_maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_maximize.Image = global::ProjectC_.Properties.Resources.Maximize_White;
+            this.button_maximize.Location = new System.Drawing.Point(1311, 0);
+            this.button_maximize.Margin = new System.Windows.Forms.Padding(0);
+            this.button_maximize.Name = "button_maximize";
+            this.button_maximize.Size = new System.Drawing.Size(43, 34);
+            this.button_maximize.TabIndex = 2;
+            this.button_maximize.UseVisualStyleBackColor = false;
+            this.button_maximize.Click += new System.EventHandler(this.button_maximize_Click);
+            // 
+            // button_close
+            // 
+            this.button_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_close.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button_close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_close.FlatAppearance.BorderSize = 0;
+            this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
+            this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
+            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
+            this.button_close.Location = new System.Drawing.Point(1354, 0);
+            this.button_close.Margin = new System.Windows.Forms.Padding(0);
+            this.button_close.Name = "button_close";
+            this.button_close.Size = new System.Drawing.Size(43, 34);
+            this.button_close.TabIndex = 1;
+            this.button_close.UseVisualStyleBackColor = false;
+            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            // 
+            // logo
+            // 
+            this.logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(0, 0);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(34, 34);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo.TabIndex = 1;
+            this.logo.TabStop = false;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DimGray;
@@ -458,34 +690,33 @@
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Resize += new System.EventHandler(this.Form1_SizeChanged);
-            this.TopBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.LeftSeparator.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
             this.MenuSeparator.ResumeLayout(false);
+            this.ControlPanel.ResumeLayout(false);
+            this.OptionPanel.ResumeLayout(false);
+            this.OptionPanel.PerformLayout();
             this.ComPanel.ResumeLayout(false);
             this.ComPanel.PerformLayout();
-            this.SerialSelectorMargin.ResumeLayout(false);
-            this.SerialSelector.ResumeLayout(false);
             this.BaudSelectorMargin.ResumeLayout(false);
             this.BaudSelector.ResumeLayout(false);
+            this.SerialSelectorMargin.ResumeLayout(false);
+            this.SerialSelector.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
+            this.TopBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel TopBar;
-        private System.Windows.Forms.Button button_close;
-        private System.Windows.Forms.Button button_minimize;
-        private System.Windows.Forms.Button button_maximize;
-        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel TopSeparator;
         private System.Windows.Forms.Panel LeftSeparator;
         private System.Windows.Forms.Panel LeftPanel;
         private System.Windows.Forms.Panel MainPage;
         private System.Windows.Forms.Panel LeftBar;
-        private System.Windows.Forms.Panel ComPanel;
+        private System.Windows.Forms.Panel ControlPanel;
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.Panel ComSeparator;
         private System.Windows.Forms.Panel MenuSeparator;
@@ -506,6 +737,22 @@
         private System.IO.Ports.SerialPort SerialConn;
         private System.Windows.Forms.ContextMenuStrip MenuSerialPort;
         private System.Windows.Forms.ContextMenuStrip MenuSpeed;
+        private System.Windows.Forms.Label AquisitionLabel;
+        private System.Windows.Forms.Panel ComPanel;
+        private System.Windows.Forms.Panel OptionPanel;
+        private Krypton.Toolkit.KryptonButton PausContButton;
+        private Krypton.Toolkit.KryptonButton DeleteButton;
+        private Krypton.Toolkit.KryptonButton RefreshButton;
+        private Krypton.Toolkit.KryptonButton ExportButton;
+        private Krypton.Toolkit.KryptonButton ExportConfigButton;
+        private Krypton.Toolkit.KryptonButton ImportConfigButton;
+        private System.Windows.Forms.Label ConfigurationLabel;
+        private System.Windows.Forms.Label DataLabel;
+        private Krypton.Toolkit.KryptonPanel TopBar;
+        private System.Windows.Forms.Button button_close;
+        private System.Windows.Forms.Button button_maximize;
+        private System.Windows.Forms.Button button_minimize;
+        private System.Windows.Forms.PictureBox logo;
     }
 }
 
