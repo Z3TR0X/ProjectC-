@@ -1,4 +1,5 @@
-﻿using ScottPlot.Colormaps;
+﻿using Krypton.Toolkit;
+using ScottPlot.Colormaps;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,29 @@ namespace ProjectC_ {
                 if (control.HasChildren) {
                     KryptonButtonCorrection(control.Controls);
                 }
+            }
+        }
+
+        private void kryptonPanel2_MouseDown(object sender, MouseEventArgs e) {
+
+            if (e.Button == MouseButtons.Left){
+                KryptonPanel panel = sender as KryptonPanel;
+                string var = panel.Tag?.ToString() ?? "Rien";
+                panel.DoDragDrop(var, DragDropEffects.Copy);
+            }
+        }
+
+        private void kryptonPanel1_DragDrop(object sender, DragEventArgs e) {
+            string var = (string)e.Data.GetData(DataFormats.StringFormat);
+
+            MessageBox.Show(var);
+        }
+
+        private void kryptonPanel1_DragEnter(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat)) {
+                e.Effect = DragDropEffects.Copy;
+            } else {
+                e.Effect = DragDropEffects.None;
             }
         }
     }

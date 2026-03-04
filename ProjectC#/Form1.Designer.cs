@@ -37,11 +37,13 @@
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.PagePanel = new System.Windows.Forms.Panel();
             this.VarPanel = new System.Windows.Forms.Panel();
+            this.kryptonPanel2 = new Krypton.Toolkit.KryptonPanel();
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.OptionPanel = new System.Windows.Forms.Panel();
+            this.DeconnectButton = new Krypton.Toolkit.KryptonButton();
             this.DataLabel = new System.Windows.Forms.Label();
             this.AquisitionLabel = new System.Windows.Forms.Label();
             this.ConfigurationLabel = new System.Windows.Forms.Label();
@@ -64,6 +66,7 @@
             this.SerialLabel = new System.Windows.Forms.TextBox();
             this.ButtonConnect = new System.Windows.Forms.Button();
             this.MainPage = new System.Windows.Forms.Panel();
+            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.SerialConn = new System.IO.Ports.SerialPort(this.components);
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -75,6 +78,8 @@
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
+            this.VarPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).BeginInit();
             this.MenuSeparator.SuspendLayout();
             this.ControlPanel.SuspendLayout();
             this.OptionPanel.SuspendLayout();
@@ -83,6 +88,8 @@
             this.BaudSelector.SuspendLayout();
             this.SerialSelectorMargin.SuspendLayout();
             this.SerialSelector.SuspendLayout();
+            this.MainPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -155,11 +162,22 @@
             // VarPanel
             // 
             this.VarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.VarPanel.Controls.Add(this.kryptonPanel2);
             this.VarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.VarPanel.Location = new System.Drawing.Point(0, 0);
             this.VarPanel.Name = "VarPanel";
             this.VarPanel.Size = new System.Drawing.Size(200, 271);
             this.VarPanel.TabIndex = 1;
+            // 
+            // kryptonPanel2
+            // 
+            this.kryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.kryptonPanel2.Location = new System.Drawing.Point(0, 0);
+            this.kryptonPanel2.Name = "kryptonPanel2";
+            this.kryptonPanel2.Size = new System.Drawing.Size(200, 30);
+            this.kryptonPanel2.TabIndex = 0;
+            this.kryptonPanel2.Tag = "Hello World";
+            this.kryptonPanel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kryptonPanel2_MouseDown);
             // 
             // MenuSeparator
             // 
@@ -207,6 +225,7 @@
             this.OptionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.OptionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.OptionPanel.Controls.Add(this.DeconnectButton);
             this.OptionPanel.Controls.Add(this.DataLabel);
             this.OptionPanel.Controls.Add(this.AquisitionLabel);
             this.OptionPanel.Controls.Add(this.ConfigurationLabel);
@@ -221,12 +240,36 @@
             this.OptionPanel.Size = new System.Drawing.Size(200, 200);
             this.OptionPanel.TabIndex = 7;
             // 
+            // DeconnectButton
+            // 
+            this.DeconnectButton.Location = new System.Drawing.Point(120, 160);
+            this.DeconnectButton.Name = "DeconnectButton";
+            this.DeconnectButton.Size = new System.Drawing.Size(25, 25);
+            this.DeconnectButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeconnectButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeconnectButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.DeconnectButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeconnectButton.StateCommon.Border.Rounding = 5F;
+            this.DeconnectButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.DeconnectButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeconnectButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeconnectButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeconnectButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeconnectButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.DeconnectButton.TabIndex = 8;
+            this.DeconnectButton.ToolTipValues.Description = "Deconnexion du port com et retour au menu de connexion";
+            this.DeconnectButton.ToolTipValues.EnableToolTips = true;
+            this.DeconnectButton.ToolTipValues.Heading = "Deconnexion";
+            this.DeconnectButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.DeconnectButton.Values.Image = global::ProjectC_.Properties.Resources.Unplugged;
+            this.DeconnectButton.Values.Text = "";
+            // 
             // DataLabel
             // 
             this.DataLabel.AutoSize = true;
             this.DataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.DataLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.DataLabel.Location = new System.Drawing.Point(10, 70);
+            this.DataLabel.Location = new System.Drawing.Point(8, 75);
             this.DataLabel.Name = "DataLabel";
             this.DataLabel.Size = new System.Drawing.Size(91, 25);
             this.DataLabel.TabIndex = 7;
@@ -237,7 +280,7 @@
             this.AquisitionLabel.AutoSize = true;
             this.AquisitionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.AquisitionLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.AquisitionLabel.Location = new System.Drawing.Point(10, 130);
+            this.AquisitionLabel.Location = new System.Drawing.Point(8, 135);
             this.AquisitionLabel.Name = "AquisitionLabel";
             this.AquisitionLabel.Size = new System.Drawing.Size(97, 25);
             this.AquisitionLabel.TabIndex = 0;
@@ -248,7 +291,7 @@
             this.ConfigurationLabel.AutoSize = true;
             this.ConfigurationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.ConfigurationLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.ConfigurationLabel.Location = new System.Drawing.Point(10, 10);
+            this.ConfigurationLabel.Location = new System.Drawing.Point(8, 15);
             this.ConfigurationLabel.Name = "ConfigurationLabel";
             this.ConfigurationLabel.Size = new System.Drawing.Size(128, 25);
             this.ConfigurationLabel.TabIndex = 2;
@@ -256,9 +299,9 @@
             // 
             // ImportConfigButton
             // 
-            this.ImportConfigButton.Location = new System.Drawing.Point(105, 35);
+            this.ImportConfigButton.Location = new System.Drawing.Point(103, 40);
             this.ImportConfigButton.Name = "ImportConfigButton";
-            this.ImportConfigButton.Size = new System.Drawing.Size(75, 25);
+            this.ImportConfigButton.Size = new System.Drawing.Size(77, 25);
             this.ImportConfigButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.ImportConfigButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ImportConfigButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -284,9 +327,9 @@
             // 
             // ExportConfigButton
             // 
-            this.ExportConfigButton.Location = new System.Drawing.Point(18, 35);
+            this.ExportConfigButton.Location = new System.Drawing.Point(15, 40);
             this.ExportConfigButton.Name = "ExportConfigButton";
-            this.ExportConfigButton.Size = new System.Drawing.Size(75, 25);
+            this.ExportConfigButton.Size = new System.Drawing.Size(77, 25);
             this.ExportConfigButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.ExportConfigButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportConfigButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -313,17 +356,17 @@
             // 
             // ExportButton
             // 
-            this.ExportButton.Location = new System.Drawing.Point(18, 95);
+            this.ExportButton.Location = new System.Drawing.Point(15, 100);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(121, 25);
+            this.ExportButton.Size = new System.Drawing.Size(127, 25);
             this.ExportButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.ExportButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
             this.ExportButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportButton.StateCommon.Border.Rounding = 5F;
-            this.ExportButton.StateCommon.Content.AdjacentGap = 5;
+            this.ExportButton.StateCommon.Content.AdjacentGap = 8;
             this.ExportButton.StateCommon.Content.Image.ImageH = Krypton.Toolkit.PaletteRelativeAlign.Near;
-            this.ExportButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, -1, -1);
+            this.ExportButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(7, -1, -1, -1);
             this.ExportButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.ExportButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportButton.StateCommon.Content.ShortText.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
@@ -341,7 +384,7 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(150, 156);
+            this.RefreshButton.Location = new System.Drawing.Point(155, 160);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(25, 25);
             this.RefreshButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
@@ -366,7 +409,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(150, 94);
+            this.DeleteButton.Location = new System.Drawing.Point(154, 100);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(25, 25);
             this.DeleteButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
@@ -390,9 +433,9 @@
             // 
             // PausContButton
             // 
-            this.PausContButton.Location = new System.Drawing.Point(18, 156);
+            this.PausContButton.Location = new System.Drawing.Point(15, 160);
             this.PausContButton.Name = "PausContButton";
-            this.PausContButton.Size = new System.Drawing.Size(120, 25);
+            this.PausContButton.Size = new System.Drawing.Size(96, 25);
             this.PausContButton.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
             this.PausContButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.PausContButton.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
@@ -466,6 +509,7 @@
             this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.BaudExpand.FlatAppearance.BorderSize = 0;
             this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
             this.BaudExpand.Location = new System.Drawing.Point(102, 0);
             this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
             this.BaudExpand.Name = "BaudExpand";
@@ -528,6 +572,7 @@
             this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.SerialExpand.FlatAppearance.BorderSize = 0;
             this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
             this.SerialExpand.Location = new System.Drawing.Point(102, 0);
             this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
             this.SerialExpand.Name = "SerialExpand";
@@ -568,6 +613,7 @@
             // MainPage
             // 
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MainPage.Controls.Add(this.kryptonPanel1);
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -576,6 +622,16 @@
             this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1194, 815);
             this.MainPage.TabIndex = 5;
+            // 
+            // kryptonPanel1
+            // 
+            this.kryptonPanel1.AllowDrop = true;
+            this.kryptonPanel1.Location = new System.Drawing.Point(513, 381);
+            this.kryptonPanel1.Name = "kryptonPanel1";
+            this.kryptonPanel1.Size = new System.Drawing.Size(100, 100);
+            this.kryptonPanel1.TabIndex = 1;
+            this.kryptonPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.kryptonPanel1_DragDrop);
+            this.kryptonPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.kryptonPanel1_DragEnter);
             // 
             // MenuSerialPort
             // 
@@ -693,6 +749,8 @@
             this.LeftSeparator.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
+            this.VarPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).EndInit();
             this.MenuSeparator.ResumeLayout(false);
             this.ControlPanel.ResumeLayout(false);
             this.OptionPanel.ResumeLayout(false);
@@ -703,6 +761,8 @@
             this.BaudSelector.ResumeLayout(false);
             this.SerialSelectorMargin.ResumeLayout(false);
             this.SerialSelector.ResumeLayout(false);
+            this.MainPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
@@ -753,6 +813,9 @@
         private System.Windows.Forms.Button button_maximize;
         private System.Windows.Forms.Button button_minimize;
         private System.Windows.Forms.PictureBox logo;
+        private Krypton.Toolkit.KryptonButton DeconnectButton;
+        private Krypton.Toolkit.KryptonPanel kryptonPanel1;
+        private Krypton.Toolkit.KryptonPanel kryptonPanel2;
     }
 }
 
