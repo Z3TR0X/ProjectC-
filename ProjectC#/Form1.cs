@@ -48,10 +48,21 @@ namespace ProjectC_ {
 
             if (e.Button == MouseButtons.Left){
                 KryptonPanel panel = sender as KryptonPanel;
+
                 string var = panel.Tag?.ToString() ?? "Rien";
+
+                DragCursor = CreateDragCursor(var);
+
                 panel.DoDragDrop(var, DragDropEffects.Copy);
+
+                IntPtr hicon = panel.Handle; //Permet de recup le pointeur vers le curseur
+                DragCursor = null;
+                DestroyIcon(hicon);
+
+
             }
         }
+
 
         private void kryptonPanel1_DragDrop(object sender, DragEventArgs e) {
             string var = (string)e.Data.GetData(DataFormats.StringFormat);
@@ -59,12 +70,19 @@ namespace ProjectC_ {
             MessageBox.Show(var);
         }
 
-        private void kryptonPanel1_DragEnter(object sender, DragEventArgs e) {
-            if (e.Data.GetDataPresent(DataFormats.StringFormat)) {
-                e.Effect = DragDropEffects.Copy;
+
+        private void kryptonPanel2_GiveFeedback(object sender, GiveFeedbackEventArgs e) {
+            e.UseDefaultCursors = false;
+
+            if (DragCursor != null) {
+                Cursor.Current = DragCursor;
             } else {
-                e.Effect = DragDropEffects.None;
+                Cursor.Current = Cursors.No;
             }
+        }
+
+        private void kryptonPanel1_DragEnter(object sender, DragEventArgs e) {
+           e.Effect = DragDropEffects.Copy;
         }
     }
 }

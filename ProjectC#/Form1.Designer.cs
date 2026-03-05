@@ -108,15 +108,12 @@
             // 
             this.LeftSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.LeftSeparator.Controls.Add(this.LeftBar);
-            this.LeftSeparator.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.LeftSeparator.Cursor = System.Windows.Forms.Cursors.Default;
             this.LeftSeparator.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftSeparator.Location = new System.Drawing.Point(201, 36);
             this.LeftSeparator.Name = "LeftSeparator";
             this.LeftSeparator.Size = new System.Drawing.Size(3, 815);
             this.LeftSeparator.TabIndex = 3;
-            this.LeftSeparator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LeftSeparator_MouseDown);
-            this.LeftSeparator.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LeftSeparator_MouseMove);
-            this.LeftSeparator.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LeftSeparator_MouseUp);
             // 
             // LeftBar
             // 
@@ -177,20 +174,18 @@
             this.kryptonPanel2.Size = new System.Drawing.Size(200, 30);
             this.kryptonPanel2.TabIndex = 0;
             this.kryptonPanel2.Tag = "Hello World";
+            this.kryptonPanel2.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.kryptonPanel2_GiveFeedback);
             this.kryptonPanel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kryptonPanel2_MouseDown);
             // 
             // MenuSeparator
             // 
             this.MenuSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.MenuSeparator.Controls.Add(this.MenuSeparatorBar);
-            this.MenuSeparator.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.MenuSeparator.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MenuSeparator.Location = new System.Drawing.Point(0, 271);
             this.MenuSeparator.Name = "MenuSeparator";
             this.MenuSeparator.Size = new System.Drawing.Size(250, 5);
             this.MenuSeparator.TabIndex = 0;
-            this.MenuSeparator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseDown);
-            this.MenuSeparator.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseMove);
-            this.MenuSeparator.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MenuSeparator_MouseUp);
             // 
             // MenuSeparatorBar
             // 
@@ -706,13 +701,14 @@
             // button_close
             // 
             this.button_close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.button_close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_close.Dock = System.Windows.Forms.DockStyle.Right;
             this.button_close.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
             this.button_close.FlatAppearance.BorderSize = 0;
             this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
             this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
+            this.button_close.Image = global::ProjectC_.Properties.Resources.Close_white;
             this.button_close.Location = new System.Drawing.Point(1354, 0);
             this.button_close.Margin = new System.Windows.Forms.Padding(0);
             this.button_close.Name = "button_close";
@@ -734,6 +730,7 @@
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1399, 852);
             this.Controls.Add(this.MainPage);
