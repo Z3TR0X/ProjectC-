@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using ScottPlot.Triangulation;
 using System;
 using System.Drawing;
 using System.IO.Ports;
@@ -8,239 +9,84 @@ using System.Windows.Forms;
 namespace ProjectC_
 {
     public partial class Form1 {
-        Size last_normal_form_size;
-        Point last_normal_form_position;
-        bool IsPageResizeY = false;
-        bool IsPageResizeX = false;
-        float leftMenuRatio = 0.5f;
+        private Cursor DragCursor;
 
+        private Cursor CreateDragCursor(string text) {
+            Font font = new Font(FontFamily.GenericSansSerif, 10);
+            Size textSize;
 
-        //Fonction pour ajouter l'ombre autour de la fenêtre
-        protected override CreateParams CreateParams {
-            get {
-                CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= 0x20000; // Ombre portée
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
-
-        [DllImport("dwmapi.dll")]
-        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        //Fonction pour mettre les bords ronds
-        protected override void OnHandleCreated(EventArgs e) {
-            base.OnHandleCreated(e);
-            int preference = 2;
-            DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-        }
-
-        //Fonction pour resize la fenètre si la souris est dans un coin
-        protected override void WndProc(ref Message m) {
-
-            if (m.Msg == 0x84) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-
-                int tolerance = 100; //Zone dans laquelle le curseur est compté comme étant sur le bord.
-
-                /*
-                 10	Bord gauche
-                 11	Bord droit
-                 12	Bord haut
-                 14	Coin haut-droit
-                 15	Bord bas
-                 16	Coin bas-gauche
-                 17	Coin bas-droit
-                 */
-
-                // Haut Gauche
-                if (clientPoint.X <= tolerance && clientPoint.Y <= tolerance) { m.Result = (IntPtr)13; return; }
-
-                // Haut Droit
-                if (clientPoint.X >= this.Size.Width - tolerance && clientPoint.Y <= tolerance) { m.Result = (IntPtr)14; return; }
-
-                // Bas Gauche
-                if (clientPoint.X <= tolerance && clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)16; return; }
-
-                // Bas Droit
-                if (clientPoint.X >= this.Size.Width - tolerance && clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)17; return; }
-
-                // Bord Gauche
-                if (clientPoint.X <= tolerance) { m.Result = (IntPtr)10; return; }
-
-                // Bord Droit
-                if (clientPoint.X >= this.Size.Width - tolerance) { m.Result = (IntPtr)11; return; }
-
-                // Bord Haut
-                if (clientPoint.Y <= tolerance) { m.Result = (IntPtr)12; return; }
-
-                // Bord Bas
-                if (clientPoint.Y >= this.Size.Height - tolerance) { m.Result = (IntPtr)15; return; }
-            }
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_RESTORE = 0xF120;
-
-            if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_RESTORE) {
-                Force_Drawing();
+            //Permet de mesurer la taille du texte
+            using (Graphics graph = this.CreateGraphics()) {
+                var sizeF = graph.MeasureString(text, font);
+                textSize = new Size((int)sizeF.Width +10, (int)sizeF.Height+10); // Petite marge autour du texte
             }
 
-            base.WndProc(ref m);
-        }
+            //Recup la taille du curseur
+            float ratio = GetDpi() / 96f;
+            int cursorWidth = (int) (Cursor.Size.Width * ratio);
+            Size cursorSize = new Size(cursorWidth, cursorWidth);
 
-        private void button_close_Click(object sender, EventArgs e) {
-            if (SerialConn.IsOpen) {
-                SerialConn.DataReceived -= SerialHander;
-                SerialConn.Close();
-            }
-            this.Close();
-        }
 
-        private void button_maximize_Click(object sender, EventArgs e) {
-            Size screen_size = Screen.FromControl(this).WorkingArea.Size;
-            if (this.Size != screen_size) {
-                button_maximize.Image = Properties.Resources.Restore_white;
-                int preference = 0;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+            int cursorGap = 0; // Gap entre le curseur et le rectangle
+            Size totalSize = textSize + cursorSize + new Size(cursorGap, 50);
 
-                last_normal_form_size = this.Size;
-                last_normal_form_position = this.Location;
-                this.Size = Screen.FromControl(this).WorkingArea.Size;
-                this.Location = new Point(0, 0);
-                this.Padding = new Padding(0, 0, 0, 0);
 
-                Force_Drawing();
+            Bitmap bmp = new Bitmap(totalSize.Width, totalSize.Width);
+            Graphics g = Graphics.FromImage(bmp);
 
-            } else {
-                int preference = 2;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
+            g.Clear(Color.Transparent);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                this.Size = last_normal_form_size;
-                this.Location = last_normal_form_position;
-                this.Padding = new Padding(1, 1, 1, 1);
-                button_maximize.Image = Properties.Resources.Maximize_White;
+            CURSORINFO pci = new CURSORINFO();
+            pci.cbSize = Marshal.SizeOf(typeof(CURSORINFO));
 
-                Force_Drawing();
+            // 2. On demande à Windows quel est le curseur ACTUEL (couleur, taille custom, etc.)
+            if (GetCursorInfo(out pci)) {
+                // 3. On récupère la "toile de fond" de notre Graphics (le HDC)
+                IntPtr hdc = g.GetHdc();
+
+                // 4. On dessine le curseur. 
+                // Mettre 0 et 0 en largeur/hauteur force Windows à utiliser la VRAIE taille du curseur de l'utilisateur !
+                DrawIconEx(hdc, 0, 0, pci.hCursor, cursorWidth, cursorWidth, 0, IntPtr.Zero, DI_NORMAL);
+
+                // 5. On libère la toile
+                g.ReleaseHdc(hdc);
             }
 
+            
+
+            Brush backBrush = new SolidBrush(Color.FromArgb(200, 34, 39, 46));
+            g.FillRectangle(backBrush, 0, 0, 30, 30);
+            g.FillRectangle(backBrush, cursorWidth + cursorGap, cursorWidth/2, textSize.Width - 1, textSize.Height - 1);
+            g.DrawRectangle(Pens.White, cursorWidth + cursorGap, cursorWidth / 2, textSize.Width - 1, textSize.Height - 1);
+
+            // On dessine le texte
+            g.DrawString(text, font, Brushes.White, cursorSize.Width + cursorGap + 5, 5+ cursorWidth / 2);
+
+            g.Dispose();
+
+
+            IntPtr ptrImageBrute = bmp.GetHbitmap(Color.Transparent);
+
+            // 2. On configure notre curseur "No Limit"
+            IconInfo iconInfo = new IconInfo();
+            iconInfo.fIcon = false;         // false = Curseur (autorise le hors-format), true = Icône (bridé)
+            iconInfo.xHotspot = 0;          // Le clic se fait sur le pixel en haut à gauche (0,0)
+            iconInfo.yHotspot = 0;
+
+            // On donne la même image pour la couleur et le masque de transparence
+            iconInfo.hbmColor = ptrImageBrute;
+            iconInfo.hbmMask = ptrImageBrute;
+
+            // 3. On crée enfin le curseur géant
+            IntPtr hCursorLibre = CreateIconIndirect(ref iconInfo);
+
+            // 4. NETTOYAGE VITAL (Sinon ton appli va saturer la RAM après 50 Drag & Drop)
+            DeleteObject(ptrImageBrute);
+
+            // 5. On renvoie le vrai curseur complet !
+            return new Cursor(hCursorLibre);
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e) {
-            int header_height = 34;
-            int header_width = this.Size.Width;
-            TopBar.Size = new Size(header_width, header_height);
-
-
-            LeftBar.Size = new Size(1, MainPage.Size.Height);
-
-            MenuPanel.Size = new Size(MenuPanel.Size.Width, MainPage.Size.Height - ComPanel.Height);
-
-            int MenuLocY = (int)Math.Round(MenuPanel.Height * leftMenuRatio);
-            if (MenuLocY <= 100) {
-                MenuLocY = 100;
-            }
-            MenuSeparator.Location = new Point(0, MenuLocY);
-            VarPanel.Size = new Size(VarPanel.Width, MenuLocY);
-            PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - MenuLocY - 5);
-            TopBar.Refresh();
-        }
-
-        private void button_minimize_Click(object sender, EventArgs e) {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e) {
-            if (this.Size == Screen.FromControl(this).WorkingArea.Size) {
-                int preference = 2;
-                DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                this.Size = last_normal_form_size;
-                double ratio = (double)e.X / (double)Screen.GetWorkingArea(this).Size.Width;
-                Point cursorPoint = Cursor.Position;
-                int newX = cursorPoint.X - (int)(this.Width * ratio);
-                int newY = cursorPoint.Y - e.Y;
-
-                this.Location = new Point(newX, newY);
-                this.Padding = new Padding(1, 1, 1, 1);
-
-                button_maximize.Image = Properties.Resources.Maximize_White;
-            }
-
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
-        private void LeftSeparator_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResizeX = true;
-        }
-
-        private void LeftSeparator_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResizeX = false;
-        }
-
-        private void LeftSeparator_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResizeX) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-                if (clientPoint.X >= 100) {
-                    LeftPanel.Size = new Size(clientPoint.X, LeftPanel.Size.Height);
-                    MenuSeparator.Size = new Size(clientPoint.X, 5);
-                    MenuSeparatorBar.Size = new Size(clientPoint.X, 1);
-                }
-
-            }
-        }
-
-        private void MenuSeparator_MouseDown(object sender, MouseEventArgs e) {
-            IsPageResizeY = true;
-        }
-
-        private void MenuSeparator_MouseMove(object sender, MouseEventArgs e) {
-            if (IsPageResizeY) {
-                Point clientPoint = this.PointToClient(Cursor.Position);
-                int menuloc = clientPoint.Y - ControlPanel.Height - 38;
-                if (menuloc >= 100) {
-                    MenuSeparator.Location = new Point(0, menuloc);
-                    VarPanel.Size = new Size(VarPanel.Width, menuloc);
-                    PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - menuloc - 5);
-                }
-            }
-        }
-
-        private void MenuSeparator_MouseUp(object sender, MouseEventArgs e) {
-            IsPageResizeY = false;
-            leftMenuRatio = ((int)(((float)MenuSeparator.Location.Y / MenuPanel.Height) * 100)) / 100.0f;
-        }
-
-        //Fonction pour forcer la fênetre à se redessiner
-        private void Force_Drawing() {
-            this.BeginInvoke(new Action(() =>
-            {
-                this.Refresh();
-            }));
-        }
-
-    }
-}
-
-public class CustomSelectionRenderer : ToolStripProfessionalRenderer {
-    //Permet de changer l'apparence de la custom combo box quand on clique sur expand
-
-    protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e) {
-        if (e.Item.Selected) {
-
-            Rectangle rect = new Rectangle(2, 1, e.ToolStrip.ClientRectangle.Width - 4, e.Item.Height - 2);
-
-            using (SolidBrush brush = new SolidBrush(Color.FromArgb(50, 120, 220))) {
-                e.Graphics.FillRectangle(brush, rect);
-            }
-        } else {
-            // Si l'item n'est pas sélectionné, on laisse le comportement normal (fond transparent)
-            base.OnRenderMenuItemBackground(e);
-        }
     }
 }
