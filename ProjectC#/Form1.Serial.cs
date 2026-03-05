@@ -100,5 +100,17 @@ namespace ProjectC_
             }
 
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Form1
+            // 
+            this.ClientSize = new System.Drawing.Size(712, 256);
+            this.Name = "Form1";
+            this.ResumeLayout(false);
+
+        }
     }
 }
