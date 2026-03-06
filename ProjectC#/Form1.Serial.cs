@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ namespace ProjectC_
         string SerialComChoosed = "";
         int SerialSpeedChoosed = 0;
         SerialDataReceivedEventHandler SerialHander;
+
+        List<List<float>> Datas = new List<List<float>>();
 
         private void SerialExpand_Click(object sender, EventArgs e) {
             MenuSerialPort.Items.Clear();
@@ -65,15 +69,17 @@ namespace ProjectC_
                     SerialConn.DataReceived += SerialHander;
 
                     SerialConn.Open();
+
+                    OptionPanel.BringToFront();
+                    OptionPanel.Enabled = true;
+                    ComPanel.Enabled = false;
                 } catch (Exception ex) {
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
                     SerialConn.DataReceived -= SerialHander;
                 }
             }
 
-            OptionPanel.BringToFront();
-            OptionPanel.Enabled = true;
-            ComPanel.Enabled = false;
+            
         }
 
         private void DeconnectButton_Click(object sender, EventArgs e) {
@@ -87,6 +93,8 @@ namespace ProjectC_
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
                     }
                 });
+
+                //MessageBox.Show(Datas[0].Count.ToString());
 
             }
 
@@ -104,11 +112,24 @@ namespace ProjectC_
                 // On vérifie que la com n'est pas fermé ou en cours de fermeture
                 if (!this.IsDisposed && !this.Disposing) {
                     this.Invoke(new MethodInvoker(delegate {
+                        //On choisit pas defaut le ; pour séparer les variables
+                        string[] values = data.Split(';');
 
+                     
+                        //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
+                        while (values.Length > Datas.Count) {
+                            Datas.Add(new List<float>());
+                            MessageBox.Show("Creato");
+                        }
+
+                        for (int i = 0; i < values.Length; i++) {
+                            float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
+                            Datas[i].Add(val);
+                        }
                     }));
                 }
             } catch {
-                //Potentielle erreurs
+                //On peut gerer les erreurs ici si yen a.
             }
 
         }

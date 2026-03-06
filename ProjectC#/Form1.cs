@@ -26,7 +26,7 @@ namespace ProjectC_ {
 
             KryptonButtonCorrection(this.Controls);
 
-            String[] names = {"coucou", "aninaninano", "szyenfolie", "Nain", "Merle.BG"};
+            String[] names = {"coucou", "aninaninano", "szyenfolie", "Nain"};
             for (int i = 0; i < names.Length; i++) {
                 PanelVarControl v = new PanelVarControl();
                 v.Init(names[i], i, FlowVarPanel.ClientSize.Width);
