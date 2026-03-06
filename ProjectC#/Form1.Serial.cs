@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectC_ 
@@ -64,9 +65,6 @@ namespace ProjectC_
                     SerialConn.DataReceived += SerialHander;
 
                     SerialConn.Open();
-
-                    ButtonConnect.Text = "Deconnexion";
-                    ButtonConnect.BackColor = Color.FromArgb(200, 50, 50); // Rouge
                 } catch (Exception ex) {
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
                     SerialConn.DataReceived -= SerialHander;
@@ -80,14 +78,16 @@ namespace ProjectC_
 
         private void DeconnectButton_Click(object sender, EventArgs e) {
             if (SerialConn.IsOpen) {
-                SerialConn.DataReceived -= SerialHander;
+                Task.Run(() => {
+                    try {
+                        SerialConn.DataReceived -= SerialHander;
+                        SerialConn.DiscardInBuffer();
+                        SerialConn.Close();
+                    } catch (Exception ex) {
+                        Console.WriteLine("Erreur à la fermeture : " + ex.Message);
+                    }
+                });
 
-                System.Threading.Thread.Sleep(50);
-
-                SerialConn.DiscardInBuffer();
-                SerialConn.Close();
-                ButtonConnect.Text = "Connexion";
-                ButtonConnect.BackColor = Color.DarkGreen;
             }
 
             ComPanel.BringToFront();
