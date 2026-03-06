@@ -56,12 +56,11 @@ namespace ProjectC_
             
 
             Brush backBrush = new SolidBrush(Color.FromArgb(200, 34, 39, 46));
-            g.FillRectangle(backBrush, 0, 0, 30, 30);
-            g.FillRectangle(backBrush, cursorWidth + cursorGap, cursorWidth/2, textSize.Width - 1, textSize.Height - 1);
-            g.DrawRectangle(Pens.White, cursorWidth + cursorGap, cursorWidth / 2, textSize.Width - 1, textSize.Height - 1);
+            g.FillRectangle(backBrush, (int) (cursorWidth/1.8), cursorWidth/2, textSize.Width - 1, textSize.Height - 1);
+            g.DrawRectangle(Pens.White, (int)(cursorWidth / 1.8), cursorWidth / 2, textSize.Width - 1, textSize.Height - 1);
 
             // On dessine le texte
-            g.DrawString(text, font, Brushes.White, cursorSize.Width + cursorGap + 5, 5+ cursorWidth / 2);
+            g.DrawString(text, font, Brushes.White, (int)(cursorWidth / 1.8) + 5, 5+ cursorWidth / 2);
 
             g.Dispose();
 

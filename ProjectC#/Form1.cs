@@ -26,6 +26,14 @@ namespace ProjectC_ {
 
             KryptonButtonCorrection(this.Controls);
 
+            String[] names = {"coucou", "aninaninano", "szyenfolie", "Nain", "Merle.BG"};
+            for (int i = 0; i < names.Length; i++) {
+                PanelVarControl v = new PanelVarControl();
+                v.Init(names[i], i, FlowVarPanel.ClientSize.Width);
+                FlowVarPanel.Controls.Add(v);
+            }
+
+
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
@@ -42,47 +50,6 @@ namespace ProjectC_ {
                     KryptonButtonCorrection(control.Controls);
                 }
             }
-        }
-
-        private void kryptonPanel2_MouseDown(object sender, MouseEventArgs e) {
-
-            if (e.Button == MouseButtons.Left){
-                KryptonPanel panel = sender as KryptonPanel;
-
-                string var = panel.Tag?.ToString() ?? "Rien";
-
-                DragCursor = CreateDragCursor(var);
-
-                panel.DoDragDrop(var, DragDropEffects.Copy);
-
-                IntPtr hicon = panel.Handle; //Permet de recup le pointeur vers le curseur
-                DragCursor = null;
-                DestroyIcon(hicon);
-
-
-            }
-        }
-
-
-        private void kryptonPanel1_DragDrop(object sender, DragEventArgs e) {
-            string var = (string)e.Data.GetData(DataFormats.StringFormat);
-
-            MessageBox.Show(var);
-        }
-
-
-        private void kryptonPanel2_GiveFeedback(object sender, GiveFeedbackEventArgs e) {
-            e.UseDefaultCursors = false;
-
-            if (DragCursor != null) {
-                Cursor.Current = DragCursor;
-            } else {
-                Cursor.Current = Cursors.No;
-            }
-        }
-
-        private void kryptonPanel1_DragEnter(object sender, DragEventArgs e) {
-           e.Effect = DragDropEffects.Copy;
         }
     }
 }

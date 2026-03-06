@@ -71,7 +71,15 @@ namespace ProjectC_
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
                     SerialConn.DataReceived -= SerialHander;
                 }
-            } else {
+            }
+
+            OptionPanel.BringToFront();
+            OptionPanel.Enabled = true;
+            ComPanel.Enabled = false;
+        }
+
+        private void DeconnectButton_Click(object sender, EventArgs e) {
+            if (SerialConn.IsOpen) {
                 SerialConn.DataReceived -= SerialHander;
 
                 System.Threading.Thread.Sleep(50);
@@ -81,6 +89,10 @@ namespace ProjectC_
                 ButtonConnect.Text = "Connexion";
                 ButtonConnect.BackColor = Color.DarkGreen;
             }
+
+            ComPanel.BringToFront();
+            ComPanel.Enabled = true;
+            OptionPanel.Enabled = false;
         }
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {

@@ -35,11 +35,11 @@
             this.LeftBar = new System.Windows.Forms.Panel();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.PagePanel = new System.Windows.Forms.Panel();
             this.VarPanel = new System.Windows.Forms.Panel();
-            this.kryptonPanel2 = new Krypton.Toolkit.KryptonPanel();
+            this.FlowVarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
+            this.PagePanel = new System.Windows.Forms.Panel();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.OptionPanel = new System.Windows.Forms.Panel();
@@ -79,7 +79,6 @@
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             this.VarPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).BeginInit();
             this.MenuSeparator.SuspendLayout();
             this.ControlPanel.SuspendLayout();
             this.OptionPanel.SuspendLayout();
@@ -138,53 +137,45 @@
             // MenuPanel
             // 
             this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.MenuPanel.Controls.Add(this.PagePanel);
             this.MenuPanel.Controls.Add(this.VarPanel);
             this.MenuPanel.Controls.Add(this.MenuSeparator);
+            this.MenuPanel.Controls.Add(this.PagePanel);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuPanel.Location = new System.Drawing.Point(0, 201);
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(200, 615);
             this.MenuPanel.TabIndex = 1;
             // 
-            // PagePanel
-            // 
-            this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PagePanel.Location = new System.Drawing.Point(0, 276);
-            this.PagePanel.Name = "PagePanel";
-            this.PagePanel.Size = new System.Drawing.Size(200, 339);
-            this.PagePanel.TabIndex = 2;
-            // 
             // VarPanel
             // 
             this.VarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.VarPanel.Controls.Add(this.kryptonPanel2);
-            this.VarPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.VarPanel.Controls.Add(this.FlowVarPanel);
+            this.VarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VarPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VarPanel.Location = new System.Drawing.Point(0, 0);
             this.VarPanel.Name = "VarPanel";
             this.VarPanel.Size = new System.Drawing.Size(200, 271);
             this.VarPanel.TabIndex = 1;
             // 
-            // kryptonPanel2
+            // FlowVarPanel
             // 
-            this.kryptonPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.kryptonPanel2.Location = new System.Drawing.Point(0, 0);
-            this.kryptonPanel2.Name = "kryptonPanel2";
-            this.kryptonPanel2.Size = new System.Drawing.Size(200, 30);
-            this.kryptonPanel2.TabIndex = 0;
-            this.kryptonPanel2.Tag = "Hello World";
-            this.kryptonPanel2.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.kryptonPanel2_GiveFeedback);
-            this.kryptonPanel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kryptonPanel2_MouseDown);
+            this.FlowVarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.FlowVarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowVarPanel.Location = new System.Drawing.Point(0, 0);
+            this.FlowVarPanel.Name = "FlowVarPanel";
+            this.FlowVarPanel.Size = new System.Drawing.Size(200, 271);
+            this.FlowVarPanel.TabIndex = 2;
             // 
             // MenuSeparator
             // 
             this.MenuSeparator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.MenuSeparator.Controls.Add(this.MenuSeparatorBar);
             this.MenuSeparator.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.MenuSeparator.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MenuSeparator.Location = new System.Drawing.Point(0, 271);
+            this.MenuSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.MenuSeparator.Name = "MenuSeparator";
-            this.MenuSeparator.Size = new System.Drawing.Size(250, 5);
+            this.MenuSeparator.Size = new System.Drawing.Size(200, 5);
             this.MenuSeparator.TabIndex = 0;
             // 
             // MenuSeparatorBar
@@ -194,6 +185,15 @@
             this.MenuSeparatorBar.Name = "MenuSeparatorBar";
             this.MenuSeparatorBar.Size = new System.Drawing.Size(250, 1);
             this.MenuSeparatorBar.TabIndex = 0;
+            // 
+            // PagePanel
+            // 
+            this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PagePanel.Location = new System.Drawing.Point(0, 276);
+            this.PagePanel.Name = "PagePanel";
+            this.PagePanel.Size = new System.Drawing.Size(200, 339);
+            this.PagePanel.TabIndex = 2;
             // 
             // ComSeparator
             // 
@@ -207,8 +207,8 @@
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Controls.Add(this.ComPanel);
+            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
@@ -258,6 +258,7 @@
             this.DeconnectButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.DeconnectButton.Values.Image = global::ProjectC_.Properties.Resources.Unplugged;
             this.DeconnectButton.Values.Text = "";
+            this.DeconnectButton.Click += new System.EventHandler(this.DeconnectButton_Click);
             // 
             // DataLabel
             // 
@@ -625,8 +626,6 @@
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(100, 100);
             this.kryptonPanel1.TabIndex = 1;
-            this.kryptonPanel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.kryptonPanel1_DragDrop);
-            this.kryptonPanel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.kryptonPanel1_DragEnter);
             // 
             // MenuSerialPort
             // 
@@ -747,7 +746,6 @@
             this.LeftPanel.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
             this.VarPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel2)).EndInit();
             this.MenuSeparator.ResumeLayout(false);
             this.ControlPanel.ResumeLayout(false);
             this.OptionPanel.ResumeLayout(false);
@@ -812,7 +810,7 @@
         private System.Windows.Forms.PictureBox logo;
         private Krypton.Toolkit.KryptonButton DeconnectButton;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
-        private Krypton.Toolkit.KryptonPanel kryptonPanel2;
+        private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
     }
 }
 
