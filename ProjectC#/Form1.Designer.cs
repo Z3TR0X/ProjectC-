@@ -75,6 +75,7 @@
             this.button_maximize = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -727,6 +728,9 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
+            // DataPanelTimer
+            // 
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -811,6 +815,7 @@
         private Krypton.Toolkit.KryptonButton DeconnectButton;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
+        private System.Windows.Forms.Timer DataPanelTimer;
     }
 }
 

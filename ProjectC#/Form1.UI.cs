@@ -87,5 +87,18 @@ namespace ProjectC_
             return new Cursor(hCursorLibre);
         }
 
+
+        private void UpdateDatasPanels(object sender, EventArgs e) {
+            if(Datas.Count != DatasName.Count || Datas.Count == 0) {
+                return;
+            }
+
+            for(int i = 0; i < Datas.Count; i++) {
+                PanelVarControl panel = (PanelVarControl)FlowVarPanel.Controls[i];
+                int LastElem = (Datas[i].Count) - 1;
+                Console.WriteLine(LastElem);
+                panel.setCurrentValue(Datas[i][LastElem]);
+            }
+        }
     }
 }
