@@ -47,6 +47,7 @@
      - [ ] Phase 5 : Ajout des fonctionnalités bonus (par forcément dans l'ordre).
      
 6. Dépendances / Frameworks
+   
    -Visual Studio Communnity 2026, application pour coder et programmer le code pour le Projet
    -Périphériques permmettant de pouvoir visualiser les données (comme une carte Arduino connecté sur l'ordinateur)
    -ScottPlot permet de pouvoir faire une modélisation graphique 
