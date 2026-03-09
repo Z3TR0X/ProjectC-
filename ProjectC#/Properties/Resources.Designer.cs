@@ -213,6 +213,16 @@ namespace ProjectC_.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap RemoveFromAllPlots {
+            get {
+                object obj = ResourceManager.GetObject("RemoveFromAllPlots", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Restore_white {
             get {
                 object obj = ResourceManager.GetObject("Restore_white", resourceCulture);

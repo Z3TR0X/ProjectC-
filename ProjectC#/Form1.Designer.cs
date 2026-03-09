@@ -46,12 +46,10 @@
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
             this.BaudSelector = new System.Windows.Forms.Panel();
             this.BaudText = new System.Windows.Forms.Label();
-            this.BaudExpand = new System.Windows.Forms.Button();
             this.BaudLabel = new System.Windows.Forms.TextBox();
             this.SerialSelectorMargin = new System.Windows.Forms.Panel();
             this.SerialSelector = new System.Windows.Forms.Panel();
             this.SerialText = new System.Windows.Forms.Label();
-            this.SerialExpand = new System.Windows.Forms.Button();
             this.SerialLabel = new System.Windows.Forms.TextBox();
             this.ButtonConnect = new System.Windows.Forms.Button();
             this.OptionPanel = new System.Windows.Forms.Panel();
@@ -71,11 +69,13 @@
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TopBar = new Krypton.Toolkit.KryptonPanel();
+            this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.BaudExpand = new System.Windows.Forms.Button();
+            this.SerialExpand = new System.Windows.Forms.Button();
             this.button_minimize = new System.Windows.Forms.Button();
             this.button_maximize = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -208,8 +208,8 @@
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ControlPanel.Controls.Add(this.ComPanel);
             this.ControlPanel.Controls.Add(this.OptionPanel);
+            this.ControlPanel.Controls.Add(this.ComPanel);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
@@ -265,21 +265,6 @@
             this.BaudText.Text = "115200";
             this.BaudText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BaudExpand
-            // 
-            this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.BaudExpand.FlatAppearance.BorderSize = 0;
-            this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.BaudExpand.Location = new System.Drawing.Point(102, 0);
-            this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.BaudExpand.Name = "BaudExpand";
-            this.BaudExpand.Size = new System.Drawing.Size(26, 26);
-            this.BaudExpand.TabIndex = 1;
-            this.BaudExpand.UseVisualStyleBackColor = true;
-            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
-            // 
             // BaudLabel
             // 
             this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
@@ -327,21 +312,6 @@
             this.SerialText.TabIndex = 0;
             this.SerialText.Text = "COM1";
             this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // SerialExpand
-            // 
-            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.SerialExpand.FlatAppearance.BorderSize = 0;
-            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
-            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialExpand.Name = "SerialExpand";
-            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
-            this.SerialExpand.TabIndex = 1;
-            this.SerialExpand.UseVisualStyleBackColor = true;
-            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
             // 
             // SerialLabel
             // 
@@ -662,6 +632,36 @@
             this.TopBar.TabIndex = 2;
             this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
+            // BaudExpand
+            // 
+            this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BaudExpand.FlatAppearance.BorderSize = 0;
+            this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.BaudExpand.Location = new System.Drawing.Point(102, 0);
+            this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.BaudExpand.Name = "BaudExpand";
+            this.BaudExpand.Size = new System.Drawing.Size(26, 26);
+            this.BaudExpand.TabIndex = 1;
+            this.BaudExpand.UseVisualStyleBackColor = true;
+            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
+            // 
+            // SerialExpand
+            // 
+            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.SerialExpand.FlatAppearance.BorderSize = 0;
+            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
+            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialExpand.Name = "SerialExpand";
+            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
+            this.SerialExpand.TabIndex = 1;
+            this.SerialExpand.UseVisualStyleBackColor = true;
+            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
+            // 
             // button_minimize
             // 
             this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
@@ -727,9 +727,6 @@
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
-            // 
-            // DataPanelTimer
-            // 
             // 
             // Form1
             // 
