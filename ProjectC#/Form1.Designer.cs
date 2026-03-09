@@ -845,12 +845,7 @@
         private Krypton.Toolkit.KryptonButton DeconnectButton;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
-<<<<<<< HEAD
-        private Krypton.Toolkit.KryptonColorButton kryptonColorButton1;
-        private Krypton.Toolkit.KryptonBorderEdge kryptonBorderEdge1;
-=======
         private System.Windows.Forms.Timer DataPanelTimer;
->>>>>>> 82012e57f2344cc0d2da835502d90977140d2152
     }
 }
 
