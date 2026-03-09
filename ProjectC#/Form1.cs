@@ -16,6 +16,8 @@ using System.Windows.Forms;
 namespace ProjectC_ {
 
     public partial class Form1 : Form {
+
+
         public Form1() {
             InitializeComponent();
             MenuSerialPort.Renderer = new CustomSelectionRenderer();
@@ -26,14 +28,10 @@ namespace ProjectC_ {
 
             KryptonButtonCorrection(this.Controls);
 
-            String[] names = {"coucou", "aninaninano", "szyenfolie", "Nain"};
-            for (int i = 0; i < names.Length; i++) {
-                PanelVarControl v = new PanelVarControl();
-                v.Init(names[i], i, FlowVarPanel.ClientSize.Width);
-                FlowVarPanel.Controls.Add(v);
-            }
-
-
+            DataPanelTimer = new System.Windows.Forms.Timer();
+            DataPanelTimer.Interval = 100;
+            DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
+            DataPanelTimer.Start();
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {

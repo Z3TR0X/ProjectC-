@@ -20,7 +20,7 @@ namespace ProjectC_ {
             this.Width = maxWidth;
         }
 
-        public void setCurrentValue(int value) {
+        public void setCurrentValue(float value) {
             VarValue.Text = value.ToString();
         }
 

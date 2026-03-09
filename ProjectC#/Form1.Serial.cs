@@ -17,6 +17,8 @@ namespace ProjectC_
         SerialDataReceivedEventHandler SerialHander;
 
         List<List<float>> Datas = new List<List<float>>();
+        List<String> DatasName = new List<string>();
+        List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
 
         private void SerialExpand_Click(object sender, EventArgs e) {
             MenuSerialPort.Items.Clear();
@@ -118,8 +120,7 @@ namespace ProjectC_
                      
                         //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
                         while (values.Length > Datas.Count) {
-                            Datas.Add(new List<float>());
-                            MessageBox.Show("Creato");
+                            AddNewData();
                         }
 
                         for (int i = 0; i < values.Length; i++) {
@@ -132,6 +133,15 @@ namespace ProjectC_
                 //On peut gerer les erreurs ici si yen a.
             }
 
+        }
+
+        private void AddNewData() {
+            String DefaultName = "Data" + (Datas.Count + 1).ToString();
+            Datas.Add(new List<float>());
+            DatasName.Add(DefaultName);
+            PanelVarControl v = new PanelVarControl();
+            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+            FlowVarPanel.Controls.Add(v);
         }
     }
 }

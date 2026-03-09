@@ -67,7 +67,7 @@
             // VarSeparator
             // 
             this.VarSeparator.Enabled = false;
-            this.VarSeparator.Location = new System.Drawing.Point(175, 4);
+            this.VarSeparator.Location = new System.Drawing.Point(175, 2);
             this.VarSeparator.Name = "VarSeparator";
             this.VarSeparator.Size = new System.Drawing.Size(1, 27);
             this.VarSeparator.TabIndex = 2;
