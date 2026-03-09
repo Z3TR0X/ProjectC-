@@ -51,6 +51,14 @@ namespace ProjectC_ {
                 }
             }
         }
+
+        private void kryptonColorButton1_SelectedColorChanged(object sender, ColorEventArgs e)
+        {
+            this.MainPage.BackColor = e.Color;
+            this.FlowVarPanel.BackColor = e.Color;
+            this.ComPanel.BackColor = e.Color; 
+            this.PagePanel.BackColor = e.Color;
+        }
     }
 }
 

@@ -37,9 +37,11 @@
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.VarPanel = new System.Windows.Forms.Panel();
             this.FlowVarPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.kryptonBorderEdge1 = new Krypton.Toolkit.KryptonBorderEdge();
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.PagePanel = new System.Windows.Forms.Panel();
+            this.kryptonColorButton1 = new Krypton.Toolkit.KryptonColorButton();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.ComPanel = new System.Windows.Forms.Panel();
@@ -79,7 +81,9 @@
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             this.VarPanel.SuspendLayout();
+            this.FlowVarPanel.SuspendLayout();
             this.MenuSeparator.SuspendLayout();
+            this.PagePanel.SuspendLayout();
             this.ControlPanel.SuspendLayout();
             this.ComPanel.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
@@ -160,11 +164,19 @@
             // FlowVarPanel
             // 
             this.FlowVarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.FlowVarPanel.Controls.Add(this.kryptonBorderEdge1);
             this.FlowVarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowVarPanel.Location = new System.Drawing.Point(0, 0);
             this.FlowVarPanel.Name = "FlowVarPanel";
             this.FlowVarPanel.Size = new System.Drawing.Size(200, 271);
             this.FlowVarPanel.TabIndex = 2;
+            // 
+            // kryptonBorderEdge1
+            // 
+            this.kryptonBorderEdge1.Location = new System.Drawing.Point(3, 3);
+            this.kryptonBorderEdge1.Name = "kryptonBorderEdge1";
+            this.kryptonBorderEdge1.Size = new System.Drawing.Size(36, 1);
+            this.kryptonBorderEdge1.Text = "kryptonBorderEdge1";
             // 
             // MenuSeparator
             // 
@@ -189,11 +201,26 @@
             // PagePanel
             // 
             this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PagePanel.Controls.Add(this.kryptonColorButton1);
             this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PagePanel.Location = new System.Drawing.Point(0, 276);
             this.PagePanel.Name = "PagePanel";
             this.PagePanel.Size = new System.Drawing.Size(200, 339);
             this.PagePanel.TabIndex = 2;
+            // 
+            // kryptonColorButton1
+            // 
+            this.kryptonColorButton1.EmptyBorderColor = System.Drawing.Color.Gray;
+            this.kryptonColorButton1.Location = new System.Drawing.Point(55, 4);
+            this.kryptonColorButton1.Name = "kryptonColorButton1";
+            this.kryptonColorButton1.SelectedRect = new System.Drawing.Rectangle(0, 12, 12, 4);
+            this.kryptonColorButton1.Size = new System.Drawing.Size(67, 23);
+            this.kryptonColorButton1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.kryptonColorButton1.StateCommon.Border.Rounding = 10F;
+            this.kryptonColorButton1.TabIndex = 0;
+            this.kryptonColorButton1.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonColorButton1.Values.Image")));
+            this.kryptonColorButton1.Values.Text = "Background";
+            this.kryptonColorButton1.SelectedColorChanged += new System.EventHandler<Krypton.Toolkit.ColorEventArgs>(this.kryptonColorButton1_SelectedColorChanged);
             // 
             // ComSeparator
             // 
@@ -270,7 +297,7 @@
             this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.BaudExpand.FlatAppearance.BorderSize = 0;
             this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.BaudExpand.Image = ((System.Drawing.Image)(resources.GetObject("BaudExpand.Image")));
             this.BaudExpand.Location = new System.Drawing.Point(102, 0);
             this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
             this.BaudExpand.Name = "BaudExpand";
@@ -333,7 +360,7 @@
             this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
             this.SerialExpand.FlatAppearance.BorderSize = 0;
             this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.SerialExpand.Image = ((System.Drawing.Image)(resources.GetObject("SerialExpand.Image")));
             this.SerialExpand.Location = new System.Drawing.Point(102, 0);
             this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
             this.SerialExpand.Name = "SerialExpand";
@@ -412,7 +439,7 @@
             this.DeconnectButton.ToolTipValues.EnableToolTips = true;
             this.DeconnectButton.ToolTipValues.Heading = "Deconnexion";
             this.DeconnectButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.DeconnectButton.Values.Image = global::ProjectC_.Properties.Resources.Unplugged;
+            this.DeconnectButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("DeconnectButton.Values.Image")));
             this.DeconnectButton.Values.Text = "";
             this.DeconnectButton.Click += new System.EventHandler(this.DeconnectButton_Click);
             // 
@@ -474,7 +501,7 @@
             this.ImportConfigButton.ToolTipValues.EnableToolTips = true;
             this.ImportConfigButton.ToolTipValues.Heading = "Import d\'une configuration";
             this.ImportConfigButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.ImportConfigButton.Values.Image = global::ProjectC_.Properties.Resources.ImportConfig;
+            this.ImportConfigButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("ImportConfigButton.Values.Image")));
             this.ImportConfigButton.Values.Text = "Import";
             // 
             // ExportConfigButton
@@ -503,7 +530,7 @@
             this.ExportConfigButton.ToolTipValues.EnableToolTips = true;
             this.ExportConfigButton.ToolTipValues.Heading = "Export de la configuration";
             this.ExportConfigButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.ExportConfigButton.Values.Image = global::ProjectC_.Properties.Resources.ExportConfig;
+            this.ExportConfigButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("ExportConfigButton.Values.Image")));
             this.ExportConfigButton.Values.Text = "Export";
             // 
             // ExportButton
@@ -531,7 +558,7 @@
             this.ExportButton.ToolTipValues.EnableToolTips = true;
             this.ExportButton.ToolTipValues.Heading = "Export vers CSV";
             this.ExportButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.ExportButton.Values.Image = global::ProjectC_.Properties.Resources.ExportCSV1;
+            this.ExportButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("ExportButton.Values.Image")));
             this.ExportButton.Values.Text = "Export vers CSV";
             // 
             // RefreshButton
@@ -556,7 +583,7 @@
             this.RefreshButton.ToolTipValues.EnableToolTips = true;
             this.RefreshButton.ToolTipValues.Heading = "Aquisition Customisée";
             this.RefreshButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.RefreshButton.Values.Image = global::ProjectC_.Properties.Resources.EditAquisition;
+            this.RefreshButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Values.Image")));
             this.RefreshButton.Values.Text = "";
             // 
             // DeleteButton
@@ -580,7 +607,7 @@
             this.DeleteButton.ToolTipValues.EnableToolTips = true;
             this.DeleteButton.ToolTipValues.Heading = "Effacer tous les données";
             this.DeleteButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.DeleteButton.Values.Image = global::ProjectC_.Properties.Resources.Delete;
+            this.DeleteButton.Values.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Values.Image")));
             this.DeleteButton.Values.Text = "";
             // 
             // PausContButton
@@ -670,7 +697,7 @@
             this.button_minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
             this.button_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_minimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_minimize.Image = global::ProjectC_.Properties.Resources.Minimize_white;
+            this.button_minimize.Image = ((System.Drawing.Image)(resources.GetObject("button_minimize.Image")));
             this.button_minimize.Location = new System.Drawing.Point(1268, 0);
             this.button_minimize.Margin = new System.Windows.Forms.Padding(0);
             this.button_minimize.Name = "button_minimize";
@@ -688,7 +715,7 @@
             this.button_maximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(63)))), ((int)(((byte)(69)))));
             this.button_maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_maximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_maximize.Image = global::ProjectC_.Properties.Resources.Maximize_White;
+            this.button_maximize.Image = ((System.Drawing.Image)(resources.GetObject("button_maximize.Image")));
             this.button_maximize.Location = new System.Drawing.Point(1311, 0);
             this.button_maximize.Margin = new System.Windows.Forms.Padding(0);
             this.button_maximize.Name = "button_maximize";
@@ -707,7 +734,7 @@
             this.button_close.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
             this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(30)))), ((int)(((byte)(33)))));
-            this.button_close.Image = global::ProjectC_.Properties.Resources.Close_white;
+            this.button_close.Image = ((System.Drawing.Image)(resources.GetObject("button_close.Image")));
             this.button_close.Location = new System.Drawing.Point(1354, 0);
             this.button_close.Margin = new System.Windows.Forms.Padding(0);
             this.button_close.Name = "button_close";
@@ -746,7 +773,10 @@
             this.LeftPanel.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
             this.VarPanel.ResumeLayout(false);
+            this.FlowVarPanel.ResumeLayout(false);
+            this.FlowVarPanel.PerformLayout();
             this.MenuSeparator.ResumeLayout(false);
+            this.PagePanel.ResumeLayout(false);
             this.ControlPanel.ResumeLayout(false);
             this.ComPanel.ResumeLayout(false);
             this.ComPanel.PerformLayout();
@@ -811,6 +841,8 @@
         private Krypton.Toolkit.KryptonButton DeconnectButton;
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
+        private Krypton.Toolkit.KryptonColorButton kryptonColorButton1;
+        private Krypton.Toolkit.KryptonBorderEdge kryptonBorderEdge1;
     }
 }
 
