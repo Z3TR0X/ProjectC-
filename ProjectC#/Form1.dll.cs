@@ -93,5 +93,9 @@ namespace ProjectC_ {
 
             return (int) (realScale * 96f);
         }
+
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect,
+            int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
     }
 }

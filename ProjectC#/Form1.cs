@@ -17,6 +17,9 @@ namespace ProjectC_ {
 
     public partial class Form1 : Form {
 
+        private PanelVarMenu menu;
+        private ToolStripDropDown menuClicDroit;
+
 
         public Form1() {
             InitializeComponent();
@@ -33,8 +36,7 @@ namespace ProjectC_ {
             DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
             DataPanelTimer.Start();
 
-            PanelVarMenu test = new PanelVarMenu();
-            MainPage.Controls.Add(test);
+            createPanelRightClicMenu();
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
@@ -53,9 +55,18 @@ namespace ProjectC_ {
             }
         }
 
+   
+
+
+        private void MainPage_MouseUp(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+
+
+                menuClicDroit.Show(Cursor.Position);
+
+            }
+        }
+
+
     }
 }
-
-
-
-

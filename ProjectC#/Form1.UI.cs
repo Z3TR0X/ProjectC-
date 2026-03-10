@@ -100,5 +100,27 @@ namespace ProjectC_
                 panel.setCurrentValue(Datas[i][LastElem]);
             }
         }
+
+        private void createPanelRightClicMenu() {
+            menu = new PanelVarMenu();
+
+            ToolStripControlHost host = new ToolStripControlHost(menu);
+            host.AutoSize = false;
+            host.Size = menu.Size + new Size(1, 1);
+            host.Margin = Padding.Empty;
+            host.Padding = Padding.Empty;
+            host.BackColor = Color.DarkGray;
+
+            menuClicDroit = new ToolStripDropDown();
+            menuClicDroit.Padding = Padding.Empty;
+            menuClicDroit.Margin = Padding.Empty;
+            menuClicDroit.DropShadowEnabled = false;
+            menuClicDroit.BackColor = Color.FromArgb(50, 50, 50);
+            menuClicDroit.Size = menu.Size + new Size(1, 1);
+
+            menuClicDroit.Items.Add(host);
+
+
+        }
     }
 }
