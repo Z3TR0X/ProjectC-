@@ -12,6 +12,15 @@ namespace ProjectC_ {
     public partial class PanelVarControl : UserControl {
         public PanelVarControl() {
             InitializeComponent();
+
+            foreach (Control enfant in this.Controls) {
+                // On abonne chaque enfant à son propre événement MouseUp
+                enfant.MouseUp += (sender, e) =>
+                {
+                    // L'enfant déclenche manuellement l'événement MouseUp du parent (le UserControl) !
+                    this.OnMouseUp(e);
+                };
+            }
         }
 
         public void Init(String varName, int id, int maxWidth) {
@@ -22,6 +31,14 @@ namespace ProjectC_ {
 
         public void setCurrentValue(float value) {
             VarValue.Text = value.ToString();
+        }
+
+        public int getCurrentValue() {
+            return (int) VarItem.Tag;
+        }
+
+        public void setVarName(string varName) {
+            VarName.Text = varName;
         }
 
         private void VarItem_MouseEnter(object sender, EventArgs e) {

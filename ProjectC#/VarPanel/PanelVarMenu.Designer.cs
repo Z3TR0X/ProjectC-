@@ -24,27 +24,27 @@
         /// </summary>
         private void InitializeComponent() {
             this.MainMenu = new Krypton.Toolkit.KryptonPanel();
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.EmptyButton = new Krypton.Toolkit.KryptonButton();
+            this.FreePlotButton = new Krypton.Toolkit.KryptonButton();
             this.ColorChooser = new Krypton.Toolkit.KryptonButton();
-            this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
-            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            this.NameTextBox = new Krypton.Toolkit.KryptonTextBox();
+            this.Separator = new Krypton.Toolkit.KryptonPanel();
             this.EditNameLabel = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
+            this.EditColorLabel = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).BeginInit();
             this.MainMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Separator)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenu
             // 
-            this.MainMenu.Controls.Add(this.kryptonButton1);
-            this.MainMenu.Controls.Add(this.kryptonButton3);
+            this.MainMenu.Controls.Add(this.EmptyButton);
+            this.MainMenu.Controls.Add(this.FreePlotButton);
             this.MainMenu.Controls.Add(this.ColorChooser);
-            this.MainMenu.Controls.Add(this.kryptonTextBox1);
-            this.MainMenu.Controls.Add(this.kryptonPanel1);
+            this.MainMenu.Controls.Add(this.NameTextBox);
+            this.MainMenu.Controls.Add(this.Separator);
             this.MainMenu.Controls.Add(this.EditNameLabel);
-            this.MainMenu.Controls.Add(this.kryptonLabel1);
+            this.MainMenu.Controls.Add(this.EditColorLabel);
             this.MainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainMenu.Location = new System.Drawing.Point(3, 3);
             this.MainMenu.Margin = new System.Windows.Forms.Padding(5);
@@ -55,51 +55,51 @@
             this.MainMenu.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.MainMenu.TabIndex = 0;
             // 
-            // kryptonButton1
+            // EmptyButton
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(8, 87);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(190, 32);
-            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.kryptonButton1.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonButton1.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton1.StateCommon.Border.Rounding = 3F;
-            this.kryptonButton1.StateCommon.Content.AdjacentGap = 3;
-            this.kryptonButton1.StateCommon.Content.Image.Effect = Krypton.Toolkit.PaletteImageEffect.Normal;
-            this.kryptonButton1.StateCommon.Content.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.kryptonButton1.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonButton1.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton1.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.kryptonButton1.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.kryptonButton1.TabIndex = 8;
-            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton1.Values.Image = global::ProjectC_.Properties.Resources.Delete;
-            this.kryptonButton1.Values.Text = "Vider les données";
+            this.EmptyButton.Location = new System.Drawing.Point(8, 87);
+            this.EmptyButton.Name = "EmptyButton";
+            this.EmptyButton.Size = new System.Drawing.Size(190, 32);
+            this.EmptyButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.EmptyButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.EmptyButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.EmptyButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.EmptyButton.StateCommon.Border.Rounding = 3F;
+            this.EmptyButton.StateCommon.Content.AdjacentGap = 3;
+            this.EmptyButton.StateCommon.Content.Image.Effect = Krypton.Toolkit.PaletteImageEffect.Normal;
+            this.EmptyButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.EmptyButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.EmptyButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.EmptyButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.EmptyButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.EmptyButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.EmptyButton.TabIndex = 8;
+            this.EmptyButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.EmptyButton.Values.Image = global::ProjectC_.Properties.Resources.Delete;
+            this.EmptyButton.Values.Text = "Vider les données";
             // 
-            // kryptonButton3
+            // FreePlotButton
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(8, 126);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.Size = new System.Drawing.Size(190, 31);
-            this.kryptonButton3.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.kryptonButton3.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton3.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonButton3.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton3.StateCommon.Border.Rounding = 3F;
-            this.kryptonButton3.StateCommon.Content.AdjacentGap = 3;
-            this.kryptonButton3.StateCommon.Content.Image.Effect = Krypton.Toolkit.PaletteImageEffect.Normal;
-            this.kryptonButton3.StateCommon.Content.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.kryptonButton3.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonButton3.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton3.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.kryptonButton3.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonButton3.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.kryptonButton3.TabIndex = 9;
-            this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton3.Values.Image = global::ProjectC_.Properties.Resources.RemoveFromAllPlots;
-            this.kryptonButton3.Values.Text = "Retirer des plots";
+            this.FreePlotButton.Location = new System.Drawing.Point(8, 126);
+            this.FreePlotButton.Name = "FreePlotButton";
+            this.FreePlotButton.Size = new System.Drawing.Size(190, 31);
+            this.FreePlotButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.FreePlotButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.FreePlotButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.FreePlotButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.FreePlotButton.StateCommon.Border.Rounding = 3F;
+            this.FreePlotButton.StateCommon.Content.AdjacentGap = 3;
+            this.FreePlotButton.StateCommon.Content.Image.Effect = Krypton.Toolkit.PaletteImageEffect.Normal;
+            this.FreePlotButton.StateCommon.Content.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.FreePlotButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.FreePlotButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.FreePlotButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.FreePlotButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.FreePlotButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.FreePlotButton.TabIndex = 9;
+            this.FreePlotButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.FreePlotButton.Values.Image = global::ProjectC_.Properties.Resources.RemoveFromAllPlots;
+            this.FreePlotButton.Values.Text = "Retirer des plots";
             // 
             // ColorChooser
             // 
@@ -117,26 +117,27 @@
             this.ColorChooser.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ColorChooser.Values.Text = "";
             // 
-            // kryptonTextBox1
+            // NameTextBox
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(68, 5);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(122, 33);
-            this.kryptonTextBox1.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.kryptonTextBox1.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.kryptonTextBox1.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 3F;
-            this.kryptonTextBox1.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonTextBox1.TabIndex = 6;
+            this.NameTextBox.Location = new System.Drawing.Point(68, 5);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(122, 33);
+            this.NameTextBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.NameTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.NameTextBox.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.NameTextBox.StateCommon.Border.Rounding = 3F;
+            this.NameTextBox.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.NameTextBox.TabIndex = 6;
+            this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
-            // kryptonPanel1
+            // Separator
             // 
-            this.kryptonPanel1.Location = new System.Drawing.Point(8, 75);
-            this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(190, 1);
-            this.kryptonPanel1.StateCommon.Color1 = System.Drawing.Color.White;
-            this.kryptonPanel1.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.kryptonPanel1.TabIndex = 4;
+            this.Separator.Location = new System.Drawing.Point(8, 75);
+            this.Separator.Name = "Separator";
+            this.Separator.Size = new System.Drawing.Size(190, 1);
+            this.Separator.StateCommon.Color1 = System.Drawing.Color.White;
+            this.Separator.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.Separator.TabIndex = 4;
             // 
             // EditNameLabel
             // 
@@ -148,15 +149,15 @@
             this.EditNameLabel.TabIndex = 0;
             this.EditNameLabel.Values.Text = "Nom :";
             // 
-            // kryptonLabel1
+            // EditColorLabel
             // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(3, 40);
-            this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(155, 31);
-            this.kryptonLabel1.StateCommon.Padding = new System.Windows.Forms.Padding(2);
-            this.kryptonLabel1.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.kryptonLabel1.TabIndex = 2;
-            this.kryptonLabel1.Values.Text = "Modifier couleur :";
+            this.EditColorLabel.Location = new System.Drawing.Point(3, 40);
+            this.EditColorLabel.Name = "EditColorLabel";
+            this.EditColorLabel.Size = new System.Drawing.Size(155, 31);
+            this.EditColorLabel.StateCommon.Padding = new System.Windows.Forms.Padding(2);
+            this.EditColorLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.EditColorLabel.TabIndex = 2;
+            this.EditColorLabel.Values.Text = "Modifier couleur :";
             // 
             // PanelVarMenu
             // 
@@ -170,7 +171,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).EndInit();
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Separator)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,11 +180,11 @@
 
         private Krypton.Toolkit.KryptonPanel MainMenu;
         private Krypton.Toolkit.KryptonLabel EditNameLabel;
-        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private Krypton.Toolkit.KryptonPanel kryptonPanel1;
-        private Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
+        private Krypton.Toolkit.KryptonLabel EditColorLabel;
+        private Krypton.Toolkit.KryptonPanel Separator;
+        private Krypton.Toolkit.KryptonTextBox NameTextBox;
         private Krypton.Toolkit.KryptonButton ColorChooser;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonButton EmptyButton;
+        private Krypton.Toolkit.KryptonButton FreePlotButton;
     }
 }

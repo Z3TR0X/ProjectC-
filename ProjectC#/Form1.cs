@@ -58,14 +58,6 @@ namespace ProjectC_ {
    
 
 
-        private void MainPage_MouseUp(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
-
-
-                menuClicDroit.Show(Cursor.Position);
-
-            }
-        }
 
 
     }

@@ -139,9 +139,30 @@ namespace ProjectC_
             String DefaultName = "Data" + (Datas.Count + 1).ToString();
             Datas.Add(new List<float>());
             DatasName.Add(DefaultName);
+
             PanelVarControl v = new PanelVarControl();
+            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPage_MouseUp);
             v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
             FlowVarPanel.Controls.Add(v);
         }
-    }
+
+        private void MainPage_MouseUp(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                PanelVarControl panel = (PanelVarControl)sender;
+                int id = panel.getCurrentValue() - 1;
+
+                menu.setDataId(id);
+                menuClicDroit.Show(Cursor.Position);
+
+            }
+        }
+
+        public void ChangeVarName(int id, string newName) {
+            DatasName[id] = newName;
+
+
+            PanelVarControl v = (PanelVarControl) FlowVarPanel.Controls[id];
+            v.setVarName(newName);
+        }
+    }        
 }

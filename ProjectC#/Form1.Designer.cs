@@ -208,8 +208,8 @@
             // ControlPanel
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Controls.Add(this.ComPanel);
+            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
@@ -619,7 +619,6 @@
             this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1194, 815);
             this.MainPage.TabIndex = 5;
-            this.MainPage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPage_MouseUp);
             // 
             // kryptonPanel1
             // 

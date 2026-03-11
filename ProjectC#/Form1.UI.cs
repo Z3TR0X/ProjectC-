@@ -102,7 +102,7 @@ namespace ProjectC_
         }
 
         private void createPanelRightClicMenu() {
-            menu = new PanelVarMenu();
+            menu = new PanelVarMenu(this);
 
             ToolStripControlHost host = new ToolStripControlHost(menu);
             host.AutoSize = false;

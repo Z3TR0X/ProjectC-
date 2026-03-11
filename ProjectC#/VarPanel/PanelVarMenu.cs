@@ -14,11 +14,13 @@ namespace ProjectC_ {
 
     public partial class PanelVarMenu : UserControl {
 
-        int rayonArrondi = 15;
+        int dataId;
+        Form1 mainForm;
 
-        public PanelVarMenu() {
+        public PanelVarMenu(Form1 mainForm) {
             InitializeComponent();
             KryptonButtonCorrection(this.Controls);
+            this.mainForm = mainForm;
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
@@ -37,35 +39,15 @@ namespace ProjectC_ {
             }
         }
 
-        /*
-        private int radius = 20;
-        [DefaultValue(20)]
-        public int Radius {
-            get { return radius; }
-            set {
-                radius = value;
-                this.RecreateRegion();
+        public void setDataId(int id) {
+            dataId = id;
+        }
+
+        private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e) {
+            if(e.KeyChar == (char) Keys.Enter) {
+                mainForm.ChangeVarName(dataId, NameTextBox.Text);
             }
         }
-
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect,
-            int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
-
-
-        private void RecreateRegion() {
-            var bounds = ClientRectangle;
-
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(bounds.Left, bounds.Top,
-                bounds.Right, bounds.Bottom, Radius, radius));
-            this.Invalidate();
-        }
-
-        private void MainMenu_Resize(object sender, EventArgs e) {
-            base.OnSizeChanged(e);
-            this.RecreateRegion();
-        }*/
-
     }
 }
 
