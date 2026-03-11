@@ -17,8 +17,7 @@ namespace ProjectC_ {
 
     public partial class Form1 : Form {
 
-        private PanelVarMenu menu;
-        private ToolStripDropDown menuClicDroit;
+     
 
 
         public Form1() {
@@ -37,6 +36,7 @@ namespace ProjectC_ {
             DataPanelTimer.Start();
 
             createPanelRightClicMenu();
+            createColorPickerMenu();
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
@@ -55,10 +55,8 @@ namespace ProjectC_ {
             }
         }
 
-   
-
-
-
-
+        private void MainPage_Click(object sender, EventArgs e) {
+            menuColor.Show(Cursor.Position);
+        }
     }
 }

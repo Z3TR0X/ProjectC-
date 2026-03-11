@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using ProjectC_.VarPanel;
 using ScottPlot.Triangulation;
 using System;
 using System.Drawing;
@@ -101,6 +102,9 @@ namespace ProjectC_
             }
         }
 
+        private PanelVarMenu menu;
+        private ToolStripDropDown menuClicDroit;
+
         private void createPanelRightClicMenu() {
             menu = new PanelVarMenu(this);
 
@@ -121,6 +125,29 @@ namespace ProjectC_
             menuClicDroit.Items.Add(host);
 
 
+        }
+
+        private ColorPicker menuContentColor;
+        private ToolStripDropDown menuColor;
+
+        private void createColorPickerMenu() {
+            menuContentColor = new ColorPicker();
+
+            ToolStripControlHost host = new ToolStripControlHost(menuContentColor);
+            host.AutoSize = false;
+            host.Size = menuContentColor.Size + new Size(1, 1);
+            host.Margin = Padding.Empty;
+            host.Padding = Padding.Empty;
+            host.BackColor = Color.DarkGray;
+
+            menuColor = new ToolStripDropDown();
+            menuColor.Padding = Padding.Empty;
+            menuColor.Margin = Padding.Empty;
+            menuColor.DropShadowEnabled = false;
+            menuColor.BackColor = Color.FromArgb(50, 50, 50);
+            menuColor.Size = menuContentColor.Size + new Size(1, 1);
+
+            menuColor.Items.Add(host);
         }
     }
 }

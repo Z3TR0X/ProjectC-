@@ -156,8 +156,17 @@
     <Compile Include="VarPanel\PanelVarMenu.Designer.cs">
       <DependentUpon>PanelVarMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="VarPanel\ColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VarPanel\ColorPicker.Designer.cs">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VarPanel\ColorPicker.resx">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VarPanel\PanelVarControl.resx">
       <DependentUpon>PanelVarControl.cs</DependentUpon>
