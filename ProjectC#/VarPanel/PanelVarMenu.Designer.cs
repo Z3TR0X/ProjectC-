@@ -116,6 +116,7 @@
             this.ColorChooser.TabIndex = 7;
             this.ColorChooser.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ColorChooser.Values.Text = "";
+            this.ColorChooser.Click += new System.EventHandler(this.ColorChooser_Click);
             // 
             // NameTextBox
             // 

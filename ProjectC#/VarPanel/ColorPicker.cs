@@ -13,9 +13,12 @@ namespace ProjectC_.VarPanel {
     public partial class ColorPicker : UserControl {
         private Color ActualColor;
         public Color LastColor;
+        PanelVarMenu parent;
 
-        public ColorPicker() {
+
+        public ColorPicker(PanelVarMenu p) {
             InitializeComponent();
+            parent = p;
         }
 
         public void setLastColor(Color color) {
@@ -36,14 +39,19 @@ namespace ProjectC_.VarPanel {
             ActualColor = WheelColorPicker.Color;
 
             ManualColorPicker.Color = ActualColor;
-            NewColorPanel.StateCommon.Color1 = ActualColor;
+            OnColorChange(ActualColor);
         }
 
         private void ManualColorPicker_ColorChanged(object sender, EventArgs e) {
             ActualColor = ManualColorPicker.Color;
 
             WheelColorPicker.Color = ActualColor;
-            NewColorPanel.StateCommon.Color1 = ActualColor;
+            OnColorChange(ActualColor);
+        }
+
+        private void OnColorChange(Color newColor) {
+            NewColorPanel.StateCommon.Color1 = newColor;
+            parent.setColor(newColor);
         }
     }
 }

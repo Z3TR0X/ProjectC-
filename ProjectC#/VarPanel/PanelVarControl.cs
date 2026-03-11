@@ -41,6 +41,10 @@ namespace ProjectC_ {
             VarName.Text = varName;
         }
 
+        public void setColor(Color color) {
+            VarColor.StateCommon.Color1 = color;
+        }
+
         private void VarItem_MouseEnter(object sender, EventArgs e) {
             VarItem.StateCommon.Color1 = Color.FromArgb(80, 80, 80);
         }

@@ -18,6 +18,7 @@ namespace ProjectC_
 
         List<List<float>> Datas = new List<List<float>>();
         List<String> DatasName = new List<string>();
+        List<Color> DatasColor = new List<Color>();
         List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
 
         private void SerialExpand_Click(object sender, EventArgs e) {
@@ -138,6 +139,7 @@ namespace ProjectC_
         private void AddNewData() {
             String DefaultName = "Data" + (Datas.Count + 1).ToString();
             Datas.Add(new List<float>());
+            DatasColor.Add(Color.CadetBlue);
             DatasName.Add(DefaultName);
 
             PanelVarControl v = new PanelVarControl();
@@ -146,13 +148,15 @@ namespace ProjectC_
             FlowVarPanel.Controls.Add(v);
         }
 
+        Point PanelVarRightClickPos;
         private void MainPage_MouseUp(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
                 PanelVarControl panel = (PanelVarControl)sender;
                 int id = panel.getCurrentValue() - 1;
 
                 menu.setDataId(id);
-                menuClicDroit.Show(Cursor.Position);
+                PanelVarRightClickPos = Cursor.Position;
+                menuClicDroit.Show(PanelVarRightClickPos);
 
             }
         }
@@ -163,6 +167,12 @@ namespace ProjectC_
 
             PanelVarControl v = (PanelVarControl) FlowVarPanel.Controls[id];
             v.setVarName(newName);
+        }
+        public void ChangeVarColor(int id, Color color) { 
+            DatasColor[id] = color;
+
+            PanelVarControl v = (PanelVarControl)FlowVarPanel.Controls[id];
+            v.setColor(color);
         }
     }        
 }

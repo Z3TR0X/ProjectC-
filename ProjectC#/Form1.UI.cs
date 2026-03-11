@@ -6,11 +6,13 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjectC_
 {
     public partial class Form1 {
         private Cursor DragCursor;
+        private bool isColorPickerOpening = false;
 
         private Cursor CreateDragCursor(string text) {
             Font font = new Font(FontFamily.GenericSansSerif, 10);
@@ -131,7 +133,7 @@ namespace ProjectC_
         private ToolStripDropDown menuColor;
 
         private void createColorPickerMenu() {
-            menuContentColor = new ColorPicker();
+            menuContentColor = new ColorPicker(menu);
 
             ToolStripControlHost host = new ToolStripControlHost(menuContentColor);
             host.AutoSize = false;
@@ -146,8 +148,29 @@ namespace ProjectC_
             menuColor.DropShadowEnabled = false;
             menuColor.BackColor = Color.FromArgb(50, 50, 50);
             menuColor.Size = menuContentColor.Size + new Size(1, 1);
-
+            menuColor.Closing += (sender, e) => {
+                menuClicDroit.AutoClose = true;
+                menuClicDroit.Close();
+                menuClicDroit.SuspendLayout();
+                menuClicDroit.Show(PanelVarRightClickPos);
+                menuClicDroit.ResumeLayout(true);
+            };
+           
             menuColor.Items.Add(host);
         }
+
+        public void BeginPickColor() {
+            if (menuClicDroit.Visible) {
+                isColorPickerOpening = true;
+                menuClicDroit.AutoClose = false;
+
+                menuColor.Show(Cursor.Position);
+            }
+
+   
+        }
+
+
+
     }
 }

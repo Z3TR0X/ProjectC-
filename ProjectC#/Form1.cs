@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ProjectC_ {
@@ -55,8 +56,6 @@ namespace ProjectC_ {
             }
         }
 
-        private void MainPage_Click(object sender, EventArgs e) {
-            menuColor.Show(Cursor.Position);
-        }
+        
     }
 }

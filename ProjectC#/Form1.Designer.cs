@@ -76,6 +76,7 @@
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
             this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -610,6 +611,7 @@
             // MainPage
             // 
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MainPage.Controls.Add(this.textBox1);
             this.MainPage.Controls.Add(this.kryptonPanel1);
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -619,7 +621,6 @@
             this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1194, 815);
             this.MainPage.TabIndex = 5;
-            this.MainPage.Click += new System.EventHandler(this.MainPage_Click);
             // 
             // kryptonPanel1
             // 
@@ -729,6 +730,13 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(660, 100);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(416, 30);
+            this.textBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -759,6 +767,7 @@
             this.OptionPanel.ResumeLayout(false);
             this.OptionPanel.PerformLayout();
             this.MainPage.ResumeLayout(false);
+            this.MainPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             this.TopBar.ResumeLayout(false);
@@ -814,6 +823,7 @@
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

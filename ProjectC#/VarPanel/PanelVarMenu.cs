@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using ProjectC_.VarPanel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace ProjectC_ {
             InitializeComponent();
             KryptonButtonCorrection(this.Controls);
             this.mainForm = mainForm;
+            this.DoubleBuffered = true;
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
@@ -47,6 +49,16 @@ namespace ProjectC_ {
             if(e.KeyChar == (char) Keys.Enter) {
                 mainForm.ChangeVarName(dataId, NameTextBox.Text);
             }
+        }
+
+        private void ColorChooser_Click(object sender, EventArgs e) {
+            mainForm.BeginPickColor();
+        }
+
+        public void setColor(Color color){
+            ColorChooser.StateCommon.Back.Color1 = color;
+            ColorChooser.StateCommon.Border.Color1 = color;
+            mainForm.ChangeVarColor(dataId, color);
         }
     }
 }
