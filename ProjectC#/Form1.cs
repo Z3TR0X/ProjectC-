@@ -18,7 +18,6 @@ namespace ProjectC_ {
 
     public partial class Form1 : Form {
 
-     
 
 
         public Form1() {
@@ -34,7 +33,6 @@ namespace ProjectC_ {
             DataPanelTimer = new System.Windows.Forms.Timer();
             DataPanelTimer.Interval = 100;
             DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
-            DataPanelTimer.Start();
 
             createPanelRightClicMenu();
             createColorPickerMenu();

@@ -92,16 +92,17 @@ namespace ProjectC_
 
 
         private void UpdateDatasPanels(object sender, EventArgs e) {
-            if(Datas.Count != DatasName.Count || Datas.Count == 0) {
+            if(Datas.Count != DatasName.Count || Datas.Count == 0 || isClosing) {
                 return;
             }
 
-            for(int i = 0; i < Datas.Count; i++) {
+            for (int i = 0; i < Datas.Count; i++) {
                 PanelVarControl panel = (PanelVarControl)FlowVarPanel.Controls[i];
                 int LastElem = (Datas[i].Count) - 1;
                 Console.WriteLine(LastElem);
                 panel.setCurrentValue(Datas[i][LastElem]);
             }
+            
         }
 
         private PanelVarMenu menu;

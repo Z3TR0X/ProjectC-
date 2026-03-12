@@ -16,6 +16,7 @@ namespace ProjectC_
         int SerialSpeedChoosed = 0;
         SerialDataReceivedEventHandler SerialHander;
 
+
         List<List<float>> Datas = new List<List<float>>();
         List<String> DatasName = new List<string>();
         List<Color> DatasColor = new List<Color>();
@@ -71,6 +72,8 @@ namespace ProjectC_
 
                     SerialConn.DataReceived += SerialHander;
 
+                    DataPanelTimer.Start();
+
                     SerialConn.Open();
 
                     OptionPanel.BringToFront();
@@ -91,6 +94,7 @@ namespace ProjectC_
                     try {
                         SerialConn.DataReceived -= SerialHander;
                         SerialConn.DiscardInBuffer();
+                        DataPanelTimer.Stop();
                         SerialConn.Close();
                     } catch (Exception ex) {
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
@@ -108,31 +112,33 @@ namespace ProjectC_
 
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
             if (!SerialConn.IsOpen) return;
+               try {
+                    string data = SerialConn.ReadLine();
 
-            try {
-                string data = SerialConn.ReadLine();
+                    // On vérifie que la com n'est pas fermé ou en cours de fermeture
+                    if (!this.IsDisposed && !this.Disposing) {
+                        this.Invoke(new MethodInvoker(delegate {
+                            //On choisit pas defaut le ; pour séparer les variables
+                            string[] values = data.Split(';');
 
-                // On vérifie que la com n'est pas fermé ou en cours de fermeture
-                if (!this.IsDisposed && !this.Disposing) {
-                    this.Invoke(new MethodInvoker(delegate {
-                        //On choisit pas defaut le ; pour séparer les variables
-                        string[] values = data.Split(';');
 
-                     
-                        //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
-                        while (values.Length > Datas.Count) {
-                            AddNewData();
-                        }
+                            //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
+                            while (values.Length > Datas.Count) {
+                                AddNewData();
+                            }
 
-                        for (int i = 0; i < values.Length; i++) {
-                            float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
-                            Datas[i].Add(val);
-                        }
-                    }));
+                            for (int i = 0; i < values.Length; i++) {
+                                float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
+                                Datas[i].Add(val);
+                            }
+                        }));
+                    }
+                } catch {
+                    //On peut gerer les erreurs ici si yen a.
                 }
-            } catch {
-                //On peut gerer les erreurs ici si yen a.
-            }
+
+
+            
 
         }
 
@@ -143,6 +149,7 @@ namespace ProjectC_
             DatasName.Add(DefaultName);
 
             PanelVarControl v = new PanelVarControl();
+            v.setColor(Color.CadetBlue);
             v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainPage_MouseUp);
             v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
             FlowVarPanel.Controls.Add(v);
@@ -155,6 +162,8 @@ namespace ProjectC_
                 int id = panel.getCurrentValue() - 1;
 
                 menu.setDataId(id);
+                menu.setColor(DatasColor[id]);
+                menu.setName(DatasName[id]);
                 PanelVarRightClickPos = Cursor.Position;
                 menuClicDroit.Show(PanelVarRightClickPos);
 

@@ -60,6 +60,10 @@ namespace ProjectC_ {
             ColorChooser.StateCommon.Border.Color1 = color;
             mainForm.ChangeVarColor(dataId, color);
         }
+
+        public void setName(String name) {
+            NameTextBox.Text = name;
+        }
     }
 }
 

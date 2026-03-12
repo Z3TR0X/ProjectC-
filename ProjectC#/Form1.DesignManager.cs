@@ -3,6 +3,8 @@ using System;
 using System.Drawing;
 using System.IO.Ports;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectC_ {
@@ -71,10 +73,27 @@ namespace ProjectC_ {
             base.WndProc(ref m);
         }
 
-        private void button_close_Click(object sender, EventArgs e) {
+        private bool isClosing = false;
+        private async void button_close_Click(object sender, EventArgs e) {
+
+            DataPanelTimer.Tick -= UpdateDatasPanels;
+
+            DataPanelTimer.Stop();
+            DataPanelTimer.Dispose();
+
+            isClosing = true;
+
             if (SerialConn.IsOpen) {
-                SerialConn.DataReceived -= SerialHander;
-                SerialConn.Close();
+                await Task.Run(() => {
+                    try {
+                        SerialConn.DataReceived -= SerialHander;
+                        SerialConn.DiscardInBuffer();
+                        SerialConn.Close();
+                    } catch (Exception ex) {
+                        Console.WriteLine("Erreur à la fermeture : " + ex.Message);
+                    }
+                });
+
             }
             this.Close();
         }

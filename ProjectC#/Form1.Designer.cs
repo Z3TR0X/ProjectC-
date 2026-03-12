@@ -66,7 +66,6 @@
             this.DeleteButton = new Krypton.Toolkit.KryptonButton();
             this.PausContButton = new Krypton.Toolkit.KryptonButton();
             this.MainPage = new System.Windows.Forms.Panel();
-            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.SerialConn = new System.IO.Ports.SerialPort(this.components);
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -76,7 +75,6 @@
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
             this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -89,8 +87,6 @@
             this.SerialSelectorMargin.SuspendLayout();
             this.SerialSelector.SuspendLayout();
             this.OptionPanel.SuspendLayout();
-            this.MainPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -611,8 +607,6 @@
             // MainPage
             // 
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
-            this.MainPage.Controls.Add(this.textBox1);
-            this.MainPage.Controls.Add(this.kryptonPanel1);
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -621,14 +615,6 @@
             this.MainPage.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.MainPage.Size = new System.Drawing.Size(1194, 815);
             this.MainPage.TabIndex = 5;
-            // 
-            // kryptonPanel1
-            // 
-            this.kryptonPanel1.AllowDrop = true;
-            this.kryptonPanel1.Location = new System.Drawing.Point(513, 381);
-            this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(100, 100);
-            this.kryptonPanel1.TabIndex = 1;
             // 
             // MenuSerialPort
             // 
@@ -730,13 +716,6 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(660, 100);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(416, 30);
-            this.textBox1.TabIndex = 2;
-            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -766,9 +745,6 @@
             this.SerialSelector.ResumeLayout(false);
             this.OptionPanel.ResumeLayout(false);
             this.OptionPanel.PerformLayout();
-            this.MainPage.ResumeLayout(false);
-            this.MainPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
@@ -820,10 +796,8 @@
         private System.Windows.Forms.Button button_minimize;
         private System.Windows.Forms.PictureBox logo;
         private Krypton.Toolkit.KryptonButton DeconnectButton;
-        private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
