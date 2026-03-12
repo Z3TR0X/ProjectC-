@@ -154,7 +154,7 @@ namespace ProjectC_ {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void panel1_MouseDown(object sender, MouseEventArgs e) {
+        private void DragTopBar(object sender, MouseEventArgs e) {
             if (this.Size == Screen.FromControl(this).WorkingArea.Size) {
                 int preference = 2;
                 DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));

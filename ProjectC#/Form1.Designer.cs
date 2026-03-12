@@ -648,7 +648,7 @@
             this.TopBar.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.TopBar.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.TopBar.TabIndex = 2;
-            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragTopBar);
             // 
             // button_minimize
             // 
