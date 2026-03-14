@@ -36,6 +36,9 @@ namespace ProjectC_ {
 
             createPanelRightClicMenu();
             createColorPickerMenu();
+
+            formsPlot1.Plot.FigureBackground.Color = new ScottPlot.Color("#2c323c");
+            formsPlot1.Refresh();
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {

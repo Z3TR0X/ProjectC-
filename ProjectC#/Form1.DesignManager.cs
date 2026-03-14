@@ -99,33 +99,26 @@ namespace ProjectC_ {
         }
 
         private void button_maximize_Click(object sender, EventArgs e) {
-            Size screen_size = Screen.FromControl(this).WorkingArea.Size;
-            if (this.Size != screen_size) {
+            if (this.WindowState == FormWindowState.Normal)
+            {
                 button_maximize.Image = Properties.Resources.Restore_white;
-                int preference = 0;
+                int preference = 1;
                 DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                last_normal_form_size = this.Size;
-                last_normal_form_position = this.Location;
-                this.Size = Screen.FromControl(this).WorkingArea.Size;
-                this.Location = new Point(0, 0);
-                this.Padding = new Padding(0, 0, 0, 0);
-
-
-                Force_Drawing();
-
-            } else {
+                this.Padding = new Padding(0);
+                this.MaximizedBounds = Screen.FromControl(this).WorkingArea;
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                button_maximize.Image = Properties.Resources.Maximize_White;
                 int preference = 2;
                 DwmSetWindowAttribute(this.Handle, 33, ref preference, sizeof(int));
-
-                this.Size = last_normal_form_size;
-                this.Location = last_normal_form_position;
-                this.Padding = new Padding(1, 1, 1, 1);
-                button_maximize.Image = Properties.Resources.Maximize_White;
-
-                Force_Drawing();
+                this.Padding = new Padding(1);
+                this.WindowState = FormWindowState.Normal;
             }
 
+            this.Invalidate();
+            this.Update();
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e) {
