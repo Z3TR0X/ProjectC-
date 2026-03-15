@@ -173,28 +173,30 @@ namespace ProjectC_
         }
 
         public void ApplyPlotDesign(ScottPlot.Plot formPlot){
-            formsPlot1.Plot.FigureBackground.Color = ColorLightDarkBlue;
-            formsPlot1.Plot.Axes.Color(ColorDarkGray);
+            formPlot.FigureBackground.Color = ColorLightDarkBlue;
+            formPlot.Axes.Color(ColorDarkGray);
 
-            formsPlot1.Plot.DataBackground.Color = ColorDarkBlue;
+            formPlot.DataBackground.Color = ColorDarkBlue;
 
-            formsPlot1.Plot.Grid.XAxisStyle.MajorLineStyle.Color = ColorDarkGray.WithAlpha(50);
-            formsPlot1.Plot.Grid.YAxisStyle.MajorLineStyle.Color = ColorDarkGray.WithAlpha(50);
+            formPlot.Grid.XAxisStyle.MajorLineStyle.Color = ColorDarkGray.WithAlpha(50);
+            formPlot.Grid.YAxisStyle.MajorLineStyle.Color = ColorDarkGray.WithAlpha(50);
 
-            formsPlot1.Plot.Grid.XAxisStyle.MajorLineStyle.Width = 1;
-            formsPlot1.Plot.Grid.YAxisStyle.MajorLineStyle.Width = 1;
+            formPlot.Grid.XAxisStyle.MajorLineStyle.Width = 1;
+            formPlot.Grid.YAxisStyle.MajorLineStyle.Width = 1;
 
-            formsPlot1.Plot.Title("Figure 1");
-            formsPlot1.Plot.Axes.Title.Label.FontName = "Microsoft Sans Serif";
-            formsPlot1.Plot.Axes.Title.Label.FontSize = 15;
-            formsPlot1.Plot.Axes.Title.Label.Bold = true;
+            formPlot.Title("Figure 1");
+            formPlot.Axes.Title.Label.FontName = "Microsoft Sans Serif";
+            formPlot.Axes.Title.Label.FontSize = 15;
+            formPlot.Axes.Title.Label.Bold = true;
 
-            formsPlot1.Plot.XLabel("Temps (s)");
-            formsPlot1.Plot.Axes.Bottom.Label.FontName = "Microsoft Sans Serif";
-            formsPlot1.Plot.Axes.Bottom.Label.FontSize = 14;
-            formsPlot1.Plot.Axes.Bottom.Label.Bold = false;
-            formsPlot1.Plot.Axes.Bottom.Label.OffsetY = 5;
-            formsPlot1.Plot.Axes.Bottom.MinimumSize = 50;
+            formPlot.XLabel("Temps (s)");
+            formPlot.Axes.Bottom.Label.FontName = "Microsoft Sans Serif";
+            formPlot.Axes.Bottom.Label.FontSize = 14;
+            formPlot.Axes.Bottom.Label.Bold = false;
+            formPlot.Axes.Bottom.Label.OffsetY = 0;
+
+
+            formPlot.Axes.Bottom.MinimumSize = 50;
         }
 
 

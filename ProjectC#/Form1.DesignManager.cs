@@ -140,7 +140,8 @@ namespace ProjectC_ {
             PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - MenuLocY - 5);
 
 
-            TopBar.Refresh();
+            this.Invalidate();
+            this.Update();
         }
 
         private void button_minimize_Click(object sender, EventArgs e) {
@@ -164,8 +165,14 @@ namespace ProjectC_ {
                 button_maximize.Image = Properties.Resources.Maximize_White;
             }
 
+            this.Invalidate();
+            this.Update();
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+
+            this.Invalidate();
+            this.Update();
         }
 
 
