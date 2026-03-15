@@ -1,5 +1,7 @@
 ﻿using Krypton.Toolkit;
+using ScottPlot;
 using ScottPlot.Colormaps;
+using ScottPlot.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,8 +39,9 @@ namespace ProjectC_ {
             createPanelRightClicMenu();
             createColorPickerMenu();
 
-            formsPlot1.Plot.FigureBackground.Color = new ScottPlot.Color("#2c323c");
+            ApplyPlotDesign(formsPlot1.Plot);
             formsPlot1.Refresh();
+          
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
