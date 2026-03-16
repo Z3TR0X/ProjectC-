@@ -63,6 +63,16 @@ namespace ProjectC_.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddChart {
+            get {
+                object obj = ResourceManager.GetObject("AddChart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close_white {
             get {
                 object obj = ResourceManager.GetObject("Close_white", resourceCulture);
@@ -206,6 +216,16 @@ namespace ProjectC_.Properties {
         internal static System.Drawing.Bitmap Refresh_white {
             get {
                 object obj = ResourceManager.GetObject("Refresh_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RemoveChart {
+            get {
+                object obj = ResourceManager.GetObject("RemoveChart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

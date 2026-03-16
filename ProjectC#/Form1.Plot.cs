@@ -1,4 +1,5 @@
-﻿using ProjectC_.UserContent;
+﻿using Krypton.Toolkit;
+using ProjectC_.UserContent;
 using ScottPlot;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,27 @@ namespace ProjectC_ {
         List<PlotDesign> Plots = new List<PlotDesign>();
         
         private void AddNewPlot() {
-            PlotDesign Plot = new PlotDesign("Figure " + Plots.Count);
+            if (Plots.Count >= 4) return;
+
+            PlotDesign Plot = new PlotDesign("Figure " + (Plots.Count +1));
+            Plot.RightClicOnPlott += PlotRightClic;
 
             Plots.Add(Plot);
             MainPage.Controls.Add(Plot);
             RearrangePlot();
 
 
+        }
+
+        private void RemovePlot() {
+            if (Plots.Count == 0) return;
+
+            int index = Plots.Count - 1;
+
+            Plots[index].RightClicOnPlott -= PlotRightClic;
+            Plots.RemoveAt(index);
+            MainPage.Controls.RemoveAt(index);
+            RearrangePlot();
         }
 
         private void RearrangePlot() {
@@ -76,6 +91,43 @@ namespace ProjectC_ {
 
                 default:
                     break;
+            }
+        }
+
+
+        private KryptonContextMenu menuPlot;
+
+        private void CreateRightClicMenu() {
+            menuPlot = new KryptonContextMenu();
+
+            menuPlot.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
+            menuPlot.LocalCustomPalette = CustomPalette;
+
+            KryptonContextMenuItems blocItems = new KryptonContextMenuItems();
+
+            KryptonContextMenuItem createPlot = new KryptonContextMenuItem();
+            createPlot.Image = Properties.Resources.AddChart;
+            createPlot.Text = "Ajouter une figure";
+            createPlot.Click += (s, e) => {
+                AddNewPlot();
+            };
+
+            KryptonContextMenuItem deletePlot = new KryptonContextMenuItem();
+            deletePlot.Image = Properties.Resources.RemoveChart;
+            deletePlot.Text = "Retirer une figure";
+            deletePlot.Click += (s, e) => {
+                RemovePlot();
+            };
+
+            blocItems.Items.Add(createPlot);
+            blocItems.Items.Add(deletePlot);
+
+            menuPlot.Items.Add(blocItems);
+        }
+
+        private void PlotRightClic(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                menuPlot.Show(MainPage, MousePosition);
             }
         }
     }

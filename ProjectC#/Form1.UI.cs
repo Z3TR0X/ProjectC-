@@ -106,15 +106,15 @@ namespace ProjectC_
             
         }
 
-        private PanelVarMenu menu;
+        private PanelVarMenu menuVar;
         private ToolStripDropDown menuClicDroit;
 
         private void createPanelRightClicMenu() {
-            menu = new PanelVarMenu(this);
+            menuVar = new PanelVarMenu(this);
 
-            ToolStripControlHost host = new ToolStripControlHost(menu);
+            ToolStripControlHost host = new ToolStripControlHost(menuVar);
             host.AutoSize = false;
-            host.Size = menu.Size + new Size(1, 1);
+            host.Size = menuVar.Size + new Size(1, 1);
             host.Margin = Padding.Empty;
             host.Padding = Padding.Empty;
             host.BackColor = Color.DarkGray;
@@ -124,7 +124,7 @@ namespace ProjectC_
             menuClicDroit.Margin = Padding.Empty;
             menuClicDroit.DropShadowEnabled = false;
             menuClicDroit.BackColor = Color.FromArgb(50, 50, 50);
-            menuClicDroit.Size = menu.Size + new Size(1, 1);
+            menuClicDroit.Size = menuVar.Size + new Size(1, 1);
 
             menuClicDroit.Items.Add(host);
 
@@ -135,7 +135,7 @@ namespace ProjectC_
         private ToolStripDropDown menuColor;
 
         private void createColorPickerMenu() {
-            menuContentColor = new ColorPicker(menu);
+            menuContentColor = new ColorPicker(menuVar);
 
             ToolStripControlHost host = new ToolStripControlHost(menuContentColor);
             host.AutoSize = false;

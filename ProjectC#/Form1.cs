@@ -39,7 +39,7 @@ namespace ProjectC_ {
             createPanelRightClicMenu();
             createColorPickerMenu();
 
-            AddNewPlot();
+            CreateRightClicMenu();
 
         }
 

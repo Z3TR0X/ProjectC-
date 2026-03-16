@@ -20,9 +20,9 @@ namespace ProjectC_ {
                 PanelVarControl panel = (PanelVarControl)sender;
                 int id = panel.getCurrentValue() - 1;
 
-                menu.setDataId(id);
-                menu.setColor(DatasColor[id]);
-                menu.setName(DatasName[id]);
+                menuVar.setDataId(id);
+                menuVar.setColor(DatasColor[id]);
+                menuVar.setName(DatasName[id]);
                 PanelVarRightClickPos = Cursor.Position;
                 menuClicDroit.Show(PanelVarRightClickPos);
 

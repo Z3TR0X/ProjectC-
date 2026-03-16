@@ -75,6 +75,7 @@
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
             this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.CustomPalette = new Krypton.Toolkit.KryptonCustomPaletteBase(this.components);
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -614,6 +615,7 @@
             this.MainPage.Name = "MainPage";
             this.MainPage.Size = new System.Drawing.Size(1139, 549);
             this.MainPage.TabIndex = 5;
+            this.MainPage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlotRightClic);
             // 
             // MenuSerialPort
             // 
@@ -715,6 +717,51 @@
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
             // 
+            // CustomPalette
+            // 
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.None;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Width = 0;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color2 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Rounding = 5F;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Width = 2;
+            this.CustomPalette.ContextMenu.StateCommon.HasShadow = false;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.Color1 = System.Drawing.Color.Silver;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.Color1 = System.Drawing.Color.Silver;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemImage.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemShortcutText.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemSplit.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextAlternate.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.LongText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color2 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateNormal.ItemImage.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateNormal.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ToolMenuStatus.Menu.MenuBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.UseThemeFormChromeBorderWidth = Krypton.Toolkit.InheritBool.False;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -797,6 +844,7 @@
         private Krypton.Toolkit.KryptonButton DeconnectButton;
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
+        private Krypton.Toolkit.KryptonCustomPaletteBase CustomPalette;
     }
 }
 

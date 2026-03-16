@@ -53,6 +53,7 @@
             this.Plot.Name = "Plot";
             this.Plot.Size = new System.Drawing.Size(551, 257);
             this.Plot.TabIndex = 1;
+            this.Plot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Plot_MouseUp);
             // 
             // PlotDesign
             // 

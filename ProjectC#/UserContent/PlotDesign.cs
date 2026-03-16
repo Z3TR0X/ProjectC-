@@ -15,10 +15,14 @@ namespace ProjectC_.UserContent {
         ScottPlot.Color ColorDarkBlue = new ScottPlot.Color("#22272e");
         ScottPlot.Color ColorLightDarkBlue = new ScottPlot.Color("#2c323c");
 
+        public event EventHandler<MouseEventArgs> RightClicOnPlott;
+
         String FigureTitle;
 
         public PlotDesign(String title) {
             InitializeComponent();
+            Plot.Menu?.Clear();
+
             FigureTitle = title;
 
             ApplyDesignToPlot(Plot.Plot);
@@ -50,6 +54,10 @@ namespace ProjectC_.UserContent {
 
 
             formPlot.Axes.Bottom.MinimumSize = 50;
+        }
+
+        private void Plot_MouseUp(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) RightClicOnPlott.Invoke(this, e);
         }
     }
 }
