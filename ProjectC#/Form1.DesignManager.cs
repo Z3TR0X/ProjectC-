@@ -139,6 +139,7 @@ namespace ProjectC_ {
             VarPanel.Size = new Size(VarPanel.Width, MenuLocY);
             PagePanel.Size = new Size(PagePanel.Width, MenuPanel.Height - MenuLocY - 5);
 
+            RearrangePlot();
 
             this.Invalidate();
             this.Update();

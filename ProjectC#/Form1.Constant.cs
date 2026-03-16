@@ -12,6 +12,9 @@ namespace ProjectC_ {
         ScottPlot.Color ColorDarkBlue = new ScottPlot.Color("#22272e");
         ScottPlot.Color ColorLightDarkBlue = new ScottPlot.Color("#2c323c");
 
+        int PaddingPlotMainPage = 6; //Padding entre un graph et la main page
+        int PaddingPlotPlot = 3; //Padding entre deux graphs
+
     }
 }
 ;

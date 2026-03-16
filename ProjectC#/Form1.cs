@@ -39,9 +39,8 @@ namespace ProjectC_ {
             createPanelRightClicMenu();
             createColorPickerMenu();
 
-            ApplyPlotDesign(formsPlot1.Plot);
-            formsPlot1.Refresh();
-          
+            AddNewPlot();
+
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
