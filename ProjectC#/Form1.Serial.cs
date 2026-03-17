@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectC_.UserContent;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -74,6 +75,8 @@ namespace ProjectC_
                     OptionPanel.BringToFront();
                     OptionPanel.Enabled = true;
                     ComPanel.Enabled = false;
+
+                    millis.Start();
                 } catch (Exception ex) {
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
                     SerialConn.DataReceived -= SerialHander;
@@ -91,12 +94,12 @@ namespace ProjectC_
                         SerialConn.DiscardInBuffer();
                         DataPanelTimer.Stop();
                         SerialConn.Close();
+                        millis.Stop();
                     } catch (Exception ex) {
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
                     }
                 });
 
-                //MessageBox.Show(Datas[0].Count.ToString());
 
             }
 
@@ -125,6 +128,15 @@ namespace ProjectC_
                             for (int i = 0; i < values.Length; i++) {
                                 float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
                                 Datas[i].Add(val);
+                            }
+
+                            long timer = millis.ElapsedMilliseconds;
+                            timeY.Add(timer);
+
+                            foreach(PlotDesign plot in Plots) {
+                                foreach(int i in plot.GetVariablePlotted()) {
+                                    plot.AddDataToPlott(i, timer, Datas[i][Datas[i].Count -1]);
+                                }
                             }
                         }));
                     }

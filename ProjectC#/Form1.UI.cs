@@ -16,7 +16,7 @@ namespace ProjectC_
         private bool isColorPickerOpening = false;
 
         private Cursor CreateDragCursor(string text) {
-            Font font = new Font(FontFamily.GenericSansSerif, 10);
+            Font font = new Font(FontFamily.GenericSansSerif, 12);
             Size textSize;
 
             //Permet de mesurer la taille du texte
@@ -96,6 +96,7 @@ namespace ProjectC_
             if(Datas.Count != DatasName.Count || Datas.Count == 0 || isClosing) {
                 return;
             }
+
 
             for (int i = 0; i < Datas.Count; i++) {
                 PanelVarControl panel = (PanelVarControl)FlowVarPanel.Controls[i];

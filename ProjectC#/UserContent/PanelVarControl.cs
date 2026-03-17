@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,16 @@ namespace ProjectC_ {
 
             foreach (Control enfant in this.Controls) {
                 // On abonne chaque enfant à son propre événement MouseUp
+                enfant.GiveFeedback += (sender, e) => {
+                    // L'enfant déclenche manuellement l'événement MouseUp du parent (le UserControl) !
+                    this.OnGiveFeedback(e);
+                };
+
+                enfant.MouseDown += (sender, e) => {
+                    // L'enfant déclenche manuellement l'événement MouseUp du parent (le UserControl) !
+                    this.OnMouseDown(e);
+                };
+
                 enfant.MouseUp += (sender, e) =>
                 {
                     // L'enfant déclenche manuellement l'événement MouseUp du parent (le UserControl) !
@@ -33,12 +44,16 @@ namespace ProjectC_ {
             VarValue.Text = value.ToString();
         }
 
-        public int getCurrentValue() {
+        public int getVarIdAssociated() {
             return (int) VarItem.Tag;
         }
 
         public void setVarName(string varName) {
             VarName.Text = varName;
+        }
+
+        public string getVarName() {
+            return VarName.Text;
         }
 
         public void setColor(Color color) {

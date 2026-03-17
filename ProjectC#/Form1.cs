@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace ProjectC_ {
 
     public partial class Form1 : Form {
 
+        private Stopwatch millis = new Stopwatch();
 
 
         public Form1() {

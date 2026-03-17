@@ -47,12 +47,17 @@
             // 
             // Plot
             // 
+            this.Plot.AllowDrop = true;
             this.Plot.DisplayScale = 0F;
             this.Plot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Plot.Location = new System.Drawing.Point(0, 0);
             this.Plot.Name = "Plot";
             this.Plot.Size = new System.Drawing.Size(551, 257);
             this.Plot.TabIndex = 1;
+            this.Plot.DragDrop += new System.Windows.Forms.DragEventHandler(this.Plot_DragDrop);
+            this.Plot.DragEnter += new System.Windows.Forms.DragEventHandler(this.Plot_DragEnter);
+            this.Plot.DragOver += new System.Windows.Forms.DragEventHandler(this.Plot_DragOver);
+            this.Plot.DragLeave += new System.EventHandler(this.Plot_DragLeave);
             this.Plot.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Plot_MouseUp);
             // 
             // PlotDesign
