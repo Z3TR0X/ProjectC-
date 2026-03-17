@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ProjectC_ {
     public partial class Form1 {
         List<List<float>> Datas = new List<List<float>>();
-        List<long> timeY = new List<long>();
+        List<Double> timeY = new List<Double>();
         List<String> DatasName = new List<string>();
         List<Color> DatasColor = new List<Color>();
         List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
@@ -51,6 +51,7 @@ namespace ProjectC_ {
             Datas.Add(new List<float>());
             DatasColor.Add(Color.CadetBlue);
             DatasName.Add(DefaultName);
+            DataFromPlot.Add(Datas.Count-1, new List<int>());
 
             PanelVarControl v = new PanelVarControl();
             v.setColor(Color.CadetBlue);

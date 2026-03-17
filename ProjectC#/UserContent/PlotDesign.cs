@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -21,10 +22,10 @@ namespace ProjectC_.UserContent {
         ScottPlot.Color ColorLightDarkBlue = new ScottPlot.Color("#2c323c");
 
         public event EventHandler<MouseEventArgs> RightClicOnPlott;
+        public event EventHandler<EventArgs> NewVariableToPlott;
 
         //Chaque variable à son propre Data Logger et le data logger loggers[i] correspond a la variable varId[i]
         private Dictionary<int,DataLogger> loggers = new Dictionary<int, DataLogger>();
-
 
         String FigureTitle;
 
@@ -34,8 +35,10 @@ namespace ProjectC_.UserContent {
 
             FigureTitle = title;
 
+
             ApplyDesignToPlot(Plot.Plot);
             Plot.Plot.RenderManager.RenderActions.Add(this);
+
 
             Plot.Refresh();
         }
@@ -160,12 +163,9 @@ namespace ProjectC_.UserContent {
 
 
         public void AddDataToPlott(int varId, double x, double y) {
+            Debug.WriteLine("coucou");
             if (!loggers.ContainsKey(varId)) return;
-
             loggers[varId].Add(x, y);
-
-            Plot.Plot.Axes.AutoScale();
-            Plot.Refresh();
         }
 
         private void Plot_DragDrop(object sender, DragEventArgs e) {
@@ -175,7 +175,14 @@ namespace ProjectC_.UserContent {
             if (loggers.ContainsKey(var)) return;
 
             DataLogger logger = Plot.Plot.Add.DataLogger();
+            logger.ManageAxisLimits = false;
             loggers.Add(var, logger);
+
+            NewVariableToPlott.Invoke(this, e);
+
+            zone = 0;
+            isRectDraw = false;
+            Plot.Refresh();
         }
 
 
@@ -185,6 +192,14 @@ namespace ProjectC_.UserContent {
 
         private void Plot_DragEnter(object sender, DragEventArgs e) {
             e.Effect = DragDropEffects.Copy;
+        }
+
+        public void RefreshPlot(double last_value) {
+            Plot.Plot.Axes.SetLimitsX(last_value - 5, last_value);
+
+            Debug.WriteLine(last_value.ToString());
+
+            Plot.Refresh();
         }
     }
 }

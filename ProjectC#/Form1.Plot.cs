@@ -3,26 +3,31 @@ using ProjectC_.UserContent;
 using ScottPlot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProjectC_ {
 
     public partial class Form1 : Form {
         List<PlotDesign> Plots = new List<PlotDesign>();
+        Dictionary<int, List<int>> DataFromPlot = new Dictionary<int, List<int>>(); //Liste qui associe a chaque variable les plots qui la dessine
         
         private void AddNewPlot() {
             if (Plots.Count >= 4) return;
 
             PlotDesign Plot = new PlotDesign("Figure " + (Plots.Count +1));
             Plot.RightClicOnPlott += PlotRightClic;
+            Plot.NewVariableToPlott += PlotNewVariable;
 
             Plots.Add(Plot);
             MainPage.Controls.Add(Plot);
             RearrangePlot();
+
 
 
         }
@@ -125,10 +130,28 @@ namespace ProjectC_ {
             menuPlot.Items.Add(blocItems);
         }
 
+        private void PlotNewVariable(object sender, EventArgs e) {
+            for (int PlotsNumber = 0; PlotsNumber < Plots.Count; PlotsNumber++) {
+                if (Plots[PlotsNumber].Equals(sender)) {
+                    foreach(int VarId in Plots[PlotsNumber].GetVariablePlotted()) {
+                        DataFromPlot[VarId-1].Add(PlotsNumber);
+                    }
+                }
+            }
+        }
+
+
         private void PlotRightClic(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
                 menuPlot.Show(MainPage, MousePosition);
             }
         }
+    
+        private void RenderPlots(object sender, EventArgs e) {
+            foreach(PlotDesign plot in Plots) {
+                plot.RefreshPlot(timeY[timeY.Count-1]);
+            }
+        }
+    
     }
 }

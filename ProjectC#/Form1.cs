@@ -22,6 +22,7 @@ namespace ProjectC_ {
     public partial class Form1 : Form {
 
         private Stopwatch millis = new Stopwatch();
+        private Timer refreshPlotTick = new Timer();
 
 
         public Form1() {
@@ -37,6 +38,10 @@ namespace ProjectC_ {
             DataPanelTimer = new System.Windows.Forms.Timer();
             DataPanelTimer.Interval = 100;
             DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
+
+            refreshPlotTick.Interval = 100;
+            refreshPlotTick.Tick += RenderPlots;
+            refreshPlotTick.Stop();
 
             createPanelRightClicMenu();
             createColorPickerMenu();

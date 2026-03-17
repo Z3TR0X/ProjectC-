@@ -81,6 +81,9 @@ namespace ProjectC_ {
             DataPanelTimer.Stop();
             DataPanelTimer.Dispose();
 
+            refreshPlotTick.Stop();
+            refreshPlotTick.Dispose();
+
             isClosing = true;
 
             if (SerialConn.IsOpen) {

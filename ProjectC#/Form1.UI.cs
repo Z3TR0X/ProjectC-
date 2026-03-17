@@ -98,11 +98,13 @@ namespace ProjectC_
             }
 
 
-            for (int i = 0; i < Datas.Count; i++) {
-                PanelVarControl panel = (PanelVarControl)FlowVarPanel.Controls[i];
+            for (int i = 0; i < Datas.Count; i++) { 
                 int LastElem = (Datas[i].Count) - 1;
-                Console.WriteLine(LastElem);
-                panel.setCurrentValue(Datas[i][LastElem]);
+                if(LastElem > 0) {
+                    PanelVarControl panel = (PanelVarControl)FlowVarPanel.Controls[i];
+                    panel.setCurrentValue(Datas[i][LastElem]);
+                }
+                
             }
             
         }

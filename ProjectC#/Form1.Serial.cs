@@ -1,6 +1,7 @@
 ﻿using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
@@ -76,6 +77,8 @@ namespace ProjectC_
                     OptionPanel.Enabled = true;
                     ComPanel.Enabled = false;
 
+                    refreshPlotTick.Start();
+
                     millis.Start();
                 } catch (Exception ex) {
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
@@ -95,6 +98,7 @@ namespace ProjectC_
                         DataPanelTimer.Stop();
                         SerialConn.Close();
                         millis.Stop();
+                        refreshPlotTick.Stop();
                     } catch (Exception ex) {
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
                     }
@@ -125,19 +129,19 @@ namespace ProjectC_
                                 AddNewData();
                             }
 
+                            double timer = millis.ElapsedMilliseconds/1000.0;
+                            timeY.Add(timer);
+
                             for (int i = 0; i < values.Length; i++) {
                                 float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
                                 Datas[i].Add(val);
-                            }
 
-                            long timer = millis.ElapsedMilliseconds;
-                            timeY.Add(timer);
+                                foreach (int plotNb in DataFromPlot[i]) {
 
-                            foreach(PlotDesign plot in Plots) {
-                                foreach(int i in plot.GetVariablePlotted()) {
-                                    plot.AddDataToPlott(i, timer, Datas[i][Datas[i].Count -1]);
+                                    Plots[plotNb].AddDataToPlott(i+1, timer, val);
                                 }
                             }
+
                         }));
                     }
                 } catch {
