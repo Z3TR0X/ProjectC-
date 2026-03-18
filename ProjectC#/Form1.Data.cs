@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using ProjectC_.UserContent;
 
 namespace ProjectC_ {
     public partial class Form1 {
@@ -32,6 +33,11 @@ namespace ProjectC_ {
 
         public void ChangeVarName(int id, string newName) {
             DatasName[id] = newName;
+            
+            foreach(int plotNb in DataFromPlot[id]) {
+                DataInfos info = new DataInfos(newName, DatasColor[id], id+1);
+                Plots[plotNb].UpdateDataInfo(info);
+            }
 
 
             PanelVarControl v = (PanelVarControl)FlowVarPanel.Controls[id];
@@ -40,6 +46,11 @@ namespace ProjectC_ {
         
         public void ChangeVarColor(int id, Color color) {
             DatasColor[id] = color;
+
+            foreach (int plotNb in DataFromPlot[id]) {
+                DataInfos info = new DataInfos(DatasName[id], color, id + 1);
+                Plots[plotNb].UpdateDataInfo(info);
+            }
 
             PanelVarControl v = (PanelVarControl)FlowVarPanel.Controls[id];
             v.setColor(color);
@@ -68,7 +79,10 @@ namespace ProjectC_ {
 
                 DragCursor = CreateDragCursor(panel.getVarName());
 
-                panel.DoDragDrop(panel.getVarIdAssociated().ToString(), DragDropEffects.Copy);
+                int varId = panel.getVarIdAssociated();
+                DataInfos info = new DataInfos(DatasName[varId-1], DatasColor[varId-1], varId);
+
+                panel.DoDragDrop(info, DragDropEffects.Copy);
 
                 IntPtr hicon = panel.Handle; //Permet de recup le pointeur vers le curseur
                 DragCursor = null;

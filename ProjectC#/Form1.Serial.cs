@@ -17,6 +17,7 @@ namespace ProjectC_
         string SerialComChoosed = "";
         int SerialSpeedChoosed = 0;
         SerialDataReceivedEventHandler SerialHander;
+        bool pauseSerial;
 
 
         private void SerialExpand_Click(object sender, EventArgs e) {
@@ -76,6 +77,7 @@ namespace ProjectC_
                     OptionPanel.BringToFront();
                     OptionPanel.Enabled = true;
                     ComPanel.Enabled = false;
+                    pauseSerial = false;
 
                     foreach (PlotWindows plot in Plots) {
                         plot.AquisitionActive = true;
@@ -123,7 +125,10 @@ namespace ProjectC_
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
             if (!SerialConn.IsOpen) return;
                try {
-                    string data = SerialConn.ReadLine();
+                    //Permet de vider le buffer du serial -> ligne necessaire meme si on fait rien avec les données
+                    string data = SerialConn.ReadLine().Trim();
+
+                    if (pauseSerial) return;
 
                     // On vérifie que la com n'est pas fermé ou en cours de fermeture
                     if (!this.IsDisposed && !this.Disposing) {
@@ -161,5 +166,43 @@ namespace ProjectC_
 
         }
 
+        private void PausContButton_Click(object sender, EventArgs e) {
+            if (pauseSerial) {
+                PausContButton.StateCommon.Back.Color1 = Color.FromArgb(166, 88, 0);
+                PausContButton.StateTracking.Back.Color1 = Color.FromArgb(194, 104, 2);
+                PausContButton.StatePressed.Back.Color1 = Color.FromArgb(220, 120, 4);
+                PausContButton.OverrideDefault.Back.Color1 = Color.FromArgb(166, 88, 0);
+                PausContButton.Values.Text = "Pause";
+
+                DataPanelTimer.Start();
+
+                foreach (PlotWindows plot in Plots) {
+                    plot.AquisitionActive = true;
+                }
+
+                refreshPlotTick.Start();
+
+
+                millis.Start();
+
+                pauseSerial = false;
+            } else {
+                PausContButton.StateCommon.Back.Color1 = Color.DarkGreen;
+                PausContButton.StateTracking.Back.Color1 = Color.FromArgb(0, 120, 0);
+                PausContButton.StatePressed.Back.Color1 = Color.FromArgb(0, 140, 0);
+                PausContButton.OverrideDefault.Back.Color1 = Color.DarkGreen;
+                PausContButton.Values.Text = "Lancer";
+
+                DataPanelTimer.Stop();
+                millis.Stop();
+                refreshPlotTick.Stop();
+
+                foreach (PlotWindows plot in Plots) {
+                    plot.AquisitionActive = false;
+                }
+
+                pauseSerial = true;
+            }
+        }
     }        
 }

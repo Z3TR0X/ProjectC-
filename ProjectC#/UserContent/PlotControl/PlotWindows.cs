@@ -22,7 +22,8 @@ namespace ProjectC_.UserContent {
 
         String FigureTitle;
         //Chaque variable à son propre Data Logger et le data logger loggers[i] correspond a la variable varId[i]
-        private Dictionary<int,DataLogger> loggers = new Dictionary<int, DataLogger>();
+        private Dictionary<int, DataLogger> loggers = new Dictionary<int, DataLogger>();
+        private Dictionary<int, ScottPlot.LegendItem> legends = new Dictionary<int, LegendItem>();
 
         private bool dataReceive;
 
@@ -71,14 +72,24 @@ namespace ProjectC_.UserContent {
         }
 
         private void Plot_DragDrop(object sender, DragEventArgs e) {
-            int var = int.Parse((string) e.Data.GetData(DataFormats.StringFormat));
-            
+            DataInfos var = (DataInfos) e.Data.GetData(typeof(DataInfos));        
 
-            if (loggers.ContainsKey(var)) return;
+            if (loggers.ContainsKey(var.varIndex)) return;
 
 
             DataLogger logger = Plot.Plot.Add.DataLogger();
             logger.ManageAxisLimits = false;
+            logger.Color = ScottPlot.Color.FromColor(var.color);
+
+            legends.Add(var.varIndex, new LegendItem());
+            legends[var.varIndex].MarkerColor = ScottPlot.Color.FromColor(var.color);
+            legends[var.varIndex].MarkerShape = ScottPlot.MarkerShape.FilledSquare;
+            legends[var.varIndex].MarkerSize = 15;
+            legends[var.varIndex].LineWidth = 0;
+            legends[var.varIndex].LabelText = var.name;
+
+            Plot.Plot.Legend.ManualItems.Add(legends[var.varIndex]);
+            
 
             Point posCursor = Plot.PointToClient(new Point(e.X, e.Y));
             if (rects[3].Contains(posCursor.X, posCursor.Y)) {
@@ -86,7 +97,6 @@ namespace ProjectC_.UserContent {
             } else if (rects[2].Contains(posCursor.X, posCursor.Y)) {
                 //Zone Droite
                 logger.Axes.YAxis = Plot.Plot.Axes.Right;
-                Debug.WriteLine("ssss");
             } else if (rects[1].Contains(posCursor.X, posCursor.Y)) {
                 //Zone Gauche
                 logger.Axes.YAxis = Plot.Plot.Axes.Left;
@@ -94,7 +104,7 @@ namespace ProjectC_.UserContent {
             }
 
 
-            loggers.Add(var, logger);
+            loggers.Add(var.varIndex, logger);
             NewVariableToPlott.Invoke(this, e);
 
             zone = 0;

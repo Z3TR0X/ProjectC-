@@ -159,5 +159,14 @@ namespace ProjectC_.UserContent {
             h = (int)rd.DataRect.Left - 12;
             rects[3] = SKRect.Create(x, y, w, h);
         }
+    
+        public void UpdateDataInfo(DataInfos info) {
+            legends[info.varIndex].MarkerColor = ScottPlot.Color.FromColor(info.color);
+            legends[info.varIndex].LabelText = info.name;
+            loggers[info.varIndex].Color = ScottPlot.Color.FromColor(info.color);
+
+            if(!AquisitionActive) Plot.Refresh(); //Car si l'aquisition est active le graphique se refresh tout seul
+
+        }
     }
 }
