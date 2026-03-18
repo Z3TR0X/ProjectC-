@@ -168,11 +168,14 @@
     <Compile Include="UserContent\ColorPicker.Designer.cs">
       <DependentUpon>ColorPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserContent\PlotDesign.cs">
+    <Compile Include="UserContent\PlotControl\PlotWindows.UI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserContent\PlotDesign.Designer.cs">
-      <DependentUpon>PlotDesign.cs</DependentUpon>
+    <Compile Include="UserContent\PlotControl\PlotWindows.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContent\PlotControl\PlotWindows.Designer.cs">
+      <DependentUpon>PlotWindows.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -196,8 +199,8 @@
     <EmbeddedResource Include="UserContent\PanelVarMenu.resx">
       <DependentUpon>PanelVarMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserContent\PlotDesign.resx">
-      <DependentUpon>PlotDesign.cs</DependentUpon>
+    <EmbeddedResource Include="UserContent\PlotControl\PlotWindows.resx">
+      <DependentUpon>PlotWindows.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="OpenTK.dll.config" />

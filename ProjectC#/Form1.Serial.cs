@@ -77,7 +77,11 @@ namespace ProjectC_
                     OptionPanel.Enabled = true;
                     ComPanel.Enabled = false;
 
+                    foreach (PlotWindows plot in Plots) {
+                        plot.AquisitionActive = true;
+                    }
                     refreshPlotTick.Start();
+
 
                     millis.Start();
                 } catch (Exception ex) {
@@ -99,6 +103,10 @@ namespace ProjectC_
                         SerialConn.Close();
                         millis.Stop();
                         refreshPlotTick.Stop();
+
+                        foreach(PlotWindows plot in Plots) {
+                            plot.AquisitionActive = false;
+                        }
                     } catch (Exception ex) {
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
                     }
