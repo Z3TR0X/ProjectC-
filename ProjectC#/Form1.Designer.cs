@@ -42,6 +42,17 @@
             this.PagePanel = new System.Windows.Forms.Panel();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
+            this.OptionPanel = new System.Windows.Forms.Panel();
+            this.DeconnectButton = new Krypton.Toolkit.KryptonButton();
+            this.DataLabel = new System.Windows.Forms.Label();
+            this.AquisitionLabel = new System.Windows.Forms.Label();
+            this.ConfigurationLabel = new System.Windows.Forms.Label();
+            this.ImportConfigButton = new Krypton.Toolkit.KryptonButton();
+            this.ExportConfigButton = new Krypton.Toolkit.KryptonButton();
+            this.ExportButton = new Krypton.Toolkit.KryptonButton();
+            this.RefreshButton = new Krypton.Toolkit.KryptonButton();
+            this.DeleteButton = new Krypton.Toolkit.KryptonButton();
+            this.PausContButton = new Krypton.Toolkit.KryptonButton();
             this.ComPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
@@ -55,17 +66,6 @@
             this.SerialExpand = new System.Windows.Forms.Button();
             this.SerialLabel = new System.Windows.Forms.TextBox();
             this.ButtonConnect = new System.Windows.Forms.Button();
-            this.OptionPanel = new System.Windows.Forms.Panel();
-            this.DeconnectButton = new Krypton.Toolkit.KryptonButton();
-            this.DataLabel = new System.Windows.Forms.Label();
-            this.AquisitionLabel = new System.Windows.Forms.Label();
-            this.ConfigurationLabel = new System.Windows.Forms.Label();
-            this.ImportConfigButton = new Krypton.Toolkit.KryptonButton();
-            this.ExportConfigButton = new Krypton.Toolkit.KryptonButton();
-            this.ExportButton = new Krypton.Toolkit.KryptonButton();
-            this.RefreshButton = new Krypton.Toolkit.KryptonButton();
-            this.DeleteButton = new Krypton.Toolkit.KryptonButton();
-            this.PausContButton = new Krypton.Toolkit.KryptonButton();
             this.MainPage = new System.Windows.Forms.Panel();
             this.SerialConn = new System.IO.Ports.SerialPort(this.components);
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -83,6 +83,7 @@
             this.VarPanel.SuspendLayout();
             this.MenuSeparator.SuspendLayout();
             this.ControlPanel.SuspendLayout();
+            this.OptionPanel.SuspendLayout();
             this.ComPanel.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
             this.BaudSelector.SuspendLayout();
@@ -600,7 +601,7 @@
             this.PausContButton.Location = new System.Drawing.Point(15, 160);
             this.PausContButton.Name = "PausContButton";
             this.PausContButton.Size = new System.Drawing.Size(96, 25);
-            this.PausContButton.StateCommon.Back.Color1 = System.Drawing.Color.DarkGreen;
+            this.PausContButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(88)))), ((int)(((byte)(0)))));
             this.PausContButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.PausContButton.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.PausContButton.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
@@ -608,15 +609,172 @@
             this.PausContButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.PausContButton.StateCommon.Content.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.PausContButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PausContButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(140)))), ((int)(((byte)(0)))));
+            this.PausContButton.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(120)))), ((int)(((byte)(4)))));
             this.PausContButton.StatePressed.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.PausContButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(0)))));
+            this.PausContButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(104)))), ((int)(((byte)(2)))));
             this.PausContButton.TabIndex = 1;
             this.PausContButton.ToolTipValues.Description = "";
             this.PausContButton.ToolTipValues.EnableToolTips = true;
             this.PausContButton.ToolTipValues.Heading = "Lancer/Mettre en pause l\'aquisition";
             this.PausContButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.PausContButton.Values.Text = "Lancer";
+            this.PausContButton.Values.Text = "Pause";
+            this.PausContButton.Click += new System.EventHandler(this.PausContButton_Click);
+            // 
+            // ComPanel
+            // 
+            this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.ComPanel.Controls.Add(this.BaudSelectorMargin);
+            this.ComPanel.Controls.Add(this.BaudLabel);
+            this.ComPanel.Controls.Add(this.SerialSelectorMargin);
+            this.ComPanel.Controls.Add(this.SerialLabel);
+            this.ComPanel.Controls.Add(this.ButtonConnect);
+            this.ComPanel.Location = new System.Drawing.Point(0, 0);
+            this.ComPanel.Name = "ComPanel";
+            this.ComPanel.Size = new System.Drawing.Size(200, 200);
+            this.ComPanel.TabIndex = 6;
+            // 
+            // BaudSelectorMargin
+            // 
+            this.BaudSelectorMargin.BackColor = System.Drawing.Color.DarkGray;
+            this.BaudSelectorMargin.Controls.Add(this.BaudSelector);
+            this.BaudSelectorMargin.Location = new System.Drawing.Point(35, 95);
+            this.BaudSelectorMargin.Margin = new System.Windows.Forms.Padding(0);
+            this.BaudSelectorMargin.Name = "BaudSelectorMargin";
+            this.BaudSelectorMargin.Padding = new System.Windows.Forms.Padding(1);
+            this.BaudSelectorMargin.Size = new System.Drawing.Size(130, 28);
+            this.BaudSelectorMargin.TabIndex = 4;
+            // 
+            // BaudSelector
+            // 
+            this.BaudSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.BaudSelector.Controls.Add(this.BaudText);
+            this.BaudSelector.Controls.Add(this.BaudExpand);
+            this.BaudSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaudSelector.Location = new System.Drawing.Point(1, 1);
+            this.BaudSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.BaudSelector.Name = "BaudSelector";
+            this.BaudSelector.Size = new System.Drawing.Size(128, 26);
+            this.BaudSelector.TabIndex = 0;
+            // 
+            // BaudText
+            // 
+            this.BaudText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaudText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BaudText.ForeColor = System.Drawing.Color.DarkGray;
+            this.BaudText.Location = new System.Drawing.Point(0, 0);
+            this.BaudText.Name = "BaudText";
+            this.BaudText.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BaudText.Size = new System.Drawing.Size(102, 26);
+            this.BaudText.TabIndex = 0;
+            this.BaudText.Text = "115200";
+            this.BaudText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BaudExpand
+            // 
+            this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BaudExpand.FlatAppearance.BorderSize = 0;
+            this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.BaudExpand.Location = new System.Drawing.Point(102, 0);
+            this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.BaudExpand.Name = "BaudExpand";
+            this.BaudExpand.Size = new System.Drawing.Size(26, 26);
+            this.BaudExpand.TabIndex = 1;
+            this.BaudExpand.UseVisualStyleBackColor = true;
+            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
+            // 
+            // BaudLabel
+            // 
+            this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.BaudLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BaudLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BaudLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.BaudLabel.Location = new System.Drawing.Point(10, 70);
+            this.BaudLabel.Name = "BaudLabel";
+            this.BaudLabel.Size = new System.Drawing.Size(150, 28);
+            this.BaudLabel.TabIndex = 3;
+            this.BaudLabel.Text = "Vitesse (baud/s)";
+            // 
+            // SerialSelectorMargin
+            // 
+            this.SerialSelectorMargin.BackColor = System.Drawing.Color.DarkGray;
+            this.SerialSelectorMargin.Controls.Add(this.SerialSelector);
+            this.SerialSelectorMargin.Location = new System.Drawing.Point(35, 30);
+            this.SerialSelectorMargin.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialSelectorMargin.Name = "SerialSelectorMargin";
+            this.SerialSelectorMargin.Padding = new System.Windows.Forms.Padding(1);
+            this.SerialSelectorMargin.Size = new System.Drawing.Size(130, 28);
+            this.SerialSelectorMargin.TabIndex = 1;
+            // 
+            // SerialSelector
+            // 
+            this.SerialSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.SerialSelector.Controls.Add(this.SerialText);
+            this.SerialSelector.Controls.Add(this.SerialExpand);
+            this.SerialSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SerialSelector.Location = new System.Drawing.Point(1, 1);
+            this.SerialSelector.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialSelector.Name = "SerialSelector";
+            this.SerialSelector.Size = new System.Drawing.Size(128, 26);
+            this.SerialSelector.TabIndex = 0;
+            // 
+            // SerialText
+            // 
+            this.SerialText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SerialText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.SerialText.ForeColor = System.Drawing.Color.DarkGray;
+            this.SerialText.Location = new System.Drawing.Point(0, 0);
+            this.SerialText.Name = "SerialText";
+            this.SerialText.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.SerialText.Size = new System.Drawing.Size(102, 26);
+            this.SerialText.TabIndex = 0;
+            this.SerialText.Text = "COM1";
+            this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // SerialExpand
+            // 
+            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.SerialExpand.FlatAppearance.BorderSize = 0;
+            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
+            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialExpand.Name = "SerialExpand";
+            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
+            this.SerialExpand.TabIndex = 1;
+            this.SerialExpand.UseVisualStyleBackColor = true;
+            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
+            // 
+            // SerialLabel
+            // 
+            this.SerialLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.SerialLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SerialLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SerialLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.SerialLabel.Location = new System.Drawing.Point(10, 5);
+            this.SerialLabel.Name = "SerialLabel";
+            this.SerialLabel.Size = new System.Drawing.Size(112, 28);
+            this.SerialLabel.TabIndex = 2;
+            this.SerialLabel.Text = "Port série :";
+            // 
+            // ButtonConnect
+            // 
+            this.ButtonConnect.BackColor = System.Drawing.Color.DarkGreen;
+            this.ButtonConnect.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.ButtonConnect.FlatAppearance.BorderSize = 0;
+            this.ButtonConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConnect.ForeColor = System.Drawing.Color.DarkGray;
+            this.ButtonConnect.Location = new System.Drawing.Point(25, 158);
+            this.ButtonConnect.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(150, 23);
+            this.ButtonConnect.TabIndex = 5;
+            this.ButtonConnect.Text = "Connexion";
+            this.ButtonConnect.UseVisualStyleBackColor = false;
+            this.ButtonConnect.Click += new System.EventHandler(this.ButtonConnect_Click);
             // 
             // MainPage
             // 
@@ -797,6 +955,8 @@
             this.VarPanel.ResumeLayout(false);
             this.MenuSeparator.ResumeLayout(false);
             this.ControlPanel.ResumeLayout(false);
+            this.OptionPanel.ResumeLayout(false);
+            this.OptionPanel.PerformLayout();
             this.ComPanel.ResumeLayout(false);
             this.ComPanel.PerformLayout();
             this.BaudSelectorMargin.ResumeLayout(false);
