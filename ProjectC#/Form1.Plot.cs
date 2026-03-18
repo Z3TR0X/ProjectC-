@@ -14,15 +14,16 @@ using System.Windows.Forms;
 namespace ProjectC_ {
 
     public partial class Form1 : Form {
-        List<PlotDesign> Plots = new List<PlotDesign>();
+        List<PlotWindows> Plots = new List<PlotWindows>();
         Dictionary<int, List<int>> DataFromPlot = new Dictionary<int, List<int>>(); //Liste qui associe a chaque variable les plots qui la dessine
         
         private void AddNewPlot() {
             if (Plots.Count >= 4) return;
 
-            PlotDesign Plot = new PlotDesign("Figure " + (Plots.Count +1));
+            PlotWindows Plot = new PlotWindows("Figure " + (Plots.Count +1));
             Plot.RightClicOnPlott += PlotRightClic;
             Plot.NewVariableToPlott += PlotNewVariable;
+            Plot.AquisitionActive = SerialConn.IsOpen;
 
             Plots.Add(Plot);
             MainPage.Controls.Add(Plot);
@@ -148,7 +149,7 @@ namespace ProjectC_ {
         }
     
         private void RenderPlots(object sender, EventArgs e) {
-            foreach(PlotDesign plot in Plots) {
+            foreach(PlotWindows plot in Plots) {
                 plot.RefreshPlot(timeY[timeY.Count-1]);
             }
         }
