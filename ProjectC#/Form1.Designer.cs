@@ -43,6 +43,7 @@
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.ComPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
             this.BaudSelector = new System.Windows.Forms.Panel();
             this.BaudText = new System.Windows.Forms.Label();
@@ -88,6 +89,7 @@
             this.SerialSelectorMargin.SuspendLayout();
             this.SerialSelector.SuspendLayout();
             this.OptionPanel.SuspendLayout();
+            this.MainPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -226,6 +228,15 @@
             this.ComPanel.Name = "ComPanel";
             this.ComPanel.Size = new System.Drawing.Size(200, 200);
             this.ComPanel.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(32, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 75);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
+            this.label1.Paint += new System.Windows.Forms.PaintEventHandler(this.label1_Paint);
             // 
             // BaudSelectorMargin
             // 
@@ -526,12 +537,14 @@
             this.ExportButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(55)))), ((int)(((byte)(60)))));
             this.ExportButton.StateTracking.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ExportButton.TabIndex = 4;
-            this.ExportButton.ToolTipValues.Description = "Exporter les données vers un fichier \r\nCSV, visualisable sur Excel";
+            this.ExportButton.ToolTipValues.Description = "";
             this.ExportButton.ToolTipValues.EnableToolTips = true;
-            this.ExportButton.ToolTipValues.Heading = "Export vers CSV";
+            this.ExportButton.ToolTipValues.Heading = "Export CSV ";
             this.ExportButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ExportButton.Values.Image = global::ProjectC_.Properties.Resources.ExportCSV1;
-            this.ExportButton.Values.Text = "Export vers CSV";
+            this.ExportButton.Values.Text = "Export vers CSV ";
+            this.ExportButton.MouseLeave += new System.EventHandler(this.ExportButton_MouseLeave);
+            this.ExportButton.MouseHover += new System.EventHandler(this.ExportButton_MouseHover);
             // 
             // RefreshButton
             // 
@@ -608,6 +621,7 @@
             // MainPage
             // 
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MainPage.Controls.Add(this.label1);
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -791,6 +805,7 @@
             this.SerialSelector.ResumeLayout(false);
             this.OptionPanel.ResumeLayout(false);
             this.OptionPanel.PerformLayout();
+            this.MainPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
@@ -845,6 +860,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
         private Krypton.Toolkit.KryptonCustomPaletteBase CustomPalette;
+        private System.Windows.Forms.Label label1;
     }
 }
 
