@@ -23,6 +23,7 @@ namespace ProjectC_ {
             PlotWindows Plot = new PlotWindows("Figure " + (Plots.Count +1));
             Plot.RightClicOnPlott += PlotRightClic;
             Plot.NewVariableToPlott += PlotNewVariable;
+            Plot.AquisitionActive = SerialConn.IsOpen;
 
             Plots.Add(Plot);
             MainPage.Controls.Add(Plot);

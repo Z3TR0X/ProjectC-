@@ -76,10 +76,25 @@ namespace ProjectC_.UserContent {
 
             if (loggers.ContainsKey(var)) return;
 
+
             DataLogger logger = Plot.Plot.Add.DataLogger();
             logger.ManageAxisLimits = false;
-            loggers.Add(var, logger);
 
+            Point posCursor = Plot.PointToClient(new Point(e.X, e.Y));
+            if (rects[3].Contains(posCursor.X, posCursor.Y)) {
+                //Zone du bas
+            } else if (rects[2].Contains(posCursor.X, posCursor.Y)) {
+                //Zone Droite
+                logger.Axes.YAxis = Plot.Plot.Axes.Right;
+                Debug.WriteLine("ssss");
+            } else if (rects[1].Contains(posCursor.X, posCursor.Y)) {
+                //Zone Gauche
+                logger.Axes.YAxis = Plot.Plot.Axes.Left;
+            } else {
+            }
+
+
+            loggers.Add(var, logger);
             NewVariableToPlott.Invoke(this, e);
 
             zone = 0;
