@@ -1,5 +1,5 @@
 ﻿namespace ProjectC_.UserContent {
-    partial class PlotDesign {
+    partial class PlotWindows {
         /// <summary> 
         /// Variable nécessaire au concepteur.
         /// </summary>
@@ -54,6 +54,7 @@
             this.Plot.Name = "Plot";
             this.Plot.Size = new System.Drawing.Size(551, 257);
             this.Plot.TabIndex = 1;
+            this.Plot.SizeChanged += new System.EventHandler(this.Plot_SizeChanged);
             this.Plot.DragDrop += new System.Windows.Forms.DragEventHandler(this.Plot_DragDrop);
             this.Plot.DragEnter += new System.Windows.Forms.DragEventHandler(this.Plot_DragEnter);
             this.Plot.DragOver += new System.Windows.Forms.DragEventHandler(this.Plot_DragOver);
