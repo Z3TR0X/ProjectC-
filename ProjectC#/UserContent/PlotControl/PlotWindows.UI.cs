@@ -59,6 +59,10 @@ namespace ProjectC_.UserContent {
             formPlot.Axes.Bottom.Label.Bold = false;
             formPlot.Axes.Bottom.Label.OffsetY = 0;
 
+            formPlot.Legend.BackgroundColor = ColorLightDarkBlue;
+            formPlot.Legend.OutlineColor = ColorDarkGray;
+            formPlot.Legend.FontColor = ColorDarkGray;
+
 
             formPlot.Axes.Bottom.MinimumSize = 50;
         }
