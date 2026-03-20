@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ProjectC_.UserContent;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using System.Threading.Tasks;
-using ProjectC_.UserContent;
+using System.Windows.Forms;
 
 namespace ProjectC_ {
     public partial class Form1 {
@@ -97,6 +98,46 @@ namespace ProjectC_ {
                 Cursor.Current = DragCursor;
             } else {
                 Cursor.Current = Cursors.No;
+            }
+        }
+
+        private void ExportToCSV(object sender, EventArgs e) {
+            if(SerialConn.IsOpen && !pauseSerial) {
+                MessageBox.Show("Pour exporter les données,\nveuillez vous deconnecter\nou mettre en pause l'aquisition", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog FileDialog = new SaveFileDialog();
+            FileDialog.Filter = "Fichier Excel CSV (*.csv)|*.csv";
+            FileDialog.Title = "Exporter les données";
+            FileDialog.FileName = "Export_Serial.csv";
+
+            if(FileDialog.ShowDialog() == DialogResult.OK) {
+                try {
+                    using (StreamWriter file = new StreamWriter(FileDialog.FileName)) {
+                        string line = "";
+
+                        line += "time;";
+                        line += string.Join(";", DatasName);
+
+                        file.WriteLine(line);
+
+                        List<string> vars = new List<string>();
+                        for (int i = 0; i < Datas[0].Count; i++) {
+                            vars.Clear();
+                            vars.Add(timeY[i].ToString());
+                            foreach (List<float> d in Datas) {
+                                vars.Add(d[i].ToString());
+                            }
+                            line = string.Join(";", vars);
+                            file.WriteLine(line);
+                        }
+                    }
+
+                    MessageBox.Show("Exportation terminée !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } catch (Exception) {
+                    MessageBox.Show("Oups, il y a eu un problème pendant l'exportation", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
