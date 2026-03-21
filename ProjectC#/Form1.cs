@@ -17,15 +17,18 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
-namespace ProjectC_ {
+namespace ProjectC_
+{
 
-    public partial class Form1 : Form {
+    public partial class Form1 : Form
+    {
 
         private Stopwatch millis = new Stopwatch();
         private Timer refreshPlotTick = new Timer();
 
 
-        public Form1() {
+        public Form1()
+        {
             InitializeComponent();
             MenuSerialPort.Renderer = new CustomSelectionRenderer();
             MenuSpeed.Renderer = new CustomSelectionRenderer();
@@ -50,9 +53,12 @@ namespace ProjectC_ {
 
         }
 
-        private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
-            foreach (Control control in ctrls) {
-                if (control is Krypton.Toolkit.KryptonButton btn) {
+        private void KryptonButtonCorrection(Control.ControlCollection ctrls)
+        {
+            foreach (Control control in ctrls)
+            {
+                if (control is Krypton.Toolkit.KryptonButton btn)
+                {
                     btn.OverrideDefault.Back.Color1 = btn.StateCommon.Back.Color1;
                     btn.OverrideDefault.Back.ColorStyle = btn.StateCommon.Back.ColorStyle;
 
@@ -60,10 +66,21 @@ namespace ProjectC_ {
                     btn.OverrideDefault.Border.ColorStyle = btn.StateCommon.Border.ColorStyle;
                 }
 
-                if (control.HasChildren) {
+                if (control.HasChildren)
+                {
                     KryptonButtonCorrection(control.Controls);
                 }
             }
         }
+
+        private void AddData_Click(object sender, EventArgs e)
+        {
+            AddDataCustom();
+        }
+
+      
     }
 }
+
+
+    

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,9 +65,39 @@ namespace ProjectC_ {
             DatasColor.Add(Color.CadetBlue);
             DatasName.Add(DefaultName);
             DataFromPlot.Add(Datas.Count-1, new List<int>());
+            
 
             PanelVarControl v = new PanelVarControl();
             v.setColor(Color.CadetBlue);
+            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+            v.GiveFeedback += DragFeedback;
+            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+            FlowVarPanel.Controls.Add(v);
+        }
+
+        private void AddDataCustom()
+        {
+            String DefaultName = Datas.ToString();
+            String DefaultValue = Datas.ToString();
+            String DataA = Datas.ToString();
+            String DataB = Datas.ToString();
+            String DataC = Datas.ToString();
+            String EquationName = "ax²+bx+c" + (Datas.Count + 0).ToString();
+            string expr = EquationName; // ex: "Sin(0) + Pow(2, 8)"
+            
+            if (DataA == DefaultName)
+            {
+                ;
+            }
+            
+            Datas.Add(new List<float>());
+            DatasName.Add(DefaultName);
+            
+            
+            
+
+            PanelVarControl v = new PanelVarControl();
             v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
             v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
             v.GiveFeedback += DragFeedback;

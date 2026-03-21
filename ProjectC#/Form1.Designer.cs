@@ -40,6 +40,7 @@
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.PagePanel = new System.Windows.Forms.Panel();
+            this.AddData = new System.Windows.Forms.Button();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.ComPanel = new System.Windows.Forms.Panel();
@@ -81,6 +82,7 @@
             this.MenuPanel.SuspendLayout();
             this.VarPanel.SuspendLayout();
             this.MenuSeparator.SuspendLayout();
+            this.PagePanel.SuspendLayout();
             this.ControlPanel.SuspendLayout();
             this.ComPanel.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
@@ -188,11 +190,22 @@
             // PagePanel
             // 
             this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PagePanel.Controls.Add(this.AddData);
             this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PagePanel.Location = new System.Drawing.Point(0, 173);
             this.PagePanel.Name = "PagePanel";
             this.PagePanel.Size = new System.Drawing.Size(200, 175);
             this.PagePanel.TabIndex = 2;
+            // 
+            // AddData
+            // 
+            this.AddData.Location = new System.Drawing.Point(21, 19);
+            this.AddData.Name = "AddData";
+            this.AddData.Size = new System.Drawing.Size(144, 48);
+            this.AddData.TabIndex = 0;
+            this.AddData.Text = "Donnée customisée";
+            this.AddData.UseVisualStyleBackColor = true;
+            this.AddData.Click += new System.EventHandler(this.AddData_Click);
             // 
             // ComSeparator
             // 
@@ -286,7 +299,7 @@
             this.BaudLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.BaudLabel.Location = new System.Drawing.Point(10, 70);
             this.BaudLabel.Name = "BaudLabel";
-            this.BaudLabel.Size = new System.Drawing.Size(150, 19);
+            this.BaudLabel.Size = new System.Drawing.Size(150, 28);
             this.BaudLabel.TabIndex = 3;
             this.BaudLabel.Text = "Vitesse (baud/s)";
             // 
@@ -349,7 +362,7 @@
             this.SerialLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.SerialLabel.Location = new System.Drawing.Point(10, 5);
             this.SerialLabel.Name = "SerialLabel";
-            this.SerialLabel.Size = new System.Drawing.Size(112, 19);
+            this.SerialLabel.Size = new System.Drawing.Size(112, 28);
             this.SerialLabel.TabIndex = 2;
             this.SerialLabel.Text = "Port série :";
             // 
@@ -422,7 +435,7 @@
             this.DataLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.DataLabel.Location = new System.Drawing.Point(8, 75);
             this.DataLabel.Name = "DataLabel";
-            this.DataLabel.Size = new System.Drawing.Size(65, 17);
+            this.DataLabel.Size = new System.Drawing.Size(91, 25);
             this.DataLabel.TabIndex = 7;
             this.DataLabel.Text = "Données";
             // 
@@ -433,7 +446,7 @@
             this.AquisitionLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.AquisitionLabel.Location = new System.Drawing.Point(8, 135);
             this.AquisitionLabel.Name = "AquisitionLabel";
-            this.AquisitionLabel.Size = new System.Drawing.Size(69, 17);
+            this.AquisitionLabel.Size = new System.Drawing.Size(97, 25);
             this.AquisitionLabel.TabIndex = 0;
             this.AquisitionLabel.Text = "Aquisition";
             // 
@@ -444,7 +457,7 @@
             this.ConfigurationLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.ConfigurationLabel.Location = new System.Drawing.Point(8, 15);
             this.ConfigurationLabel.Name = "ConfigurationLabel";
-            this.ConfigurationLabel.Size = new System.Drawing.Size(92, 17);
+            this.ConfigurationLabel.Size = new System.Drawing.Size(128, 25);
             this.ConfigurationLabel.TabIndex = 2;
             this.ConfigurationLabel.Text = "Configuration";
             // 
@@ -784,6 +797,7 @@
             this.MenuPanel.ResumeLayout(false);
             this.VarPanel.ResumeLayout(false);
             this.MenuSeparator.ResumeLayout(false);
+            this.PagePanel.ResumeLayout(false);
             this.ControlPanel.ResumeLayout(false);
             this.ComPanel.ResumeLayout(false);
             this.ComPanel.PerformLayout();
@@ -847,6 +861,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
         private Krypton.Toolkit.KryptonCustomPaletteBase CustomPalette;
+        private System.Windows.Forms.Button AddData;
     }
 }
 
