@@ -77,8 +77,6 @@ namespace ProjectC_
         {
             AddDataCustom();
         }
-
-      
     }
 }
 
