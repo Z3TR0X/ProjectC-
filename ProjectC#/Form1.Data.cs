@@ -77,23 +77,6 @@ namespace ProjectC_ {
             FlowVarPanel.Controls.Add(v);
         }
 
-        private void AddDataCustom()
-        {
-            String DefaultName = "Data" + (Datas.Count + 1).ToString();
-            Int16 DefaultValue = 25;
-            String EquationName = "ax²+bx+c" + (Datas.Count + 0).ToString();
-            var expr = new NCalc.Expression(EquationName);
-            var result = expr.Evaluate();
-
-            PanelVarControl v = new PanelVarControl();
-            v.setColor(Color.CadetBlue);
-            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
-            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
-            v.GiveFeedback += DragFeedback;
-            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
-            FlowVarPanel.Controls.Add(v);
-        }
-
         private void DragAndDropStart(object sender, MouseEventArgs e) {
             if(e.Button == MouseButtons.Left) {
                 PanelVarControl panel = sender as PanelVarControl;

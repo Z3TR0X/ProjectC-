@@ -53,8 +53,7 @@ namespace ProjectC_
 
         }
 
-        private void KryptonButtonCorrection(Control.ControlCollection ctrls)
-        {
+        private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
             foreach (Control control in ctrls)
             {
                 if (control is Krypton.Toolkit.KryptonButton btn)
@@ -71,11 +70,6 @@ namespace ProjectC_
                     KryptonButtonCorrection(control.Controls);
                 }
             }
-        }
-
-        private void AddData_Click(object sender, EventArgs e)
-        {
-            AddDataCustom();
         }
     }
 }
