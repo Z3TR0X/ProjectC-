@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using ProjectC_.UserContent;
 using ScottPlot;
 using ScottPlot.Colormaps;
 using ScottPlot.WinForms;
@@ -42,9 +43,12 @@ namespace ProjectC_
             DataPanelTimer.Interval = 100;
             DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
 
-            refreshPlotTick.Interval = 100;
+            refreshPlotTick.Interval = 10;
             refreshPlotTick.Tick += RenderPlots;
             refreshPlotTick.Stop();
+
+            CreateNewWindow();
+            CreateNewConsole();
 
             createPanelRightClicMenu();
             createColorPickerMenu();
@@ -54,10 +58,8 @@ namespace ProjectC_
         }
 
         private void KryptonButtonCorrection(Control.ControlCollection ctrls) {
-            foreach (Control control in ctrls)
-            {
-                if (control is Krypton.Toolkit.KryptonButton btn)
-                {
+            foreach (Control control in ctrls) {
+                if (control is Krypton.Toolkit.KryptonButton btn) {
                     btn.OverrideDefault.Back.Color1 = btn.StateCommon.Back.Color1;
                     btn.OverrideDefault.Back.ColorStyle = btn.StateCommon.Back.ColorStyle;
 
@@ -65,8 +67,7 @@ namespace ProjectC_
                     btn.OverrideDefault.Border.ColorStyle = btn.StateCommon.Border.ColorStyle;
                 }
 
-                if (control.HasChildren)
-                {
+                if (control.HasChildren) {
                     KryptonButtonCorrection(control.Controls);
                 }
             }

@@ -40,6 +40,12 @@
             this.MenuSeparator = new System.Windows.Forms.Panel();
             this.MenuSeparatorBar = new System.Windows.Forms.Panel();
             this.PagePanel = new System.Windows.Forms.Panel();
+            this.FlowLayoutWindow = new System.Windows.Forms.FlowLayoutPanel();
+            this.NewWindowMenu = new Krypton.Toolkit.KryptonPanel();
+            this.NewConsoleImage = new Krypton.Toolkit.KryptonPanel();
+            this.NewWindowImage = new Krypton.Toolkit.KryptonPanel();
+            this.NewWindowConsoleLabel = new Krypton.Toolkit.KryptonLabel();
+            this.NewWindowSeparator = new Krypton.Toolkit.KryptonPanel();
             this.ComSeparator = new System.Windows.Forms.Panel();
             this.ControlPanel = new System.Windows.Forms.Panel();
             this.ComPanel = new System.Windows.Forms.Panel();
@@ -76,11 +82,18 @@
             this.logo = new System.Windows.Forms.PictureBox();
             this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
             this.CustomPalette = new Krypton.Toolkit.KryptonCustomPaletteBase(this.components);
+            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             this.VarPanel.SuspendLayout();
             this.MenuSeparator.SuspendLayout();
+            this.PagePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowMenu)).BeginInit();
+            this.NewWindowMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewConsoleImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowSeparator)).BeginInit();
             this.ControlPanel.SuspendLayout();
             this.ComPanel.SuspendLayout();
             this.BaudSelectorMargin.SuspendLayout();
@@ -152,8 +165,9 @@
             this.VarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VarPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VarPanel.Location = new System.Drawing.Point(0, 0);
+            this.VarPanel.Margin = new System.Windows.Forms.Padding(0);
             this.VarPanel.Name = "VarPanel";
-            this.VarPanel.Size = new System.Drawing.Size(200, 168);
+            this.VarPanel.Size = new System.Drawing.Size(200, 137);
             this.VarPanel.TabIndex = 1;
             // 
             // FlowVarPanel
@@ -162,7 +176,7 @@
             this.FlowVarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowVarPanel.Location = new System.Drawing.Point(0, 0);
             this.FlowVarPanel.Name = "FlowVarPanel";
-            this.FlowVarPanel.Size = new System.Drawing.Size(200, 168);
+            this.FlowVarPanel.Size = new System.Drawing.Size(200, 137);
             this.FlowVarPanel.TabIndex = 2;
             // 
             // MenuSeparator
@@ -171,16 +185,16 @@
             this.MenuSeparator.Controls.Add(this.MenuSeparatorBar);
             this.MenuSeparator.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MenuSeparator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.MenuSeparator.Location = new System.Drawing.Point(0, 168);
+            this.MenuSeparator.Location = new System.Drawing.Point(0, 137);
             this.MenuSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.MenuSeparator.Name = "MenuSeparator";
-            this.MenuSeparator.Size = new System.Drawing.Size(200, 5);
+            this.MenuSeparator.Size = new System.Drawing.Size(200, 1);
             this.MenuSeparator.TabIndex = 0;
             // 
             // MenuSeparatorBar
             // 
             this.MenuSeparatorBar.BackColor = System.Drawing.Color.DarkGray;
-            this.MenuSeparatorBar.Location = new System.Drawing.Point(0, 2);
+            this.MenuSeparatorBar.Location = new System.Drawing.Point(0, 0);
             this.MenuSeparatorBar.Name = "MenuSeparatorBar";
             this.MenuSeparatorBar.Size = new System.Drawing.Size(250, 1);
             this.MenuSeparatorBar.TabIndex = 0;
@@ -188,11 +202,79 @@
             // PagePanel
             // 
             this.PagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.PagePanel.Controls.Add(this.FlowLayoutWindow);
+            this.PagePanel.Controls.Add(this.NewWindowMenu);
             this.PagePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PagePanel.Location = new System.Drawing.Point(0, 173);
+            this.PagePanel.Location = new System.Drawing.Point(0, 138);
+            this.PagePanel.Margin = new System.Windows.Forms.Padding(0);
             this.PagePanel.Name = "PagePanel";
-            this.PagePanel.Size = new System.Drawing.Size(200, 175);
+            this.PagePanel.Size = new System.Drawing.Size(200, 210);
             this.PagePanel.TabIndex = 2;
+            // 
+            // FlowLayoutWindow
+            // 
+            this.FlowLayoutWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutWindow.Location = new System.Drawing.Point(0, 30);
+            this.FlowLayoutWindow.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutWindow.Name = "FlowLayoutWindow";
+            this.FlowLayoutWindow.Size = new System.Drawing.Size(200, 180);
+            this.FlowLayoutWindow.TabIndex = 1;
+            this.FlowLayoutWindow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnRightClicWindowEvent);
+            // 
+            // NewWindowMenu
+            // 
+            this.NewWindowMenu.Controls.Add(this.NewConsoleImage);
+            this.NewWindowMenu.Controls.Add(this.NewWindowImage);
+            this.NewWindowMenu.Controls.Add(this.NewWindowConsoleLabel);
+            this.NewWindowMenu.Controls.Add(this.NewWindowSeparator);
+            this.NewWindowMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NewWindowMenu.Location = new System.Drawing.Point(0, 0);
+            this.NewWindowMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.NewWindowMenu.Name = "NewWindowMenu";
+            this.NewWindowMenu.Size = new System.Drawing.Size(200, 30);
+            this.NewWindowMenu.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.NewWindowMenu.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.NewWindowMenu.TabIndex = 0;
+            // 
+            // NewConsoleImage
+            // 
+            this.NewConsoleImage.Location = new System.Drawing.Point(176, 7);
+            this.NewConsoleImage.Name = "NewConsoleImage";
+            this.NewConsoleImage.Size = new System.Drawing.Size(15, 15);
+            this.NewConsoleImage.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.NewConsoleImage.StateCommon.Image = global::ProjectC_.Properties.Resources.Console;
+            this.NewConsoleImage.StateCommon.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.NewConsoleImage.TabIndex = 4;
+            // 
+            // NewWindowImage
+            // 
+            this.NewWindowImage.Location = new System.Drawing.Point(7, 7);
+            this.NewWindowImage.Name = "NewWindowImage";
+            this.NewWindowImage.Size = new System.Drawing.Size(15, 15);
+            this.NewWindowImage.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.NewWindowImage.StateCommon.Image = global::ProjectC_.Properties.Resources.WindowIcon;
+            this.NewWindowImage.StateCommon.ImageStyle = Krypton.Toolkit.PaletteImageStyle.CenterMiddle;
+            this.NewWindowImage.TabIndex = 2;
+            // 
+            // NewWindowConsoleLabel
+            // 
+            this.NewWindowConsoleLabel.Location = new System.Drawing.Point(26, 0);
+            this.NewWindowConsoleLabel.Name = "NewWindowConsoleLabel";
+            this.NewWindowConsoleLabel.Size = new System.Drawing.Size(209, 28);
+            this.NewWindowConsoleLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.NewWindowConsoleLabel.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewWindowConsoleLabel.TabIndex = 1;
+            this.NewWindowConsoleLabel.Values.Text = "Fenêtres et Consoles";
+            // 
+            // NewWindowSeparator
+            // 
+            this.NewWindowSeparator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.NewWindowSeparator.Location = new System.Drawing.Point(0, 29);
+            this.NewWindowSeparator.Name = "NewWindowSeparator";
+            this.NewWindowSeparator.Size = new System.Drawing.Size(200, 1);
+            this.NewWindowSeparator.StateCommon.Color1 = System.Drawing.Color.DarkGray;
+            this.NewWindowSeparator.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.NewWindowSeparator.TabIndex = 0;
             // 
             // ComSeparator
             // 
@@ -721,6 +803,7 @@
             // 
             // CustomPalette
             // 
+            this.CustomPalette.BaseRenderMode = Krypton.Toolkit.RendererMode.Microsoft365;
             this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
@@ -764,6 +847,12 @@
             this.CustomPalette.ToolMenuStatus.Menu.MenuBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.CustomPalette.UseThemeFormChromeBorderWidth = Krypton.Toolkit.InheritBool.False;
             // 
+            // kryptonManager1
+            // 
+            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkModeAlternate;
+            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.LessDetails = "L&ess Details...";
+            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.MoreDetails = "&More Details...";
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -784,6 +873,13 @@
             this.MenuPanel.ResumeLayout(false);
             this.VarPanel.ResumeLayout(false);
             this.MenuSeparator.ResumeLayout(false);
+            this.PagePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowMenu)).EndInit();
+            this.NewWindowMenu.ResumeLayout(false);
+            this.NewWindowMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NewConsoleImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NewWindowSeparator)).EndInit();
             this.ControlPanel.ResumeLayout(false);
             this.ComPanel.ResumeLayout(false);
             this.ComPanel.PerformLayout();
@@ -847,6 +943,13 @@
         private System.Windows.Forms.FlowLayoutPanel FlowVarPanel;
         private System.Windows.Forms.Timer DataPanelTimer;
         private Krypton.Toolkit.KryptonCustomPaletteBase CustomPalette;
+        private Krypton.Toolkit.KryptonPanel NewWindowMenu;
+        private Krypton.Toolkit.KryptonPanel NewWindowSeparator;
+        private Krypton.Toolkit.KryptonLabel NewWindowConsoleLabel;
+        private Krypton.Toolkit.KryptonPanel NewWindowImage;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutWindow;
+        private Krypton.Toolkit.KryptonPanel NewConsoleImage;
+        private Krypton.Toolkit.KryptonManager kryptonManager1;
     }
 }
 

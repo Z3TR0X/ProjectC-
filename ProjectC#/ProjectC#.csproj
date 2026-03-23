@@ -151,9 +151,18 @@
     <Compile Include="Form1.UI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form1.Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalStructures.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserContent\PanelConsoleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContent\PanelConsoleControl.Designer.cs">
+      <DependentUpon>PanelConsoleControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserContent\PanelVarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +181,12 @@
     <Compile Include="UserContent\ColorPicker.Designer.cs">
       <DependentUpon>ColorPicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserContent\PanelWindowControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContent\PanelWindowControl.Designer.cs">
+      <DependentUpon>PanelWindowControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserContent\PlotControl\PlotWindows.UI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserContent\ColorPicker.resx">
       <DependentUpon>ColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserContent\PanelConsoleControl.resx">
+      <DependentUpon>PanelConsoleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserContent\PanelVarControl.resx">
       <DependentUpon>PanelVarControl.cs</DependentUpon>
@@ -202,6 +220,9 @@
     </Compile>
     <EmbeddedResource Include="UserContent\PanelVarMenu.resx">
       <DependentUpon>PanelVarMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserContent\PanelWindowControl.resx">
+      <DependentUpon>PanelWindowControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserContent\PlotControl\PlotWindows.resx">
       <DependentUpon>PlotWindows.cs</DependentUpon>
@@ -224,6 +245,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\IconDarkMode.png" />
+    <None Include="Resources\Console.png" />
+    <None Include="Resources\Window.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\WindowIcon.png" />
     <None Include="Resources\RemoveFromAllPlots.png" />
     <None Include="Resources\Unplugged.png" />
     <None Include="Resources\EditAquisition.png" />

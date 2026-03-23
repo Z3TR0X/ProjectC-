@@ -11,7 +11,7 @@ namespace ProjectC_ {
     public partial class Form1 {
         Size last_normal_form_size;
         Point last_normal_form_position;
-        float leftMenuRatio = 0.5f;
+        float leftMenuRatio = 0.40f;
 
 
         //Fonction pour mettre les bords ronds
