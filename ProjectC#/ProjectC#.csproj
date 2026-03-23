@@ -124,6 +124,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data_Custom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data_Custom.Designer.cs">
+      <DependentUpon>Data_Custom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.Plot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <Compile Include="UserContent\PlotControl\PlotWindows.Designer.cs">
       <DependentUpon>PlotWindows.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Data_Custom.resx">
+      <DependentUpon>Data_Custom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
