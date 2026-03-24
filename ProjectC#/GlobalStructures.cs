@@ -17,4 +17,30 @@ namespace ProjectC_ {
             varIndex = _varId;
         }
     }
+
+
+
+    public struct Window {
+        public string windowName;
+        public int nbPlots;
+        public List<PlotWindow> plots;
+
+        public Window(string _name, int _nbPlots) {
+            windowName = _name;
+            nbPlots = _nbPlots;
+            plots = new List<PlotWindow>();
+        }
+    }
+
+    public struct PlotWindow {
+        public string plotName;
+        public int plotId;
+        public List<int> dataPloted;
+
+        public PlotWindow(string _plotName, int _plotId) {
+            plotName = _plotName;
+            plotId = _plotId;
+            dataPloted = new List<int>();
+        }
+    }
 }

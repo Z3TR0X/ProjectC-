@@ -152,6 +152,7 @@ namespace ProjectC_
                                 foreach (int plotNb in DataFromPlot[i]) {
 
                                     Plots[plotNb].AddDataToPlott(i+1, timer, val);
+                                    Debug.WriteLine(plotNb.ToString());
                                 }
                             }
 

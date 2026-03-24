@@ -219,7 +219,7 @@
             this.FlowLayoutWindow.Name = "FlowLayoutWindow";
             this.FlowLayoutWindow.Size = new System.Drawing.Size(200, 180);
             this.FlowLayoutWindow.TabIndex = 1;
-            this.FlowLayoutWindow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnRightClicWindowEvent);
+            this.FlowLayoutWindow.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OnClicWindowEvent);
             // 
             // NewWindowMenu
             // 

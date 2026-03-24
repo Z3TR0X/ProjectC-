@@ -20,10 +20,14 @@ namespace ProjectC_ {
         private void AddNewPlot() {
             if (Plots.Count >= 4) return;
 
-            PlotWindows Plot = new PlotWindows("Figure " + (Plots.Count +1));
+            string name = "Figure " + (Plots.Count + 1);
+            PlotWindows Plot = new PlotWindows(name);
             Plot.RightClicOnPlott += PlotRightClic;
             Plot.NewVariableToPlott += PlotNewVariable;
             Plot.AquisitionActive = SerialConn.IsOpen;
+
+            PlotWindow pw = new PlotWindow(name, Plots.Count);
+            activeWindow.plots.Add(pw);
 
             Plots.Add(Plot);
             MainPage.Controls.Add(Plot);
@@ -42,6 +46,8 @@ namespace ProjectC_ {
             Plots.RemoveAt(index);
             MainPage.Controls.RemoveAt(index);
             RearrangePlot();
+
+            activeWindow.plots.RemoveAt(index);
         }
 
         private void RearrangePlot() {
@@ -136,6 +142,7 @@ namespace ProjectC_ {
                 if (Plots[PlotsNumber].Equals(sender)) {
                     foreach(int VarId in Plots[PlotsNumber].GetVariablePlotted()) {
                         DataFromPlot[VarId-1].Add(PlotsNumber);
+                        activeWindow.plots[PlotsNumber].dataPloted.Add(VarId-1);
                     }
                 }
             }

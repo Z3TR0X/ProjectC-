@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace ProjectC_.UserContent {
     public partial class PanelWindowControl : UserControl {
+        public int id;
         public PanelWindowControl() {
             InitializeComponent();
 
@@ -24,8 +25,11 @@ namespace ProjectC_.UserContent {
             }
         }
 
-        public void Init(int maxWidth) {
+        public void Init(string name, int maxWidth, int _id) {
             this.Width = maxWidth;
+            WindowName.Text = name;
+            id = _id;
         }
+
     }
 }

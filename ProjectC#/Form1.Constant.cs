@@ -15,6 +15,8 @@ namespace ProjectC_ {
         int PaddingPlotMainPage = 6; //Padding entre un graph et la main page
         int PaddingPlotPlot = 3; //Padding entre deux graphs
 
+
+
     }
 }
 ;
