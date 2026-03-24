@@ -77,6 +77,7 @@
             this.AddNewData.TabIndex = 4;
             this.AddNewData.Text = "Ajouter la donnée ";
             this.AddNewData.UseVisualStyleBackColor = true;
+            this.AddNewData.Click += new System.EventHandler(this.AddNewData_Click);
             // 
             // Data_Custom
             // 

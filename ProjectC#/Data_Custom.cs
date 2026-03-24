@@ -20,9 +20,22 @@ namespace ProjectC_
 
         private void DataEquation_TextChanged(object sender, EventArgs e)
         {
-            var equation = new NCalc.Expression(DataEquation.Text);
-            var result = equation.Evaluate();
-            label2.Text = result.ToString();
+            try 
+            {
+                var equation = new NCalc.Expression(DataEquation.Text);
+                var result = equation.Evaluate();
+                label2.Text = result.ToString();
+            }
+            catch(Exception)
+            {
+                label2.Text = "...";
+            }
+            
+        }
+
+        private void AddNewData_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
