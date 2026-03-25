@@ -139,7 +139,7 @@ namespace ProjectC_ {
                 PlotWindows Plot = new PlotWindows(wp.plotName);
                 Plot.RightClicOnPlott += PlotRightClic;
                 Plot.NewVariableToPlott += PlotNewVariable;
-                Plot.AquisitionActive = SerialConn.IsOpen;
+                Plot.SetAquisitionActive(SerialConn.IsOpen);
                 
                 foreach(int dp in wp.dataPloted.Keys) {
                     DataFromPlot[dp].Add(wp.plotId);

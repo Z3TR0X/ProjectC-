@@ -80,7 +80,7 @@ namespace ProjectC_
                     pauseSerial = false;
 
                     foreach (PlotWindows plot in Plots) {
-                        plot.AquisitionActive = true;
+                        plot.SetAquisitionActive(true);
                     }
                     refreshPlotTick.Start();
 
@@ -107,7 +107,7 @@ namespace ProjectC_
                         refreshPlotTick.Stop();
 
                         foreach(PlotWindows plot in Plots) {
-                            plot.AquisitionActive = false;
+                            plot.SetAquisitionActive(false);
                         }
                     } catch (Exception ex) {
                         Console.WriteLine("Erreur à la fermeture : " + ex.Message);
@@ -177,7 +177,7 @@ namespace ProjectC_
                 DataPanelTimer.Start();
 
                 foreach (PlotWindows plot in Plots) {
-                    plot.AquisitionActive = true;
+                    plot.SetAquisitionActive(true);
                 }
 
                 refreshPlotTick.Start();
@@ -198,7 +198,7 @@ namespace ProjectC_
                 refreshPlotTick.Stop();
 
                 foreach (PlotWindows plot in Plots) {
-                    plot.AquisitionActive = false;
+                    plot.SetAquisitionActive(false);
                 }
 
                 pauseSerial = true;

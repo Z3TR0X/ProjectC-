@@ -24,7 +24,7 @@ namespace ProjectC_ {
             PlotWindows Plot = new PlotWindows(name);
             Plot.RightClicOnPlott += PlotRightClic;
             Plot.NewVariableToPlott += PlotNewVariable;
-            Plot.AquisitionActive = SerialConn.IsOpen;
+            Plot.SetAquisitionActive(SerialConn.IsOpen);
 
             PlotWindow pw = new PlotWindow(name, Plots.Count);
             activeWindow.plots.Add(pw);

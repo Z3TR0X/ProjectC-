@@ -1,4 +1,5 @@
 ﻿using ScottPlot;
+using ScottPlot.AxisRules;
 using ScottPlot.Plottables;
 using ScottPlot.WinForms;
 using SkiaSharp;
@@ -28,10 +29,14 @@ namespace ProjectC_.UserContent {
 
         private bool dataReceive;
 
+        MaximumSpan maxSpanRule;
+        MinimumSpan minSpanRule;
+        LockedHorizontal lockHorizRule;
+
         //Variable qui indique si on va recevoir des données ou non. Si elle est a true c'est que la form recoit des données dans le 
         //Port série et donc que l'on est susceptible d'en recevoir aussi. 
         //!!! si elle est a vrai ça ne veut pas dire qu'on recoit FORCEMENT des données, si le plot n'est abonné a aucune variable, alors on ne recoit rien.
-        public bool AquisitionActive; 
+        private bool AquisitionActive; 
 
         public PlotWindows(String title) {
             InitializeComponent();
@@ -46,6 +51,19 @@ namespace ProjectC_.UserContent {
             timerEndResize.Interval = 200;
             timerEndResize.Tick += TickEndResize;
             timerEndResize.Start(); //POur que les rectangles soient dessiné une première fois
+
+            maxSpanRule = new MaximumSpan(
+                    xAxis: Plot.Plot.Axes.Bottom,
+                    yAxis: Plot.Plot.Axes.Left,
+                    xSpan: 5,
+                    ySpan: double.MaxValue
+                );
+            minSpanRule = new MinimumSpan(
+                    xAxis: Plot.Plot.Axes.Bottom,
+                    yAxis: Plot.Plot.Axes.Left,
+                    xSpan: 5,
+                    ySpan: double.MinValue);
+            lockHorizRule = new LockedHorizontal(Plot.Plot.Axes.Bottom, 0, 0);
 
 
             Plot.Refresh();
@@ -131,9 +149,6 @@ namespace ProjectC_.UserContent {
             Plot.Refresh();
         }
 
-
-
-
         public List<int> GetVariablePlotted() {
             return new List<int>(loggers.Keys);
         }
@@ -146,7 +161,21 @@ namespace ProjectC_.UserContent {
         public void RefreshPlot(double last_value) {
             Plot.Plot.Axes.SetLimitsX(last_value - 5, last_value);
 
+            Plot.Plot.Axes.Rules.Clear();
+            Plot.Plot.Axes.Rules.Add(maxSpanRule);
+            Plot.Plot.Axes.Rules.Add(minSpanRule);
+            lockHorizRule.XMin = last_value-5;
+            lockHorizRule.XMax = last_value;
+            Plot.Plot.Axes.Rules.Add(lockHorizRule);
+
+
             Plot.Refresh();
+        }
+
+        public void SetAquisitionActive(bool state) {
+            AquisitionActive = state;
+
+            Plot.Plot.Axes.Rules.Clear();
         }
     }
 }
