@@ -139,7 +139,7 @@ namespace ProjectC_
 
                             //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
                             while (values.Length > Datas.Count) {
-                                AddNewData();
+                                AddNewDatas();
                             }
 
                             double timer = millis.ElapsedMilliseconds/1000.0;

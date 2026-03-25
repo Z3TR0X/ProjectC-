@@ -18,6 +18,7 @@ namespace ProjectC_ {
         List<Color> DatasColor = new List<Color>();
         List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
         Point PanelVarRightClickPos;
+        
 
 
         private void OnPanelVarRightClic(object sender, MouseEventArgs e) {
@@ -60,21 +61,45 @@ namespace ProjectC_ {
         }
 
 
-        private void AddNewData() {
-            String DefaultName = "Data" + (Datas.Count + 1).ToString();
-            Datas.Add(new List<float>());
-            DatasColor.Add(Color.CadetBlue);
-            DatasName.Add(DefaultName);
-            DataFromPlot.Add(Datas.Count-1, new List<int>());
-            
+        internal void AddNewDatas() {
+            using (Data_Custom customiser = new Data_Custom()) 
+            {
+                customiser.ShowDialog();
+                MessageBox.Show("La page de donnée customisée est fermée");
+                if (customiser.nom == null) 
+                {
+                    String DefaultName = "Data" + (Datas.Count + 1).ToString();
+                    Datas.Add(new List<float>());
+                    DatasColor.Add(Color.CadetBlue);
+                    DatasName.Add(DefaultName);
+                    DataFromPlot.Add(Datas.Count - 1, new List<int>());
 
-            PanelVarControl v = new PanelVarControl();
-            v.setColor(Color.CadetBlue);
-            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
-            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
-            v.GiveFeedback += DragFeedback;
-            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
-            FlowVarPanel.Controls.Add(v);
+                    PanelVarControl v = new PanelVarControl();
+                    v.setColor(Color.CadetBlue);
+                    v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+                    v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+                    v.GiveFeedback += DragFeedback;
+                    v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+                    FlowVarPanel.Controls.Add(v);
+                }
+                else
+                {
+                    String DefaultName = customiser.nom;
+                    Datas.Add(new List<float>());
+                    DatasColor.Add(Color.CadetBlue);
+                    DatasName.Add(DefaultName);
+                    DataFromPlot.Add(Datas.Count - 1, new List<int>());
+
+                    PanelVarControl v = new PanelVarControl();
+                    v.setColor(Color.CadetBlue);
+                    v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+                    v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+                    v.GiveFeedback += DragFeedback;
+                    v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+                    FlowVarPanel.Controls.Add(v);
+                }
+            }
+
         }
 
         private void AddDataCustom()

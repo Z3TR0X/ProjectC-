@@ -74,13 +74,13 @@ namespace ProjectC_
         }
 
         private void AddData_Click(object sender, EventArgs e)
-        {           
+        {
 
             using (Data_Custom custom = new Data_Custom())
             {
-                custom.ShowDialog();
                 custom.StartPosition = FormStartPosition.CenterScreen;
-            }
+                custom.ShowDialog();
+             }
         }
         
         
