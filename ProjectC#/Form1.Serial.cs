@@ -150,9 +150,8 @@ namespace ProjectC_
                                 Datas[i].Add(val);
 
                                 foreach (int plotNb in DataFromPlot[i]) {
-
-                                    Plots[plotNb].AddDataToPlott(i+1, timer, val);
-                                    Debug.WriteLine(plotNb.ToString());
+                                    Debug.WriteLine(i.ToString() + "  " + plotNb.ToString());
+                                    Plots[plotNb].AddDataToPlott(i, timer, val);
                                 }
                             }
 

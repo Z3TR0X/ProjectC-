@@ -84,7 +84,7 @@ namespace ProjectC_ {
                 DragCursor = CreateDragCursor(panel.getVarName());
 
                 int varId = panel.getVarIdAssociated();
-                DataInfos info = new DataInfos(DatasName[varId-1], DatasColor[varId-1], varId);
+                DataInfos info = new DataInfos(DatasName[varId-1], DatasColor[varId-1], varId-1);
 
                 panel.DoDragDrop(info, DragDropEffects.Copy);
 

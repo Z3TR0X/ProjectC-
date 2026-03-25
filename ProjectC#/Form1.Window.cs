@@ -2,6 +2,7 @@
 using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -140,8 +141,12 @@ namespace ProjectC_ {
                 Plot.NewVariableToPlott += PlotNewVariable;
                 Plot.AquisitionActive = SerialConn.IsOpen;
                 
-                foreach(int dp in wp.dataPloted) {
+                foreach(int dp in wp.dataPloted.Keys) {
                     DataFromPlot[dp].Add(wp.plotId);
+                    DataInfos info = new DataInfos(DatasName[dp], DatasColor[dp], dp);
+                    Plot.PlotNewData(info, wp.dataPloted[dp]);
+                    Debug.WriteLine(dp);
+
                 }
 
                 Plots.Add(Plot);

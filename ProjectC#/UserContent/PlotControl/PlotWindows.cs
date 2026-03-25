@@ -23,6 +23,7 @@ namespace ProjectC_.UserContent {
         String FigureTitle;
         //Chaque variable à son propre Data Logger et le data logger loggers[i] correspond a la variable varId[i]
         private Dictionary<int, DataLogger> loggers = new Dictionary<int, DataLogger>();
+        private Dictionary<int, char> location = new Dictionary<int, char>(); // Chaque variable est soit r, l ou b
         private Dictionary<int, ScottPlot.LegendItem> legends = new Dictionary<int, LegendItem>();
 
         private bool dataReceive;
@@ -66,46 +67,64 @@ namespace ProjectC_.UserContent {
         }
 
         public void AddDataToPlott(int varId, double x, double y) {
-            Debug.WriteLine("coucou");
             if (!loggers.ContainsKey(varId)) return;
             loggers[varId].Add(x, y);
+            //Debug.WriteLine("var id: " + varId.ToString());
         }
 
         private void Plot_DragDrop(object sender, DragEventArgs e) {
-            DataInfos var = (DataInfos) e.Data.GetData(typeof(DataInfos));        
+            DataInfos var = (DataInfos) e.Data.GetData(typeof(DataInfos));
+            char loc;
 
-            if (loggers.ContainsKey(var.varIndex)) return;
-
-
-            DataLogger logger = Plot.Plot.Add.DataLogger();
-            logger.ManageAxisLimits = false;
-            logger.Color = ScottPlot.Color.FromColor(var.color);
-
-            legends.Add(var.varIndex, new LegendItem());
-            legends[var.varIndex].MarkerColor = ScottPlot.Color.FromColor(var.color);
-            legends[var.varIndex].MarkerShape = ScottPlot.MarkerShape.FilledSquare;
-            legends[var.varIndex].MarkerSize = 15;
-            legends[var.varIndex].LineWidth = 0;
-            legends[var.varIndex].LabelText = var.name;
-
-            Plot.Plot.Legend.ManualItems.Add(legends[var.varIndex]);
-            
 
             Point posCursor = Plot.PointToClient(new Point(e.X, e.Y));
             if (rects[3].Contains(posCursor.X, posCursor.Y)) {
                 //Zone du bas
+                loc = 'l';
             } else if (rects[2].Contains(posCursor.X, posCursor.Y)) {
                 //Zone Droite
-                logger.Axes.YAxis = Plot.Plot.Axes.Right;
+                loc = 'r';
             } else if (rects[1].Contains(posCursor.X, posCursor.Y)) {
                 //Zone Gauche
-                logger.Axes.YAxis = Plot.Plot.Axes.Left;
+                loc = 'l';
             } else {
+                loc = 'l';
             }
 
-
-            loggers.Add(var.varIndex, logger);
+            PlotNewData(var, loc);
             NewVariableToPlott.Invoke(this, e);
+
+        }
+
+
+        public void PlotNewData(DataInfos info, char loc) {
+            if (loggers.ContainsKey(info.varIndex)) return;
+
+
+            DataLogger logger = Plot.Plot.Add.DataLogger();
+            logger.ManageAxisLimits = false;
+            logger.Color = ScottPlot.Color.FromColor(info.color);
+
+            legends.Add(info.varIndex, new LegendItem());
+            legends[info.varIndex].MarkerColor = ScottPlot.Color.FromColor(info.color);
+            legends[info.varIndex].MarkerShape = ScottPlot.MarkerShape.FilledSquare;
+            legends[info.varIndex].MarkerSize = 15;
+            legends[info.varIndex].LineWidth = 0;
+            legends[info.varIndex].LabelText = info.name;
+
+            Plot.Plot.Legend.ManualItems.Add(legends[info.varIndex]);
+            switch (loc) {
+                case 'r':
+                    logger.Axes.YAxis = Plot.Plot.Axes.Right;
+                    location.Add(info.varIndex, 'r');
+                    break;
+                default:
+                    logger.Axes.YAxis = Plot.Plot.Axes.Left;
+                    location.Add(info.varIndex, 'l');
+                    break;
+            }
+
+            loggers.Add(info.varIndex, logger);
 
             zone = 0;
             isRectDraw = false;
@@ -113,8 +132,14 @@ namespace ProjectC_.UserContent {
         }
 
 
+
+
         public List<int> GetVariablePlotted() {
             return new List<int>(loggers.Keys);
+        }
+
+        public char getPosition(int varId) {
+            return location[varId];
         }
 
 

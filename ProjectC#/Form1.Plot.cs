@@ -141,8 +141,8 @@ namespace ProjectC_ {
             for (int PlotsNumber = 0; PlotsNumber < Plots.Count; PlotsNumber++) {
                 if (Plots[PlotsNumber].Equals(sender)) {
                     foreach(int VarId in Plots[PlotsNumber].GetVariablePlotted()) {
-                        DataFromPlot[VarId-1].Add(PlotsNumber);
-                        activeWindow.plots[PlotsNumber].dataPloted.Add(VarId-1);
+                        DataFromPlot[VarId].Add(PlotsNumber);
+                        activeWindow.plots[PlotsNumber].dataPloted[VarId] = Plots[PlotsNumber].getPosition(VarId);
                     }
                 }
             }

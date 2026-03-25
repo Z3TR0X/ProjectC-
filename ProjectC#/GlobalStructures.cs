@@ -35,12 +35,12 @@ namespace ProjectC_ {
     public struct PlotWindow {
         public string plotName;
         public int plotId;
-        public List<int> dataPloted;
+        public Dictionary<int, char> dataPloted;
 
         public PlotWindow(string _plotName, int _plotId) {
             plotName = _plotName;
             plotId = _plotId;
-            dataPloted = new List<int>();
+            dataPloted = new Dictionary<int, char>(); //Id var et position (l, r ou b)
         }
     }
 }
