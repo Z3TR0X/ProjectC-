@@ -46,11 +46,8 @@
      - [ ] Phase 4 : Ajout des fonctions d'export et de la console
      - [ ] Phase 5 : Ajout des fonctionnalités bonus (par forcément dans l'ordre).
      
-6. Dépendances / Frameworks
-   
-   -Visual Studio Communnity 2026, application pour coder et programmer le code pour le Projet
-   -Périphériques permmettant de pouvoir visualiser les données (comme une carte Arduino connecté sur l'ordinateur)
-   -ScottPlot permet de pouvoir faire une modélisation graphique 
-   -SQLite permettra de créer une base de données avec les données envoyées par le périphérique
-   -Krypton permettra de donner à l'application, un meilleur aspect esthétique
-   
+6. Dépendances / Frameworks 📚
+    - Périphériques qui envoient des données via le port série (comme une carte Arduino connecté sur l'ordinateur)
+    - ScottPlot, qui permet de tracer les graphiques
+    - SQLite, la sauvegarde du projet se fera sous forme d'une BDD, et SQLite fait des BDD sous forme de fichiers
+    - Krypton est une librairie qui améliore les outils de base de Winform (panel,bouton...) 
