@@ -47,6 +47,13 @@ namespace ProjectC_ {
             MainPage.Controls.RemoveAt(index);
             RearrangePlot();
 
+            foreach (List<int> graphs in DataFromPlot.Values) {
+                for (int i = 0; i < graphs.Count; i++) {
+                    if (graphs[i] == index) {
+                        graphs.RemoveAt(i);
+                    }
+                }
+            }
             activeWindow.plots.RemoveAt(index);
         }
 
