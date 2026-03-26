@@ -42,7 +42,7 @@
 5. Roadmap 🗓️
      - [X] Phase 1 : design graphique principal
      - [X] Phase 2 : Connexion aux ports COM et récupération des données pour affichage dans un graph
-     - [ ] Phase 3 : Mise en place des pages et de la configuration des graphiques.
+     - [X] Phase 3 : Mise en place des pages et de la configuration des graphiques.
      - [ ] Phase 4 : Ajout des fonctions d'export et de la console
      - [ ] Phase 5 : Ajout des fonctionnalités bonus (par forcément dans l'ordre).
      
