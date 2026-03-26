@@ -33,7 +33,7 @@ namespace ProjectC_ {
             activeWindow.plots.Add(pw);
 
             Plots.Add(Plot);
-            MainPage.Controls.Add(Plot);
+            LayoutPanel.Controls.Add(Plot);
             RearrangePlot();
 
 
@@ -47,7 +47,7 @@ namespace ProjectC_ {
 
             Plots[index].RightClicOnPlott -= PlotRightClic;
             Plots.RemoveAt(index);
-            MainPage.Controls.RemoveAt(index);
+            LayoutPanel.Controls.RemoveAt(index);
             RearrangePlot();
 
             foreach (List<int> graphs in DataFromPlot.Values) {
@@ -63,51 +63,51 @@ namespace ProjectC_ {
         private void RearrangePlot() {
             switch (Plots.Count) {
                 case 1:
-                    Plots[0].Size = MainPage.Size - new Size(PaddingPlotMainPage*2, PaddingPlotMainPage*2);
+                    Plots[0].Size = LayoutPanel.Size - new Size(PaddingPlotMainPage*2, PaddingPlotMainPage*2);
                     Plots[0].Location = new Point(PaddingPlotMainPage, PaddingPlotMainPage);
                     break;
                 case 2:
-                    Plots[0].Size = new Size(MainPage.Width, MainPage.Height/2)
+                    Plots[0].Size = new Size(LayoutPanel.Width, LayoutPanel.Height/2)
                         - new Size(PaddingPlotMainPage*2, PaddingPlotPlot + PaddingPlotMainPage);
                     Plots[0].Location = new Point(PaddingPlotMainPage, PaddingPlotMainPage);
 
-                    Plots[1].Size = new Size(MainPage.Width, MainPage.Height / 2)
+                    Plots[1].Size = new Size(LayoutPanel.Width, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage * 2, PaddingPlotMainPage + PaddingPlotPlot);
-                    Plots[1].Location = new Point(PaddingPlotMainPage, MainPage.Height / 2 + PaddingPlotPlot);
+                    Plots[1].Location = new Point(PaddingPlotMainPage, LayoutPanel.Height / 2 + PaddingPlotPlot);
                     break;
 
                 case 3:
-                    Plots[0].Size = new Size(MainPage.Width/2, MainPage.Height / 2)
+                    Plots[0].Size = new Size(LayoutPanel.Width/2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
                     Plots[0].Location = new Point(PaddingPlotMainPage, PaddingPlotMainPage);
 
-                    Plots[2].Size = new Size(MainPage.Width/2, MainPage.Height / 2)
+                    Plots[2].Size = new Size(LayoutPanel.Width/2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
-                    Plots[2].Location = new Point(MainPage.Width / 2 + PaddingPlotPlot, PaddingPlotMainPage);
+                    Plots[2].Location = new Point(LayoutPanel.Width / 2 + PaddingPlotPlot, PaddingPlotMainPage);
 
 
-                    Plots[1].Size = new Size(MainPage.Width, MainPage.Height / 2)
+                    Plots[1].Size = new Size(LayoutPanel.Width, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage * 2, PaddingPlotMainPage + PaddingPlotPlot);
-                    Plots[1].Location = new Point(PaddingPlotMainPage, MainPage.Height / 2 + PaddingPlotPlot);
+                    Plots[1].Location = new Point(PaddingPlotMainPage, LayoutPanel.Height / 2 + PaddingPlotPlot);
                     break;
 
                 case 4:
-                    Plots[0].Size = new Size(MainPage.Width / 2, MainPage.Height / 2)
+                    Plots[0].Size = new Size(LayoutPanel.Width / 2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
                     Plots[0].Location = new Point(PaddingPlotMainPage, PaddingPlotMainPage);
 
-                    Plots[2].Size = new Size(MainPage.Width / 2, MainPage.Height / 2)
+                    Plots[2].Size = new Size(LayoutPanel.Width / 2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
-                    Plots[2].Location = new Point(MainPage.Width / 2 + PaddingPlotPlot, PaddingPlotMainPage);
+                    Plots[2].Location = new Point(LayoutPanel.Width / 2 + PaddingPlotPlot, PaddingPlotMainPage);
 
 
-                    Plots[1].Size = new Size(MainPage.Width / 2, MainPage.Height / 2)
+                    Plots[1].Size = new Size(LayoutPanel.Width / 2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
-                    Plots[1].Location = new Point(PaddingPlotMainPage, MainPage.Height / 2 + PaddingPlotPlot);
+                    Plots[1].Location = new Point(PaddingPlotMainPage, LayoutPanel.Height / 2 + PaddingPlotPlot);
 
-                    Plots[3].Size = new Size(MainPage.Width / 2, MainPage.Height / 2)
+                    Plots[3].Size = new Size(LayoutPanel.Width / 2, LayoutPanel.Height / 2)
                         - new Size(PaddingPlotMainPage + PaddingPlotPlot, PaddingPlotPlot + PaddingPlotMainPage);
-                    Plots[3].Location = new Point(MainPage.Width / 2 + PaddingPlotPlot, MainPage.Height / 2 + PaddingPlotPlot);
+                    Plots[3].Location = new Point(LayoutPanel.Width / 2 + PaddingPlotPlot, LayoutPanel.Height / 2 + PaddingPlotPlot);
                     break;
 
 
@@ -161,7 +161,7 @@ namespace ProjectC_ {
 
         private void PlotRightClic(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
-                menuPlot.Show(MainPage, MousePosition);
+                menuPlot.Show(LayoutPanel, MousePosition);
             }
         }
     

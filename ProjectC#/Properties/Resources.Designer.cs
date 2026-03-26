@@ -93,9 +93,29 @@ namespace ProjectC_.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddTime {
+            get {
+                object obj = ResourceManager.GetObject("AddTime", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddWindow {
             get {
                 object obj = ResourceManager.GetObject("AddWindow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Clear_Data {
+            get {
+                object obj = ResourceManager.GetObject("Clear Data", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

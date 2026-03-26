@@ -72,6 +72,7 @@
             this.DeleteButton = new Krypton.Toolkit.KryptonButton();
             this.PausContButton = new Krypton.Toolkit.KryptonButton();
             this.MainPage = new System.Windows.Forms.Panel();
+            this.LayoutPanel = new Krypton.Toolkit.KryptonPanel();
             this.SerialConn = new System.IO.Ports.SerialPort(this.components);
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -101,6 +102,8 @@
             this.SerialSelectorMargin.SuspendLayout();
             this.SerialSelector.SuspendLayout();
             this.OptionPanel.SuspendLayout();
+            this.MainPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             this.TopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
@@ -122,14 +125,16 @@
             this.LeftSeparator.Cursor = System.Windows.Forms.Cursors.Default;
             this.LeftSeparator.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftSeparator.Location = new System.Drawing.Point(201, 36);
+            this.LeftSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.LeftSeparator.Name = "LeftSeparator";
-            this.LeftSeparator.Size = new System.Drawing.Size(3, 549);
+            this.LeftSeparator.Size = new System.Drawing.Size(1, 549);
             this.LeftSeparator.TabIndex = 3;
             // 
             // LeftBar
             // 
             this.LeftBar.BackColor = System.Drawing.Color.DarkGray;
             this.LeftBar.Location = new System.Drawing.Point(0, 0);
+            this.LeftBar.Margin = new System.Windows.Forms.Padding(0);
             this.LeftBar.Name = "LeftBar";
             this.LeftBar.Size = new System.Drawing.Size(1, 815);
             this.LeftBar.TabIndex = 0;
@@ -289,7 +294,6 @@
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.ControlPanel.Controls.Add(this.ComPanel);
-            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
@@ -299,6 +303,7 @@
             // ComPanel
             // 
             this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.ComPanel.Controls.Add(this.OptionPanel);
             this.ComPanel.Controls.Add(this.BaudSelectorMargin);
             this.ComPanel.Controls.Add(this.BaudLabel);
             this.ComPanel.Controls.Add(this.SerialSelectorMargin);
@@ -692,14 +697,26 @@
             // MainPage
             // 
             this.MainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.MainPage.Controls.Add(this.LayoutPanel);
             this.MainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.MainPage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MainPage.Location = new System.Drawing.Point(201, 36);
+            this.MainPage.Margin = new System.Windows.Forms.Padding(0);
             this.MainPage.Name = "MainPage";
             this.MainPage.Size = new System.Drawing.Size(1139, 549);
             this.MainPage.TabIndex = 5;
-            this.MainPage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlotRightClic);
+            // 
+            // LayoutPanel
+            // 
+            this.LayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.LayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutPanel.Name = "LayoutPanel";
+            this.LayoutPanel.Size = new System.Drawing.Size(1139, 549);
+            this.LayoutPanel.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
+            this.LayoutPanel.TabIndex = 0;
+            this.LayoutPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PlotRightClic);
             // 
             // MenuSerialPort
             // 
@@ -889,6 +906,8 @@
             this.SerialSelector.ResumeLayout(false);
             this.OptionPanel.ResumeLayout(false);
             this.OptionPanel.PerformLayout();
+            this.MainPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LayoutPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             this.TopBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
@@ -950,6 +969,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutWindow;
         private Krypton.Toolkit.KryptonPanel NewConsoleImage;
         private Krypton.Toolkit.KryptonManager kryptonManager1;
+        private Krypton.Toolkit.KryptonPanel LayoutPanel;
     }
 }
 

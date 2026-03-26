@@ -169,7 +169,7 @@ namespace ProjectC_ {
 
                 menuRightClicWindow.Items.Add(blocItems);
 
-                menuRightClicWindow.Show(MainPage, MousePosition);
+                menuRightClicWindow.Show(LayoutPanel, MousePosition);
             }
         }
 
@@ -184,7 +184,7 @@ namespace ProjectC_ {
             int id = panel.id;
             activeWindow = windows[id];
             Plots = new List<PlotWindows>();
-            MainPage.Controls.Clear();
+            LayoutPanel.Controls.Clear();
             foreach(List<int> dp in DataFromPlot.Values) {
                 dp.Clear();
             }
@@ -209,7 +209,7 @@ namespace ProjectC_ {
                 }
 
                 Plots.Add(Plot);
-                MainPage.Controls.Add(Plot);
+                LayoutPanel.Controls.Add(Plot);
                 RearrangePlot();
             }
         }

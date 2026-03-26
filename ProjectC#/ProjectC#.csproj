@@ -196,6 +196,12 @@
     <Compile Include="UserContent\PlotControl\PlotWindows.Designer.cs">
       <DependentUpon>PlotWindows.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserContent\ConsoleWindows.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContent\ConsoleWindows.Designer.cs">
+      <DependentUpon>ConsoleWindows.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +233,9 @@
     <EmbeddedResource Include="UserContent\PlotControl\PlotWindows.resx">
       <DependentUpon>PlotWindows.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserContent\ConsoleWindows.resx">
+      <DependentUpon>ConsoleWindows.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
@@ -245,6 +254,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\IconDarkMode.png" />
+    <None Include="Resources\AddTime.png" />
+    <None Include="Resources\Clear Data.png" />
     <None Include="Resources\Console.png" />
     <None Include="Resources\Window.png" />
     <None Include="Resources\Add.png" />
