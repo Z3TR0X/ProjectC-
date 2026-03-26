@@ -31,5 +31,9 @@ namespace ProjectC_.UserContent {
             id = _id;
         }
 
+        public void SetName(string name) { 
+            WindowName.Text = name;
+        }
+
     }
 }

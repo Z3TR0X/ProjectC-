@@ -21,7 +21,7 @@ namespace ProjectC_ {
         private void CreateNewWindow() {
             PanelWindowControl panel = new PanelWindowControl();
             panel.MouseClick += OnClicWindowEvent;
-            string name = "Fenêtre " + windows.Count.ToString();
+            string name = "Fenêtre " + (windows.Count + 1).ToString();
             panel.Init(name, FlowLayoutWindow.ClientSize.Width, windows.Count);
             Window w = new Window(name, 0);
             if (windows.Count == 0) activeWindow = w;
@@ -34,6 +34,31 @@ namespace ProjectC_ {
             panel.MouseClick += OnClicWindowEvent;
             panel.Init(FlowLayoutWindow.ClientSize.Width);
             FlowLayoutWindow.Controls.Add(panel);
+        }
+
+        private void DeleteWindow(int windowId, int panelWindowId) {
+            if(windows.Count == 1) {
+                MessageBox.Show("Vous devez avoir au\nminimum une fenêtre", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            int lookForId = windows[windowId].Equals(activeWindow) ? (windowId != 0 ? 0 : 1) : -1;
+            PanelWindowControl panelToBeActive = null;
+
+            foreach (object obj in FlowLayoutWindow.Controls) {
+                if (obj.GetType() == typeof(PanelWindowControl)) {
+                    PanelWindowControl panel = (PanelWindowControl)obj;
+                    if (panel.id > windowId) panel.id--;
+                    if (lookForId != -1 && panel.id == lookForId && panelToBeActive == null) panelToBeActive = panel;
+
+                }
+            }
+
+            if (windows[windowId].Equals(activeWindow)) selectWindow(panelToBeActive);
+
+            FlowLayoutWindow.Controls.RemoveAt(panelWindowId);
+            windows.RemoveAt(windowId);
         }
 
 
@@ -73,6 +98,20 @@ namespace ProjectC_ {
                     KryptonContextMenuItem RemoveWindow = new KryptonContextMenuItem();
                     RemoveWindow.Image = Properties.Resources.RemoveWindow;
                     RemoveWindow.Text = "Supprimer la fenêtre";
+                    RemoveWindow.Click += (s, ev) => {
+                        for(int i = 0; i < FlowLayoutWindow.Controls.Count; i++) {
+                            if (FlowLayoutWindow.Controls[i].Equals(sender)){
+                                PanelWindowControl panel = (PanelWindowControl) FlowLayoutWindow.Controls[i];
+                                DeleteWindow(panel.id, i);
+                            }
+                        }
+                        foreach(object obj in FlowLayoutWindow.Controls) {
+                            if (obj.Equals(sender)) {
+                                
+                            }
+                        }
+                        
+                    };
 
                     KryptonContextMenuSeparator sepa = new KryptonContextMenuSeparator();
                     sepa.StateNormal.Back.Color1 = Color.DarkGray;
@@ -80,6 +119,17 @@ namespace ProjectC_ {
                     KryptonContextMenuItem RenameWindow = new KryptonContextMenuItem();
                     RenameWindow.Image = Properties.Resources.Rename;
                     RenameWindow.Text = "Renommer la fenêtre";
+                    RenameWindow.Click += (s, ev) => {
+                        string val = KryptonInputBox.Show(InputBoxdatas);
+                        if (val == "" || val == null) {
+                            MessageBox.Show("Nom invalide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        PanelWindowControl panel = (PanelWindowControl) sender;
+                        Window win = windows[panel.id];
+                        win.windowName = val;
+                        panel.SetName(val);
+                    };
 
 
 
