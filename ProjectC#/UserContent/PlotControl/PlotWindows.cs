@@ -1,5 +1,6 @@
 ﻿using ScottPlot;
 using ScottPlot.AxisRules;
+using ScottPlot.Interactivity;
 using ScottPlot.Plottables;
 using ScottPlot.WinForms;
 using SkiaSharp;
@@ -65,9 +66,7 @@ namespace ProjectC_.UserContent {
                     ySpan: double.MinValue);
             lockHorizRule = new LockedHorizontal(Plot.Plot.Axes.Bottom, 0, 0);
 
-
             Plot.Refresh();
-
             this.Disposed += Destructor;
         }
 
@@ -174,9 +173,40 @@ namespace ProjectC_.UserContent {
 
         public void SetAquisitionActive(bool state) {
             AquisitionActive = state;
-
             Plot.Plot.Axes.Rules.Clear();
         }
-    }
+
+        public (double, double) GetAxesLimits(char axe) {
+            AxisManager Axes = Plot.Plot.Axes;
+            switch (axe) {
+                case 'r':
+                    return (Axes.Right.Min, Axes.Right.Max);
+                case 'b':
+                    return (Axes.Bottom.Min, Axes.Bottom.Max);
+                default:
+                    return (Axes.Left.Min, Axes.Left.Max);
+            }
+        }
+
+        public void SetAxesLimits(char axe, (double,double) limit) {
+            AxisManager Axes = Plot.Plot.Axes;
+            switch (axe) {
+                case 'r':
+                    Axes.Right.Min = limit.Item1;
+                    Axes.Right.Max = limit.Item2;
+                    return;
+                case 'l':
+                    Axes.Left.Min = limit.Item1;
+                    Axes.Left.Max = limit.Item2;
+                    return;
+                case 'b':
+                    Axes.Bottom.Min = limit.Item1;
+                    Axes.Bottom.Max = limit.Item2;
+                    return;
+                default:
+                    return;
+            }
+        }
+    } 
 }
 

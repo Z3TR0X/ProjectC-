@@ -27,6 +27,9 @@ namespace ProjectC_ {
             Plot.SetAquisitionActive(SerialConn.IsOpen);
 
             PlotWindow pw = new PlotWindow(name, Plots.Count);
+            pw.axisLimit.Add('l', (0, 0)); // Axe Y gauche
+            pw.axisLimit.Add('r', (0, 0)); // Axe Y droit
+            pw.axisLimit.Add('b', (0, 0)); // Axe X
             activeWindow.plots.Add(pw);
 
             Plots.Add(Plot);
@@ -163,6 +166,8 @@ namespace ProjectC_ {
         }
     
         private void RenderPlots(object sender, EventArgs e) {
+            if (timeY.Count == 0) return;
+
             foreach(PlotWindows plot in Plots) {
                 plot.RefreshPlot(timeY[timeY.Count-1]);
             }

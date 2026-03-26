@@ -36,11 +36,13 @@ namespace ProjectC_ {
         public string plotName;
         public int plotId;
         public Dictionary<int, char> dataPloted;
+        public Dictionary<char, (double, double)> axisLimit;
 
         public PlotWindow(string _plotName, int _plotId) {
             plotName = _plotName;
             plotId = _plotId;
             dataPloted = new Dictionary<int, char>(); //Id var et position (l, r ou b)
+            axisLimit = new Dictionary<char, (double, double)>();
         }
     }
 }

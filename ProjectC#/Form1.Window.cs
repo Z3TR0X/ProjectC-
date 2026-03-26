@@ -24,8 +24,8 @@ namespace ProjectC_ {
             string name = "Fenêtre " + windows.Count.ToString();
             panel.Init(name, FlowLayoutWindow.ClientSize.Width, windows.Count);
             Window w = new Window(name, 0);
+            if (windows.Count == 0) activeWindow = w;
             windows.Add(w);
-            activeWindow = w;
             FlowLayoutWindow.Controls.Add(panel);
         }
 
@@ -125,6 +125,12 @@ namespace ProjectC_ {
 
 
         private void selectWindow(PanelWindowControl panel) {
+            for (int i = 0; i < Plots.Count; i++) {
+                activeWindow.plots[i].axisLimit['l'] = Plots[i].GetAxesLimits('l');
+                activeWindow.plots[i].axisLimit['r'] = Plots[i].GetAxesLimits('r');
+                activeWindow.plots[i].axisLimit['b'] = Plots[i].GetAxesLimits('b');
+            }
+
             int id = panel.id;
             activeWindow = windows[id];
             Plots = new List<PlotWindows>();
@@ -140,6 +146,9 @@ namespace ProjectC_ {
                 Plot.RightClicOnPlott += PlotRightClic;
                 Plot.NewVariableToPlott += PlotNewVariable;
                 Plot.SetAquisitionActive(SerialConn.IsOpen);
+                foreach(char axe in new char[] {'l', 'r', 'b'}){
+                    Plot.SetAxesLimits(axe, wp.axisLimit[axe]);
+                }
                 
                 foreach(int dp in wp.dataPloted.Keys) {
                     DataFromPlot[dp].Add(wp.plotId);
