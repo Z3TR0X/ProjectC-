@@ -54,6 +54,7 @@ namespace ProjectC_
             }
             else
             {
+               // AddNewDatas();
                 this.DialogResult = DialogResult.OK;
             }
          this.Close();            
