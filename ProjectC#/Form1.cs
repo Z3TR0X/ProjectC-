@@ -48,16 +48,9 @@ namespace ProjectC_
             refreshPlotTick.Stop();
 
             CreateNewWindow();
-            CreateNewConsole();
 
             createPanelRightClicMenu();
             createColorPickerMenu();
-
-            ConsoleWindow cons = new ConsoleWindow();
-            cons.Dock = DockStyle.Right;
-            cons.Padding = new Padding(1,0,0,0);
-            cons.Width = 300;
-            MainPage.Controls.Add(cons);
 
             CreateRightClicMenu();
 

@@ -20,9 +20,11 @@ using System.Windows.Forms;
 
 namespace ProjectC_.UserContent {
     public partial class ConsoleWindow : UserControl{
+        public int id;
 
-        public ConsoleWindow() {
+        public ConsoleWindow(int _id) {
             InitializeComponent();
+            id = _id;
             this.Padding = new Padding(5,0,0,0);
 
             foreach (Control control in this.Controls) {
@@ -55,6 +57,11 @@ namespace ProjectC_.UserContent {
 
             ConsoleName.Location = new Point(1, 5);
         }
+    
+        public void setName(string name) {
+            ConsoleName.Text = name;
+        }
+    
     }
 }
 

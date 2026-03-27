@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace ProjectC_.UserContent {
     public partial class PanelConsoleControl : UserControl {
+        public int id;
+
         public PanelConsoleControl() {
             InitializeComponent();
 
@@ -23,8 +25,13 @@ namespace ProjectC_.UserContent {
             }
         }
 
-        public void Init(int maxWidth) {
+        public void Init(int maxWidth, int _id) {
             this.Width = maxWidth;
+            id = _id;
+        }
+
+        public void setName(string name) { 
+            ConsoleName.Text = name;
         }
     }
 }

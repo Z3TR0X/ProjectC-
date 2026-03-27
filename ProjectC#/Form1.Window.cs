@@ -18,6 +18,14 @@ namespace ProjectC_ {
         private List<Window> windows = new List<Window>();
         private Window activeWindow;
 
+        KryptonInputBoxData InputBoxdatas = new Krypton.Toolkit.KryptonInputBoxData {
+            Prompt = "Entrez le nouveau nom : ",
+            Caption = "Renommer",
+            DefaultResponse = "",
+
+        }; // Menu pour la boite de renommage
+
+
         private void CreateNewWindow() {
             PanelWindowControl panel = new PanelWindowControl();
             panel.MouseClick += OnClicWindowEvent;
@@ -26,13 +34,6 @@ namespace ProjectC_ {
             Window w = new Window(name, 0);
             if (windows.Count == 0) activeWindow = w;
             windows.Add(w);
-            FlowLayoutWindow.Controls.Add(panel);
-        }
-
-        private void CreateNewConsole() {
-            PanelConsoleControl panel = new PanelConsoleControl();
-            panel.MouseClick += OnClicWindowEvent;
-            panel.Init(FlowLayoutWindow.ClientSize.Width);
             FlowLayoutWindow.Controls.Add(panel);
         }
 
@@ -61,17 +62,12 @@ namespace ProjectC_ {
             windows.RemoveAt(windowId);
         }
 
-
-        KryptonInputBoxData InputBoxdatas = new Krypton.Toolkit.KryptonInputBoxData {
-            Prompt = "Entrez le nouveau nom : ",
-            Caption = "Renommer",
-            DefaultResponse = "",
-
-        };
         private void OnClicWindowEvent(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) { 
                 if(sender.GetType() == typeof(PanelWindowControl)) {
                     selectWindow((PanelWindowControl) sender);
+                }else if(sender.GetType() == typeof(PanelConsoleControl)) {
+                    SelectConsole(((PanelConsoleControl)sender).id);
                 }
             }
 
@@ -93,6 +89,9 @@ namespace ProjectC_ {
                 KryptonContextMenuItem createConsole = new KryptonContextMenuItem();
                 createConsole.Image = Properties.Resources.AddConsole;
                 createConsole.Text = "Nouvelle console";
+                createConsole.Click += (s, ev) => {
+                    CreateNewConsole();
+                };
 
                 if (sender.GetType() == typeof(PanelWindowControl)) {
                     KryptonContextMenuItem RemoveWindow = new KryptonContextMenuItem();

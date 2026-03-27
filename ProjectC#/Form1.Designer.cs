@@ -294,6 +294,7 @@
             // 
             this.ControlPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.ControlPanel.Controls.Add(this.ComPanel);
+            this.ControlPanel.Controls.Add(this.OptionPanel);
             this.ControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ControlPanel.Location = new System.Drawing.Point(0, 0);
             this.ControlPanel.Name = "ControlPanel";
@@ -303,7 +304,6 @@
             // ComPanel
             // 
             this.ComPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.ComPanel.Controls.Add(this.OptionPanel);
             this.ComPanel.Controls.Add(this.BaudSelectorMargin);
             this.ComPanel.Controls.Add(this.BaudLabel);
             this.ComPanel.Controls.Add(this.SerialSelectorMargin);
