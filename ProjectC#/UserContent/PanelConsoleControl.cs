@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace ProjectC_.UserContent {
     public partial class PanelConsoleControl : UserControl {
         public int id;
+        private bool selected;
 
         public PanelConsoleControl() {
             InitializeComponent();
@@ -32,6 +33,19 @@ namespace ProjectC_.UserContent {
 
         public void setName(string name) { 
             ConsoleName.Text = name;
+        }
+
+        public void setSelected(bool select) {
+            if (select) {
+                VarItem.StateCommon.Color1 = Color.FromArgb(50, 55, 60);
+            } else {
+                VarItem.StateCommon.Color1 = Color.FromArgb(34, 39, 46);
+            }
+            selected = select;
+        }
+
+        public bool isSelect() {
+            return selected;
         }
     }
 }

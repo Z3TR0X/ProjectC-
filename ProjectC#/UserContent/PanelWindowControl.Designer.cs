@@ -39,17 +39,19 @@
             this.VarItem.Controls.Add(this.WindowName);
             this.VarItem.Dock = System.Windows.Forms.DockStyle.Top;
             this.VarItem.Location = new System.Drawing.Point(0, 0);
+            this.VarItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VarItem.Name = "VarItem";
-            this.VarItem.Size = new System.Drawing.Size(265, 45);
+            this.VarItem.Size = new System.Drawing.Size(177, 29);
             this.VarItem.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.VarItem.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.VarItem.TabIndex = 3;
             // 
             // Image
             // 
-            this.Image.Location = new System.Drawing.Point(10, 10);
+            this.Image.Location = new System.Drawing.Point(7, 6);
+            this.Image.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Image.Name = "Image";
-            this.Image.Size = new System.Drawing.Size(23, 23);
+            this.Image.Size = new System.Drawing.Size(15, 15);
             this.Image.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
             this.Image.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.Image.StateCommon.Image = global::ProjectC_.Properties.Resources.Window;
@@ -58,10 +60,10 @@
             // 
             // Id
             // 
-            this.Id.Location = new System.Drawing.Point(270, 4);
+            this.Id.Location = new System.Drawing.Point(180, 3);
             this.Id.Margin = new System.Windows.Forms.Padding(0);
             this.Id.Name = "Id";
-            this.Id.Size = new System.Drawing.Size(28, 33);
+            this.Id.Size = new System.Drawing.Size(21, 23);
             this.Id.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.Id.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Id.TabIndex = 4;
@@ -70,11 +72,11 @@
             // WindowName
             // 
             this.WindowName.Enabled = false;
-            this.WindowName.Location = new System.Drawing.Point(40, 2);
+            this.WindowName.Location = new System.Drawing.Point(27, 1);
             this.WindowName.Margin = new System.Windows.Forms.Padding(0);
-            this.WindowName.MaximumSize = new System.Drawing.Size(200, 0);
+            this.WindowName.MaximumSize = new System.Drawing.Size(133, 0);
             this.WindowName.Name = "WindowName";
-            this.WindowName.Size = new System.Drawing.Size(200, 32);
+            this.WindowName.Size = new System.Drawing.Size(133, 23);
             this.WindowName.StateCommon.Padding = new System.Windows.Forms.Padding(-1, 3, -1, 1);
             this.WindowName.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.WindowName.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,12 +85,12 @@
             // 
             // PanelWindowControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.VarItem);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PanelWindowControl";
-            this.Size = new System.Drawing.Size(265, 45);
+            this.Size = new System.Drawing.Size(177, 29);
             ((System.ComponentModel.ISupportInitialize)(this.VarItem)).EndInit();
             this.VarItem.ResumeLayout(false);
             this.VarItem.PerformLayout();

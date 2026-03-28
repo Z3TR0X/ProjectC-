@@ -30,7 +30,7 @@ namespace ProjectC_ {
             pw.axisLimit.Add('l', (0, 0)); // Axe Y gauche
             pw.axisLimit.Add('r', (0, 0)); // Axe Y droit
             pw.axisLimit.Add('b', (0, 0)); // Axe X
-            activeWindow.plots.Add(pw);
+            activeWindow.Item1.plots.Add(pw);
 
             Plots.Add(Plot);
             LayoutPanel.Controls.Add(Plot);
@@ -57,7 +57,7 @@ namespace ProjectC_ {
                     }
                 }
             }
-            activeWindow.plots.RemoveAt(index);
+            activeWindow.Item1.plots.RemoveAt(index);
         }
 
         private void RearrangePlot() {
@@ -152,7 +152,7 @@ namespace ProjectC_ {
                 if (Plots[PlotsNumber].Equals(sender)) {
                     foreach(int VarId in Plots[PlotsNumber].GetVariablePlotted()) {
                         DataFromPlot[VarId].Add(PlotsNumber);
-                        activeWindow.plots[PlotsNumber].dataPloted[VarId] = Plots[PlotsNumber].getPosition(VarId);
+                        activeWindow.Item1.plots[PlotsNumber].dataPloted[VarId] = Plots[PlotsNumber].getPosition(VarId);
                     }
                 }
             }

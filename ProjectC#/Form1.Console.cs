@@ -27,14 +27,32 @@ namespace ProjectC_ {
             consoles.Add((cons, panel));
         }
 
+        private void DeleteConsole(int consoleId) {
+            if (consoles[consoleId] == activeConsole) {
+                MainPage.Controls.Remove(activeConsole.Item1);
+                activeConsole = (null, null);
+                RearrangePlot();
+            }
+
+            FlowLayoutWindow.Controls.Remove(consoles[consoleId].Item2);
+            consoles.RemoveAt(consoleId);
+        }
+
         private void SelectConsole(int index) {
             if (activeConsole.Item1 != null && activeConsole.Item1.id == index) {
                 MainPage.Controls.Remove(activeConsole.Item1);
+                activeConsole.Item2.setSelected(false);
                 activeConsole = (null, null);
-            } else { 
-                if (activeConsole.Item1 != null) MainPage.Controls.Remove(activeConsole.Item1);
+                RearrangePlot();
+            } else {
+                if (activeConsole.Item1 != null) {
+                    MainPage.Controls.Remove(activeConsole.Item1);
+                    activeConsole.Item2.setSelected(false);
+                }
                 activeConsole = consoles[index];
+                activeConsole.Item2.setSelected(true);
                 MainPage.Controls.Add(activeConsole.Item1);
+                RearrangePlot();
             }
         }
     }

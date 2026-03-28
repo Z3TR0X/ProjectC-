@@ -12,6 +12,9 @@ using System.Windows.Forms;
 namespace ProjectC_.UserContent {
     public partial class PanelWindowControl : UserControl {
         public int id;
+        private bool selected;
+
+
         public PanelWindowControl() {
             InitializeComponent();
 
@@ -33,6 +36,19 @@ namespace ProjectC_.UserContent {
 
         public void SetName(string name) { 
             WindowName.Text = name;
+        }
+
+        public void setSelected(bool select) {
+            if (select) {
+                VarItem.StateCommon.Color1 = Color.FromArgb(50, 55, 60);
+            } else {
+                VarItem.StateCommon.Color1 = Color.FromArgb(34, 39, 46);
+            }
+            selected = select;
+        }
+
+        public bool isSelected() {
+            return selected;
         }
 
     }
