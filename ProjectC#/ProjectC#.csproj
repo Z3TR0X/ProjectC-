@@ -257,6 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Image\IconDarkMode.png" />
+    <None Include="Resources\AllowScroll1.png" />
+    <None Include="Resources\AllowScroll.png" />
     <None Include="Resources\AddTime.png" />
     <None Include="Resources\Clear Data.png" />
     <None Include="Resources\Console.png" />

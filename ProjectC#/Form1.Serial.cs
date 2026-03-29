@@ -133,6 +133,8 @@ namespace ProjectC_
                     // On vérifie que la com n'est pas fermé ou en cours de fermeture
                     if (!this.IsDisposed && !this.Disposing) {
                         this.Invoke(new MethodInvoker(delegate {
+                            if (activeConsole != (null, null)) activeConsole.Item1.addData(data);
+
                             //On choisit pas defaut le ; pour séparer les variables
                             string[] values = data.Split(';');
 
