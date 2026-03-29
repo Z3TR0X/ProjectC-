@@ -165,6 +165,22 @@ namespace ProjectC_
                                 }
                             }
 
+                            //Gestion des variables custom
+                            for (int customDataId = 0; customDataId < Datas.Count; customDataId++) {
+                                if (!isDataCutomised[customDataId] || functions[customDataId] == null) continue;
+
+                                
+
+                                object[] parameters = new object[datasParameters[customDataId].Count];
+                                
+                                for (int i = 0; i < datasParameters[customDataId].Count ; i++) {
+                                    parameters[i] = Datas[datasParameters[customDataId][i]][timeY.Count - 1];
+                                }
+
+                                float val = (float)functions[customDataId].Invoke(parameters);
+                                Datas[customDataId].Add(val);
+                                Console.WriteLine(parameters[0].ToString());
+                            }
                         }));
                     }
                 } catch {

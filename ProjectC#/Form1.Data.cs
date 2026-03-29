@@ -1,5 +1,7 @@
-﻿using Krypton.Toolkit;
+﻿using DynamicExpresso;
+using Krypton.Toolkit;
 using NCalc;
+using NCalc.Domain;
 using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,7 +21,12 @@ namespace ProjectC_ {
         List<String> DatasName = new List<string>();
         List<Color> DatasColor = new List<Color>();
         List<bool> isDataCutomised = new List<bool>(); //liste qui permet de savoir si la data i est custom ou non
-        List<String> expressions = new List<string>(); //liste qui repertorie d'expression des varaibles (les variables non custom ont une expression vide)
+        List<String> expressions = new List<string>(); //liste qui repertorie d'expression des varaibles (les variables non custom ont une expression vide
+        List<Lambda> functions = new List<Lambda>(); //liste qui contient les fonctions qui vont nous permettre de calculer les customs vars
+        List<List<int>> datasParameters = new List<List<int>>(); //liste qui contient les id des datas dont on n'a besoin pour calculer la fonction
+        //Par exemple si i est l'index de la data i, on change l'expression de la 3eme variable par data1 + data2, on aura datasParameters[2] = [1, 2];
+
+
         Point PanelVarRightClickPos;
 
         List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
@@ -61,6 +69,8 @@ namespace ProjectC_ {
             DataFromPlot.Add(Datas.Count - 1, new List<int>());
             isDataCutomised.Add(true);
             expressions.Add("helooo");
+            functions.Add(null);
+            datasParameters.Add(null);
 
 
             PanelCustomVar v = new PanelCustomVar();
@@ -121,6 +131,47 @@ namespace ProjectC_ {
             v.setColor(color);
         }
 
+        public void ChangeExpression(int id, String exp) {
+            string pattern = @"\b[a-zA-Z_][a-zA-Z0-9_]*\b(?!\s*\()"; //Partern créé par Gemini, il cherche un mot qui ne commencent pas par (
+
+            var resultats = Regex.Matches(exp, pattern);
+
+            List<string> varNames = resultats.Cast<Match>().Select(m => m.Value).Distinct().ToList(); // Permet d'obtenir la liste des variables que l'utilisateur à tapé dans l'expression
+            List<int> varIndexes = new List<int>();
+
+            bool isVarFind;
+            foreach (string varName in varNames) {
+                isVarFind = false;
+                for (int i = 0; i < DatasName.Count; i++) {
+                    if (varName == DatasName[i]) {
+                        isVarFind = true;
+                        varIndexes.Add(i);
+                    }
+                }
+                if (!isVarFind) {
+                    MessageBox.Show("Aucune variable ne porte\nle nom de : " + varName, "Erreur dans la formule", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if(varIndexes.Count != varNames.Count) {
+                MessageBox.Show("Erreur", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            expressions[id] = exp;
+            datasParameters[id] = varIndexes;
+
+            Interpreter interpreter = new Interpreter();
+
+            List<Parameter> parameters = new List<Parameter>();
+            foreach(string varName in varNames) {
+                parameters.Add(new Parameter(varName, typeof(float)));
+            }
+
+            functions[id] = interpreter.Parse(exp, parameters.ToArray());
+        }
+
         private void AddNewData() {
             String DefaultName = "Data" + (Datas.Count + 1).ToString();
             Datas.Add(new List<float>());
@@ -129,6 +180,8 @@ namespace ProjectC_ {
             DataFromPlot.Add(Datas.Count-1, new List<int>());
             isDataCutomised.Add(false);
             expressions.Add("");
+            functions.Add(null);
+            datasParameters.Add(null);
 
 
             PanelVarControl v = new PanelVarControl();
@@ -206,6 +259,5 @@ namespace ProjectC_ {
                 }
             }
         }
-
     }
 }

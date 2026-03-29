@@ -31,5 +31,11 @@ namespace ProjectC_ {
         protected override void ColorChooser_Click(object sender, EventArgs e) {
             mainForm.BeginPickColor(true);
         }
+
+        private void ExpressionEnterPress(object sender, KeyPressEventArgs e) {
+            if(e.KeyChar == (char)Keys.Enter) {
+                mainForm.ChangeExpression(this.dataId, ExpressionText.Text);
+            }
+        }
     }
 }

@@ -150,6 +150,7 @@
             this.ExpressionText.StateCommon.Border.Rounding = 3F;
             this.ExpressionText.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
             this.ExpressionText.TabIndex = 11;
+            this.ExpressionText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ExpressionEnterPress);
             // 
             // MenuCustomVar
             // 
