@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -140,20 +141,27 @@ namespace ProjectC_
 
 
                             //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
-                            while (values.Length > Datas.Count) {
+                            while (values.Length > Datas.Count - CustomsDatasPanels.Count) {
                                 AddNewData();
                             }
 
                             double timer = millis.ElapsedMilliseconds/1000.0;
                             timeY.Add(timer);
 
-                            for (int i = 0; i < values.Length; i++) {
-                                float val = float.Parse(values[i], CultureInfo.InvariantCulture.NumberFormat);
+                            int nextValue = 0;
+                            for (int i = 0; i < Datas.Count ; i++) {
+                                if (isDataCutomised[i]) continue;
+                                float val = float.Parse(values[nextValue], CultureInfo.InvariantCulture.NumberFormat);
                                 Datas[i].Add(val);
 
-                                foreach (int plotNb in DataFromPlot[i]) {
-                                    Debug.WriteLine(i.ToString() + "  " + plotNb.ToString());
-                                    Plots[plotNb].AddDataToPlott(i, timer, val);
+                                foreach (int plotNb in DataFromPlot[nextValue]) {
+                                    Plots[plotNb].AddDataToPlott(nextValue, timer, val);
+                                }
+
+                                nextValue++;
+
+                                if (nextValue >= values.Length) {
+                                    break;
                                 }
                             }
 

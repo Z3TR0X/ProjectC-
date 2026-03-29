@@ -15,10 +15,16 @@ namespace ProjectC_ {
 
     public partial class PanelVarMenu : UserControl {
 
-        int dataId;
-        Form1 mainForm;
+        protected int dataId;
+        protected Form1 mainForm;
 
-        public PanelVarMenu(Form1 mainForm) {
+        public PanelVarMenu() {
+            InitializeComponent();
+            KryptonButtonCorrection(this.Controls);
+            this.DoubleBuffered = true;
+        }
+
+        public PanelVarMenu(Form1 mainForm) : this() {
             InitializeComponent();
             KryptonButtonCorrection(this.Controls);
             this.mainForm = mainForm;
@@ -51,8 +57,8 @@ namespace ProjectC_ {
             }
         }
 
-        private void ColorChooser_Click(object sender, EventArgs e) {
-            mainForm.BeginPickColor();
+        protected virtual void ColorChooser_Click(object sender, EventArgs e) {
+            mainForm.BeginPickColor(false);
         }
 
         public void setColor(Color color){

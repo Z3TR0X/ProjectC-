@@ -1,9 +1,10 @@
-﻿using ProjectC_.UserContent;
+﻿using Krypton.Toolkit;
+using NCalc;
+using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using NCalc;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -16,21 +17,82 @@ namespace ProjectC_ {
         List<Double> timeY = new List<Double>();
         List<String> DatasName = new List<string>();
         List<Color> DatasColor = new List<Color>();
-        List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
+        List<bool> isDataCutomised = new List<bool>(); //liste qui permet de savoir si la data i est custom ou non
+        List<String> expressions = new List<string>(); //liste qui repertorie d'expression des varaibles (les variables non custom ont une expression vide)
         Point PanelVarRightClickPos;
 
+        List<PanelVarControl> DatasPanels = new List<PanelVarControl>();
+        List<PanelCustomVar> CustomsDatasPanels = new List<PanelCustomVar>();
+
+
+        KryptonContextMenu menuData;
+        private void FlowVarPanel_MouseDown(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+
+            menuData.Show(Cursor.Position);
+        }
+
+        private void CreateMenuCustomData() {
+            menuData = new KryptonContextMenu();
+
+            menuData.PaletteMode = Krypton.Toolkit.PaletteMode.Custom;
+            menuData.LocalCustomPalette = CustomPalette;
+
+            KryptonContextMenuItems blocItems = new KryptonContextMenuItems();
+
+            KryptonContextMenuItem addCustomData = new KryptonContextMenuItem();
+            addCustomData.Image = Properties.Resources.AddCustomData;
+            addCustomData.Text = "Ajouter une donnée personnalisée";
+            addCustomData.Click += (s, ev) => {
+                AddNewCustomData();
+            };
+
+
+            blocItems.Items.Add(addCustomData);
+
+            menuData.Items.Add(blocItems);
+        }
+
+        private void AddNewCustomData() {
+            String DefaultName = "Custom Data" + (Datas.Count + 1).ToString();
+            Datas.Add(new List<float>());
+            DatasColor.Add(Color.CadetBlue);
+            DatasName.Add(DefaultName);
+            DataFromPlot.Add(Datas.Count - 1, new List<int>());
+            isDataCutomised.Add(true);
+            expressions.Add("helooo");
+
+
+            PanelCustomVar v = new PanelCustomVar();
+            v.setColor(Color.CadetBlue);
+            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+            //v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+            //v.GiveFeedback += DragFeedback;
+            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+            CustomsDatasPanels.Add(v);
+            FlowVarPanel.Controls.Add(v);
+        }
 
         private void OnPanelVarRightClic(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
+                PanelVarMenu menuInfo = menuVar;
+                ToolStripDropDown menu = menuClicDroit;
+
                 PanelVarControl panel = (PanelVarControl)sender;
                 int id = panel.getVarIdAssociated() - 1;
 
-                menuVar.setDataId(id);
-                menuVar.setColor(DatasColor[id]);
-                menuVar.setName(DatasName[id]);
-                PanelVarRightClickPos = Cursor.Position;
-                menuClicDroit.Show(PanelVarRightClickPos);
+                if (sender.GetType() == typeof(PanelCustomVar)) {
+                    menu = CustomMenuClicDroit;
+                    MenuCustomVar.SetExpression(expressions[id]);
+                    menuInfo = MenuCustomVar;
 
+                }
+                
+                menuInfo.setDataId(id);
+                menuInfo.setColor(DatasColor[id]);
+                menuInfo.setName(DatasName[id]);
+                PanelVarRightClickPos = Cursor.Position;
+                menu.Show(PanelVarRightClickPos);
             }
         }
 
@@ -59,14 +121,15 @@ namespace ProjectC_ {
             v.setColor(color);
         }
 
-
         private void AddNewData() {
             String DefaultName = "Data" + (Datas.Count + 1).ToString();
             Datas.Add(new List<float>());
             DatasColor.Add(Color.CadetBlue);
             DatasName.Add(DefaultName);
             DataFromPlot.Add(Datas.Count-1, new List<int>());
-            
+            isDataCutomised.Add(false);
+            expressions.Add("");
+
 
             PanelVarControl v = new PanelVarControl();
             v.setColor(Color.CadetBlue);

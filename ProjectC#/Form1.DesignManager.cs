@@ -98,6 +98,13 @@ namespace ProjectC_ {
                 });
 
             }
+
+            menuData.Dispose();
+            menuClicDroit.Dispose();
+            menuContentColor.Dispose();
+            menuColor.Dispose();
+            menuPlot.Dispose();
+            menuVar.Dispose();
             this.Close();
         }
 

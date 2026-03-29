@@ -1,5 +1,6 @@
 ﻿using Krypton.Toolkit;
 using ProjectC_.VarPanel;
+using ScottPlot.Finance;
 using ScottPlot.Triangulation;
 using ScottPlot.WinForms;
 using System;
@@ -134,6 +135,28 @@ namespace ProjectC_
 
         }
 
+        private MenuCustomVar MenuCustomVar;
+        private ToolStripDropDown CustomMenuClicDroit;
+        private void createCustomPanelRightClicMenu() {
+            MenuCustomVar = new MenuCustomVar(this);
+
+            ToolStripControlHost host = new ToolStripControlHost(MenuCustomVar);
+            host.AutoSize = false;
+            host.Size = MenuCustomVar.Size + new Size(1, 1);
+            host.Margin = Padding.Empty;
+            host.Padding = Padding.Empty;
+            host.BackColor = Color.DarkGray;
+
+            CustomMenuClicDroit = new ToolStripDropDown();
+            CustomMenuClicDroit.Padding = Padding.Empty;
+            CustomMenuClicDroit.Margin = Padding.Empty;
+            CustomMenuClicDroit.DropShadowEnabled = false;
+            CustomMenuClicDroit.BackColor = Color.FromArgb(50, 50, 50);
+            CustomMenuClicDroit.Size = menuVar.Size + new Size(1, 1);
+
+            CustomMenuClicDroit.Items.Add(host);
+        }
+
         private ColorPicker menuContentColor;
         private ToolStripDropDown menuColor;
 
@@ -154,20 +177,27 @@ namespace ProjectC_
             menuColor.BackColor = Color.FromArgb(50, 50, 50);
             menuColor.Size = menuContentColor.Size + new Size(1, 1);
             menuColor.Closing += (sender, e) => {
-                menuClicDroit.AutoClose = true;
-                menuClicDroit.Close();
-                menuClicDroit.SuspendLayout();
-                menuClicDroit.Show(PanelVarRightClickPos);
-                menuClicDroit.ResumeLayout(true);
+                ToolStripDropDown menu = isOpennedMenuCustom ? CustomMenuClicDroit : menuClicDroit;
+
+                menu.AutoClose = true;
+                menu.Close();
+                menu.Show(PanelVarRightClickPos);
             };
            
             menuColor.Items.Add(host);
         }
 
-        public void BeginPickColor() {
-            if (menuClicDroit.Visible) {
+        bool isOpennedMenuCustom = false;
+        public void BeginPickColor(bool isCustom) { //La variable booléenne permet de savoir si le menu ouvert est custom ou non
+            if (menuClicDroit.Visible || CustomMenuClicDroit.Visible) {
+                if (isCustom) {
+                    CustomMenuClicDroit.AutoClose = false;
+                    isOpennedMenuCustom = true;
+                } else {
+                    menuClicDroit.AutoClose = false;
+                    isOpennedMenuCustom = false;
+                }
                 isColorPickerOpening = true;
-                menuClicDroit.AutoClose = false;
 
                 menuColor.Show(Cursor.Position);
             }

@@ -52,12 +52,10 @@
             this.BaudSelectorMargin = new System.Windows.Forms.Panel();
             this.BaudSelector = new System.Windows.Forms.Panel();
             this.BaudText = new System.Windows.Forms.Label();
-            this.BaudExpand = new System.Windows.Forms.Button();
             this.BaudLabel = new System.Windows.Forms.TextBox();
             this.SerialSelectorMargin = new System.Windows.Forms.Panel();
             this.SerialSelector = new System.Windows.Forms.Panel();
             this.SerialText = new System.Windows.Forms.Label();
-            this.SerialExpand = new System.Windows.Forms.Button();
             this.SerialLabel = new System.Windows.Forms.TextBox();
             this.ButtonConnect = new System.Windows.Forms.Button();
             this.OptionPanel = new System.Windows.Forms.Panel();
@@ -77,13 +75,15 @@
             this.MenuSerialPort = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuSpeed = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TopBar = new Krypton.Toolkit.KryptonPanel();
+            this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
+            this.CustomPalette = new Krypton.Toolkit.KryptonCustomPaletteBase(this.components);
+            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
+            this.BaudExpand = new System.Windows.Forms.Button();
+            this.SerialExpand = new System.Windows.Forms.Button();
             this.button_minimize = new System.Windows.Forms.Button();
             this.button_maximize = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.DataPanelTimer = new System.Windows.Forms.Timer(this.components);
-            this.CustomPalette = new Krypton.Toolkit.KryptonCustomPaletteBase(this.components);
-            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
             this.LeftSeparator.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -183,6 +183,7 @@
             this.FlowVarPanel.Name = "FlowVarPanel";
             this.FlowVarPanel.Size = new System.Drawing.Size(200, 137);
             this.FlowVarPanel.TabIndex = 2;
+            this.FlowVarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FlowVarPanel_MouseDown);
             // 
             // MenuSeparator
             // 
@@ -350,21 +351,6 @@
             this.BaudText.Text = "115200";
             this.BaudText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BaudExpand
-            // 
-            this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.BaudExpand.FlatAppearance.BorderSize = 0;
-            this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.BaudExpand.Location = new System.Drawing.Point(102, 0);
-            this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.BaudExpand.Name = "BaudExpand";
-            this.BaudExpand.Size = new System.Drawing.Size(26, 26);
-            this.BaudExpand.TabIndex = 1;
-            this.BaudExpand.UseVisualStyleBackColor = true;
-            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
-            // 
             // BaudLabel
             // 
             this.BaudLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
@@ -373,7 +359,7 @@
             this.BaudLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.BaudLabel.Location = new System.Drawing.Point(10, 70);
             this.BaudLabel.Name = "BaudLabel";
-            this.BaudLabel.Size = new System.Drawing.Size(150, 28);
+            this.BaudLabel.Size = new System.Drawing.Size(150, 19);
             this.BaudLabel.TabIndex = 3;
             this.BaudLabel.Text = "Vitesse (baud/s)";
             // 
@@ -413,21 +399,6 @@
             this.SerialText.Text = "COM1";
             this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // SerialExpand
-            // 
-            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-            this.SerialExpand.FlatAppearance.BorderSize = 0;
-            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
-            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
-            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
-            this.SerialExpand.Name = "SerialExpand";
-            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
-            this.SerialExpand.TabIndex = 1;
-            this.SerialExpand.UseVisualStyleBackColor = true;
-            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
-            // 
             // SerialLabel
             // 
             this.SerialLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
@@ -436,7 +407,7 @@
             this.SerialLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.SerialLabel.Location = new System.Drawing.Point(10, 5);
             this.SerialLabel.Name = "SerialLabel";
-            this.SerialLabel.Size = new System.Drawing.Size(112, 28);
+            this.SerialLabel.Size = new System.Drawing.Size(112, 19);
             this.SerialLabel.TabIndex = 2;
             this.SerialLabel.Text = "Port série :";
             // 
@@ -509,7 +480,7 @@
             this.DataLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.DataLabel.Location = new System.Drawing.Point(8, 75);
             this.DataLabel.Name = "DataLabel";
-            this.DataLabel.Size = new System.Drawing.Size(91, 25);
+            this.DataLabel.Size = new System.Drawing.Size(65, 17);
             this.DataLabel.TabIndex = 7;
             this.DataLabel.Text = "Données";
             // 
@@ -520,7 +491,7 @@
             this.AquisitionLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.AquisitionLabel.Location = new System.Drawing.Point(8, 135);
             this.AquisitionLabel.Name = "AquisitionLabel";
-            this.AquisitionLabel.Size = new System.Drawing.Size(97, 25);
+            this.AquisitionLabel.Size = new System.Drawing.Size(69, 17);
             this.AquisitionLabel.TabIndex = 0;
             this.AquisitionLabel.Text = "Aquisition";
             // 
@@ -531,7 +502,7 @@
             this.ConfigurationLabel.ForeColor = System.Drawing.Color.DarkGray;
             this.ConfigurationLabel.Location = new System.Drawing.Point(8, 15);
             this.ConfigurationLabel.Name = "ConfigurationLabel";
-            this.ConfigurationLabel.Size = new System.Drawing.Size(128, 25);
+            this.ConfigurationLabel.Size = new System.Drawing.Size(92, 17);
             this.ConfigurationLabel.TabIndex = 2;
             this.ConfigurationLabel.Text = "Configuration";
             // 
@@ -752,6 +723,88 @@
             this.TopBar.TabIndex = 2;
             this.TopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragTopBar);
             // 
+            // CustomPalette
+            // 
+            this.CustomPalette.BaseRenderMode = Krypton.Toolkit.RendererMode.Microsoft365;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Draw = Krypton.Toolkit.InheritBool.False;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.None;
+            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Width = 0;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color2 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Rounding = 5F;
+            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Width = 2;
+            this.CustomPalette.ContextMenu.StateCommon.HasShadow = false;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.Color1 = System.Drawing.Color.Silver;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.Color1 = System.Drawing.Color.Silver;
+            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemImage.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemShortcutText.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemSplit.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextAlternate.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.LongText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color2 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.ContextMenu.StateNormal.ItemImage.Back.Color1 = System.Drawing.Color.Red;
+            this.CustomPalette.ContextMenu.StateNormal.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
+            this.CustomPalette.ToolMenuStatus.Menu.MenuBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.CustomPalette.UseThemeFormChromeBorderWidth = Krypton.Toolkit.InheritBool.False;
+            // 
+            // kryptonManager1
+            // 
+            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkModeAlternate;
+            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.LessDetails = "L&ess Details...";
+            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.MoreDetails = "&More Details...";
+            // 
+            // BaudExpand
+            // 
+            this.BaudExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.BaudExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.BaudExpand.FlatAppearance.BorderSize = 0;
+            this.BaudExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BaudExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.BaudExpand.Location = new System.Drawing.Point(102, 0);
+            this.BaudExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.BaudExpand.Name = "BaudExpand";
+            this.BaudExpand.Size = new System.Drawing.Size(26, 26);
+            this.BaudExpand.TabIndex = 1;
+            this.BaudExpand.UseVisualStyleBackColor = true;
+            this.BaudExpand.Click += new System.EventHandler(this.BaudExpand_Click);
+            // 
+            // SerialExpand
+            // 
+            this.SerialExpand.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SerialExpand.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.SerialExpand.FlatAppearance.BorderSize = 0;
+            this.SerialExpand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SerialExpand.Image = global::ProjectC_.Properties.Resources.ExpandArrow;
+            this.SerialExpand.Location = new System.Drawing.Point(102, 0);
+            this.SerialExpand.Margin = new System.Windows.Forms.Padding(0);
+            this.SerialExpand.Name = "SerialExpand";
+            this.SerialExpand.Size = new System.Drawing.Size(26, 26);
+            this.SerialExpand.TabIndex = 1;
+            this.SerialExpand.UseVisualStyleBackColor = true;
+            this.SerialExpand.Click += new System.EventHandler(this.SerialExpand_Click);
+            // 
             // button_minimize
             // 
             this.button_minimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(39)))), ((int)(((byte)(46)))));
@@ -817,58 +870,6 @@
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 1;
             this.logo.TabStop = false;
-            // 
-            // CustomPalette
-            // 
-            this.CustomPalette.BaseRenderMode = Krypton.Toolkit.RendererMode.Microsoft365;
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Draw = Krypton.Toolkit.InheritBool.False;
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.DrawBorders = Krypton.Toolkit.PaletteDrawBorders.None;
-            this.CustomPalette.ContextMenu.StateCommon.ControlInner.Border.Width = 0;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Color2 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Rounding = 5F;
-            this.CustomPalette.ContextMenu.StateCommon.ControlOuter.Border.Width = 2;
-            this.CustomPalette.ContextMenu.StateCommon.HasShadow = false;
-            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.Color1 = System.Drawing.Color.Silver;
-            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.Color1 = System.Drawing.Color.Silver;
-            this.CustomPalette.ContextMenu.StateCommon.ItemHighlight.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ItemImage.Back.Color1 = System.Drawing.Color.Red;
-            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ItemImageColumn.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.ItemShortcutText.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ItemSplit.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextAlternate.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.LongText.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Color2 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.CustomPalette.ContextMenu.StateCommon.ItemTextStandard.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomPalette.ContextMenu.StateCommon.Separator.Back.Color1 = System.Drawing.Color.Red;
-            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateCommon.Separator.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.ContextMenu.StateNormal.ItemImage.Back.Color1 = System.Drawing.Color.Red;
-            this.CustomPalette.ContextMenu.StateNormal.ItemTextStandard.ShortText.Color1 = System.Drawing.Color.DarkGray;
-            this.CustomPalette.ToolMenuStatus.Menu.MenuBorder = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.CustomPalette.UseThemeFormChromeBorderWidth = Krypton.Toolkit.InheritBool.False;
-            // 
-            // kryptonManager1
-            // 
-            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkModeAlternate;
-            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.LessDetails = "L&ess Details...";
-            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.MoreDetails = "&More Details...";
             // 
             // Form1
             // 

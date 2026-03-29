@@ -50,7 +50,9 @@ namespace ProjectC_
             CreateNewWindow();
 
             createPanelRightClicMenu();
+            createCustomPanelRightClicMenu();
             createColorPickerMenu();
+            CreateMenuCustomData();
 
             CreateRightClicMenu();
 
@@ -70,7 +72,7 @@ namespace ProjectC_
                     KryptonButtonCorrection(control.Controls);
                 }
             }
-        }
+        }      
     }
 }
 
