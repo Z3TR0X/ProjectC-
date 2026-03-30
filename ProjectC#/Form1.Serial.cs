@@ -124,76 +124,72 @@ namespace ProjectC_
             OptionPanel.Enabled = false;
         }
 
+
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) {
             if (!SerialConn.IsOpen) return;
-               try {
-                    //Permet de vider le buffer du serial -> ligne necessaire meme si on fait rien avec les données
-                    string data = SerialConn.ReadLine().Trim();
+            try {
+                //Permet de vider le buffer du serial -> ligne necessaire meme si on fait rien avec les données
+                string data = SerialConn.ReadLine().Trim();
 
-                    if (pauseSerial) return;
+                if (pauseSerial) return;
 
-                    // On vérifie que la com n'est pas fermé ou en cours de fermeture
-                    if (!this.IsDisposed && !this.Disposing) {
-                        this.Invoke(new MethodInvoker(delegate {
-                            if (activeConsole != (null, null)) activeConsole.Item1.addData(data);
+                // On vérifie que la com n'est pas fermé ou en cours de fermeture
+                if (!this.IsDisposed && !this.Disposing) {
+                    this.Invoke(new MethodInvoker(delegate {
+                        if (activeConsole != (null, null)) activeConsole.Item1.addData(data);
 
-                            //On choisit pas defaut le ; pour séparer les variables
-                            string[] values = data.Split(';');
+                        //On choisit pas defaut le ; pour séparer les variables
+                        string[] values = data.Split(';');
 
 
-                            //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
-                            while (values.Length > Datas.Count - CustomsDatasPanels.Count) {
-                                AddNewData();
+                        //Etre sur que chaque data reçue puisse bien aller dans une variables à plott
+                        while (values.Length > Datas.Count - CustomsDatasPanels.Count) {
+                            AddNewData();
+                        }
+
+                        double timer = millis.ElapsedMilliseconds / 1000.0;
+                        timeY.Add(timer);
+
+                        int nextValue = 0;
+                        for (int i = 0; i < Datas.Count; i++) {
+                            if (isDataCutomised[i]) continue;
+
+
+                            float val = float.Parse(values[nextValue], CultureInfo.InvariantCulture.NumberFormat);
+                            Datas[i].Add(val);
+
+                            foreach (int plotNb in DataFromPlot[i]) {
+                                Plots[plotNb].AddDataToPlott(i, timer, val);
                             }
 
-                            double timer = millis.ElapsedMilliseconds/1000.0;
-                            timeY.Add(timer);
 
-                            int nextValue = 0;
-                            for (int i = 0; i < Datas.Count ; i++) {
-                                if (isDataCutomised[i]) continue;
+                            nextValue++;
+                        }
 
-
-                                float val = float.Parse(values[nextValue], CultureInfo.InvariantCulture.NumberFormat);
-                                Datas[i].Add(val);
-
-                                foreach (int plotNb in DataFromPlot[i]) {
-                                    Plots[plotNb].AddDataToPlott(i, timer, val);
-                                }
+                        //Gestion des variables custom
+                        for (int customDataId = 0; customDataId < Datas.Count; customDataId++) {
+                            if (!isDataCutomised[customDataId] || functions[customDataId] == null) continue;
 
 
-                                nextValue++;
+
+                            object[] parameters = new object[datasParameters[customDataId].Count];
+
+                            for (int i = 0; i < datasParameters[customDataId].Count; i++) {
+                                parameters[i] = Datas[datasParameters[customDataId][i]][timeY.Count - 1];
                             }
 
-                            //Gestion des variables custom
-                            for (int customDataId = 0; customDataId < Datas.Count; customDataId++) {
-                                if (!isDataCutomised[customDataId] || functions[customDataId] == null) continue;
+                            float val = (float)functions[customDataId].Invoke(parameters);
+                            Datas[customDataId].Add(val);
 
-                                
-
-                                object[] parameters = new object[datasParameters[customDataId].Count];
-                                
-                                for (int i = 0; i < datasParameters[customDataId].Count ; i++) {
-                                    parameters[i] = Datas[datasParameters[customDataId][i]][timeY.Count - 1];
-                                }
-
-                                float val = (float)functions[customDataId].Invoke(parameters);
-                                Datas[customDataId].Add(val);
-
-                                foreach (int plotNb in DataFromPlot[customDataId]) {
-                                    Plots[plotNb].AddDataToPlott(customDataId, timer, val);
-                                }
-
+                            foreach (int plotNb in DataFromPlot[customDataId]) {
+                                Plots[plotNb].AddDataToPlott(customDataId, timer, val);
                             }
-                        }));
-                    }
-                } catch {
-                    //On peut gerer les erreurs ici si yen a.
+                        }
+                    }));
                 }
-
-
-            
-
+            } catch {
+                //On peut gerer les erreurs ici si yen a.
+            }
         }
 
         private void PausContButton_Click(object sender, EventArgs e) {

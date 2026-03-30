@@ -53,7 +53,11 @@ namespace ProjectC_ {
                 panelToBeActive.setSelected(true);
             }
 
+
             FlowLayoutWindow.Controls.Remove(windows[windowId].Item2);
+            for (int i = windowId + 1; i < windows.Count ; i++) {
+                windows[i].Item2.id = i-1;
+            }
             windows.RemoveAt(windowId);
         }
 

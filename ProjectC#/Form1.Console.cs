@@ -35,6 +35,10 @@ namespace ProjectC_ {
             }
 
             FlowLayoutWindow.Controls.Remove(consoles[consoleId].Item2);
+            for(int i = consoleId+1; i < consoles.Count; i++) {
+                consoles[i].Item2.id = i-1;
+                consoles[i].Item1.id = i - 1;
+            }
             consoles.RemoveAt(consoleId);
         }
 
