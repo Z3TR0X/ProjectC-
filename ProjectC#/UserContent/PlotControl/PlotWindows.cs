@@ -86,7 +86,6 @@ namespace ProjectC_.UserContent {
         public void AddDataToPlott(int varId, double x, double y) {
             if (!loggers.ContainsKey(varId)) return;
             loggers[varId].Add(x, y);
-            //Debug.WriteLine("var id: " + varId.ToString());
         }
 
         private void Plot_DragDrop(object sender, DragEventArgs e) {

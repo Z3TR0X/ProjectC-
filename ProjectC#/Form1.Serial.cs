@@ -1,4 +1,5 @@
-﻿using ProjectC_.UserContent;
+﻿using OpenTK.Audio.OpenAL;
+using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -151,18 +152,17 @@ namespace ProjectC_
                             int nextValue = 0;
                             for (int i = 0; i < Datas.Count ; i++) {
                                 if (isDataCutomised[i]) continue;
+
+
                                 float val = float.Parse(values[nextValue], CultureInfo.InvariantCulture.NumberFormat);
                                 Datas[i].Add(val);
 
-                                foreach (int plotNb in DataFromPlot[nextValue]) {
-                                    Plots[plotNb].AddDataToPlott(nextValue, timer, val);
+                                foreach (int plotNb in DataFromPlot[i]) {
+                                    Plots[plotNb].AddDataToPlott(i, timer, val);
                                 }
+
 
                                 nextValue++;
-
-                                if (nextValue >= values.Length) {
-                                    break;
-                                }
                             }
 
                             //Gestion des variables custom
@@ -179,7 +179,11 @@ namespace ProjectC_
 
                                 float val = (float)functions[customDataId].Invoke(parameters);
                                 Datas[customDataId].Add(val);
-                                Console.WriteLine(parameters[0].ToString());
+
+                                foreach (int plotNb in DataFromPlot[customDataId]) {
+                                    Plots[plotNb].AddDataToPlott(customDataId, timer, val);
+                                }
+
                             }
                         }));
                     }

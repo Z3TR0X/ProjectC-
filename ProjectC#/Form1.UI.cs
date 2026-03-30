@@ -152,7 +152,7 @@ namespace ProjectC_
             CustomMenuClicDroit.Margin = Padding.Empty;
             CustomMenuClicDroit.DropShadowEnabled = false;
             CustomMenuClicDroit.BackColor = Color.FromArgb(50, 50, 50);
-            CustomMenuClicDroit.Size = menuVar.Size + new Size(1, 1);
+            CustomMenuClicDroit.Size = MenuCustomVar.Size + new Size(1, 1);
 
             CustomMenuClicDroit.Items.Add(host);
         }

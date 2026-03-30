@@ -15,7 +15,7 @@ namespace ProjectC_ {
 
     public partial class Form1 : Form {
         List<PlotWindows> Plots = new List<PlotWindows>();
-        Dictionary<int, List<int>> DataFromPlot = new Dictionary<int, List<int>>(); //Liste qui associe a chaque variable les plots qui la dessine
+        public Dictionary<int, List<int>> DataFromPlot = new Dictionary<int, List<int>>(); //Liste qui associe a chaque variable les plots qui la dessine
         
         private void AddNewPlot() {
             if (Plots.Count >= 4) return;

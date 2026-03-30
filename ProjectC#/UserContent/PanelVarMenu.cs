@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ProjectC_ {  
 
@@ -18,13 +19,7 @@ namespace ProjectC_ {
         protected int dataId;
         protected Form1 mainForm;
 
-        public PanelVarMenu() {
-            InitializeComponent();
-            KryptonButtonCorrection(this.Controls);
-            this.DoubleBuffered = true;
-        }
-
-        public PanelVarMenu(Form1 mainForm) : this() {
+        public PanelVarMenu(Form1 mainForm){
             InitializeComponent();
             KryptonButtonCorrection(this.Controls);
             this.mainForm = mainForm;
@@ -54,6 +49,7 @@ namespace ProjectC_ {
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e) {
             if(e.KeyChar == (char) Keys.Enter) {
                 mainForm.ChangeVarName(dataId, NameTextBox.Text);
+                Console.WriteLine(NameTextBox.Text);
             }
         }
 

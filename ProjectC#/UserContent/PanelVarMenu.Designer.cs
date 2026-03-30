@@ -46,20 +46,20 @@
             this.MainMenu.Controls.Add(this.EditNameLabel);
             this.MainMenu.Controls.Add(this.EditColorLabel);
             this.MainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainMenu.Location = new System.Drawing.Point(2, 2);
+            this.MainMenu.Location = new System.Drawing.Point(3, 3);
+            this.MainMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Padding = new System.Windows.Forms.Padding(3);
-            this.MainMenu.Size = new System.Drawing.Size(137, 105);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MainMenu.Size = new System.Drawing.Size(206, 162);
             this.MainMenu.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.MainMenu.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.MainMenu.TabIndex = 0;
             // 
             // EmptyButton
             // 
-            this.EmptyButton.Location = new System.Drawing.Point(5, 57);
-            this.EmptyButton.Margin = new System.Windows.Forms.Padding(2);
+            this.EmptyButton.Location = new System.Drawing.Point(8, 88);
             this.EmptyButton.Name = "EmptyButton";
-            this.EmptyButton.Size = new System.Drawing.Size(127, 21);
+            this.EmptyButton.Size = new System.Drawing.Size(190, 32);
             this.EmptyButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.EmptyButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.EmptyButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -80,10 +80,9 @@
             // 
             // FreePlotButton
             // 
-            this.FreePlotButton.Location = new System.Drawing.Point(5, 82);
-            this.FreePlotButton.Margin = new System.Windows.Forms.Padding(2);
+            this.FreePlotButton.Location = new System.Drawing.Point(8, 126);
             this.FreePlotButton.Name = "FreePlotButton";
-            this.FreePlotButton.Size = new System.Drawing.Size(127, 20);
+            this.FreePlotButton.Size = new System.Drawing.Size(190, 31);
             this.FreePlotButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.FreePlotButton.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.FreePlotButton.StateCommon.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -104,10 +103,9 @@
             // 
             // ColorChooser
             // 
-            this.ColorChooser.Location = new System.Drawing.Point(107, 29);
-            this.ColorChooser.Margin = new System.Windows.Forms.Padding(2);
+            this.ColorChooser.Location = new System.Drawing.Point(160, 45);
             this.ColorChooser.Name = "ColorChooser";
-            this.ColorChooser.Size = new System.Drawing.Size(15, 15);
+            this.ColorChooser.Size = new System.Drawing.Size(22, 23);
             this.ColorChooser.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ColorChooser.StateCommon.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.ColorChooser.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -122,34 +120,32 @@
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(45, 3);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.NameTextBox.Location = new System.Drawing.Point(68, 5);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(81, 25);
+            this.NameTextBox.Size = new System.Drawing.Size(122, 34);
             this.NameTextBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.NameTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.NameTextBox.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.NameTextBox.StateCommon.Border.Rounding = 3F;
             this.NameTextBox.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
             this.NameTextBox.TabIndex = 6;
+            this.NameTextBox.Text = "coucou";
             this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
             // Separator
             // 
-            this.Separator.Location = new System.Drawing.Point(5, 49);
-            this.Separator.Margin = new System.Windows.Forms.Padding(2);
+            this.Separator.Location = new System.Drawing.Point(8, 75);
             this.Separator.Name = "Separator";
-            this.Separator.Size = new System.Drawing.Size(127, 1);
+            this.Separator.Size = new System.Drawing.Size(190, 2);
             this.Separator.StateCommon.Color1 = System.Drawing.Color.White;
             this.Separator.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.Separator.TabIndex = 4;
             // 
             // EditNameLabel
             // 
-            this.EditNameLabel.Location = new System.Drawing.Point(2, 3);
-            this.EditNameLabel.Margin = new System.Windows.Forms.Padding(2);
+            this.EditNameLabel.Location = new System.Drawing.Point(3, 5);
             this.EditNameLabel.Name = "EditNameLabel";
-            this.EditNameLabel.Size = new System.Drawing.Size(87, 22);
+            this.EditNameLabel.Size = new System.Drawing.Size(130, 48);
             this.EditNameLabel.StateCommon.Padding = new System.Windows.Forms.Padding(2);
             this.EditNameLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.EditNameLabel.TabIndex = 0;
@@ -157,10 +153,9 @@
             // 
             // EditColorLabel
             // 
-            this.EditColorLabel.Location = new System.Drawing.Point(2, 26);
-            this.EditColorLabel.Margin = new System.Windows.Forms.Padding(2);
+            this.EditColorLabel.Location = new System.Drawing.Point(3, 40);
             this.EditColorLabel.Name = "EditColorLabel";
-            this.EditColorLabel.Size = new System.Drawing.Size(105, 22);
+            this.EditColorLabel.Size = new System.Drawing.Size(232, 48);
             this.EditColorLabel.StateCommon.Padding = new System.Windows.Forms.Padding(2);
             this.EditColorLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.EditColorLabel.TabIndex = 2;
@@ -168,14 +163,13 @@
             // 
             // PanelVarMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.Controls.Add(this.MainMenu);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PanelVarMenu";
-            this.Padding = new System.Windows.Forms.Padding(2);
-            this.Size = new System.Drawing.Size(141, 109);
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(212, 168);
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).EndInit();
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
@@ -191,7 +185,7 @@
         protected Krypton.Toolkit.KryptonButton FreePlotButton;
         protected Krypton.Toolkit.KryptonLabel EditNameLabel;
         protected Krypton.Toolkit.KryptonPanel MainMenu;
-        protected Krypton.Toolkit.KryptonTextBox NameTextBox;
         protected Krypton.Toolkit.KryptonButton ColorChooser;
+        protected Krypton.Toolkit.KryptonTextBox NameTextBox;
     }
 }

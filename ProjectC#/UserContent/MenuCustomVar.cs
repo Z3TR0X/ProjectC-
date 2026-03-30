@@ -14,8 +14,7 @@ namespace ProjectC_ {
 
         private string expression;
 
-        public MenuCustomVar(Form1 mainForm) {
-            this.mainForm = mainForm;
+        public MenuCustomVar(Form1 mainForm) : base(mainForm) {
             InitializeComponent();
         }
 

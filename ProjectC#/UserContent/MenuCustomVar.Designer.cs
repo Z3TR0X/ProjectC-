@@ -33,13 +33,15 @@
             // 
             // Separator
             // 
-            this.Separator.Location = new System.Drawing.Point(5, 99);
+            this.Separator.Location = new System.Drawing.Point(8, 152);
+            this.Separator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Separator.StateCommon.Color1 = System.Drawing.Color.White;
             this.Separator.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             // 
             // EmptyButton
             // 
-            this.EmptyButton.Location = new System.Drawing.Point(5, 108);
+            this.EmptyButton.Location = new System.Drawing.Point(8, 166);
+            this.EmptyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EmptyButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.EmptyButton.OverrideDefault.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.EmptyButton.OverrideDefault.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -63,7 +65,8 @@
             // 
             // FreePlotButton
             // 
-            this.FreePlotButton.Location = new System.Drawing.Point(5, 133);
+            this.FreePlotButton.Location = new System.Drawing.Point(8, 205);
+            this.FreePlotButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FreePlotButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.FreePlotButton.OverrideDefault.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
             this.FreePlotButton.OverrideDefault.Border.Color1 = System.Drawing.Color.DarkGray;
@@ -87,6 +90,7 @@
             // 
             // EditNameLabel
             // 
+            this.EditNameLabel.Location = new System.Drawing.Point(0, 0);
             this.EditNameLabel.StateCommon.Padding = new System.Windows.Forms.Padding(2);
             this.EditNameLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.EditNameLabel.Values.Text = "Nom :";
@@ -95,25 +99,20 @@
             // 
             this.MainMenu.Controls.Add(this.ExpressionText);
             this.MainMenu.Controls.Add(this.ExpressionLabel);
-            this.MainMenu.Size = new System.Drawing.Size(137, 157);
+            this.MainMenu.Location = new System.Drawing.Point(4, 5);
+            this.MainMenu.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.MainMenu.Size = new System.Drawing.Size(204, 238);
             this.MainMenu.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.MainMenu.StateCommon.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.MainMenu.Controls.SetChildIndex(this.ColorChooser, 0);
             this.MainMenu.Controls.SetChildIndex(this.EditNameLabel, 0);
+            this.MainMenu.Controls.SetChildIndex(this.ColorChooser, 0);
             this.MainMenu.Controls.SetChildIndex(this.Separator, 0);
             this.MainMenu.Controls.SetChildIndex(this.FreePlotButton, 0);
             this.MainMenu.Controls.SetChildIndex(this.EmptyButton, 0);
             this.MainMenu.Controls.SetChildIndex(this.ExpressionLabel, 0);
             this.MainMenu.Controls.SetChildIndex(this.ExpressionText, 0);
             this.MainMenu.Controls.SetChildIndex(this.NameTextBox, 0);
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.NameTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.NameTextBox.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
-            this.NameTextBox.StateCommon.Border.Rounding = 3F;
-            this.NameTextBox.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
             // 
             // ColorChooser
             // 
@@ -131,20 +130,30 @@
             this.ColorChooser.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ColorChooser.Values.Text = "";
             // 
+            // NameTextBox
+            // 
+            this.NameTextBox.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.NameTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.NameTextBox.StateCommon.Border.ColorStyle = Krypton.Toolkit.PaletteColorStyle.Solid;
+            this.NameTextBox.StateCommon.Border.Rounding = 3F;
+            this.NameTextBox.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            // 
             // ExpressionLabel
             // 
-            this.ExpressionLabel.Location = new System.Drawing.Point(2, 47);
+            this.ExpressionLabel.Location = new System.Drawing.Point(3, 72);
+            this.ExpressionLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExpressionLabel.Name = "ExpressionLabel";
-            this.ExpressionLabel.Size = new System.Drawing.Size(90, 25);
+            this.ExpressionLabel.Size = new System.Drawing.Size(135, 45);
             this.ExpressionLabel.StateCommon.ShortText.Color1 = System.Drawing.Color.DarkGray;
             this.ExpressionLabel.TabIndex = 10;
             this.ExpressionLabel.Values.Text = "Formule :";
             // 
             // ExpressionText
             // 
-            this.ExpressionText.Location = new System.Drawing.Point(7, 69);
+            this.ExpressionText.Location = new System.Drawing.Point(10, 106);
+            this.ExpressionText.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExpressionText.Name = "ExpressionText";
-            this.ExpressionText.Size = new System.Drawing.Size(119, 25);
+            this.ExpressionText.Size = new System.Drawing.Size(178, 33);
             this.ExpressionText.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ExpressionText.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ExpressionText.StateCommon.Border.Rounding = 3F;
@@ -154,10 +163,12 @@
             // 
             // MenuCustomVar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MenuCustomVar";
-            this.Size = new System.Drawing.Size(141, 161);
+            this.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Size = new System.Drawing.Size(212, 248);
             ((System.ComponentModel.ISupportInitialize)(this.Separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenu)).EndInit();
             this.MainMenu.ResumeLayout(false);

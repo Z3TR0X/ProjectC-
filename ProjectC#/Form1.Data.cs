@@ -1,4 +1,5 @@
-﻿using DynamicExpresso;
+﻿using ProjectC_.UserContent;
+using DynamicExpresso;
 using Krypton.Toolkit;
 using NCalc;
 using NCalc.Domain;
@@ -76,8 +77,8 @@ namespace ProjectC_ {
             PanelCustomVar v = new PanelCustomVar();
             v.setColor(Color.CadetBlue);
             v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
-            //v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
-            //v.GiveFeedback += DragFeedback;
+            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+            v.GiveFeedback += DragFeedback;
             v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
             CustomsDatasPanels.Add(v);
             FlowVarPanel.Controls.Add(v);
@@ -85,24 +86,28 @@ namespace ProjectC_ {
 
         private void OnPanelVarRightClic(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {
-                PanelVarMenu menuInfo = menuVar;
-                ToolStripDropDown menu = menuClicDroit;
 
                 PanelVarControl panel = (PanelVarControl)sender;
                 int id = panel.getVarIdAssociated() - 1;
 
                 if (sender.GetType() == typeof(PanelCustomVar)) {
-                    menu = CustomMenuClicDroit;
                     MenuCustomVar.SetExpression(expressions[id]);
-                    menuInfo = MenuCustomVar;
 
+                    MenuCustomVar.setDataId(id);
+                    MenuCustomVar.setColor(DatasColor[id]);
+                    MenuCustomVar.setName(DatasName[id]);
+                    PanelVarRightClickPos = Cursor.Position;
+                    CustomMenuClicDroit.Show(PanelVarRightClickPos);
+
+                } else {
+                    menuVar.setDataId(id);
+                    menuVar.setColor(DatasColor[id]);
+                    menuVar.setName(DatasName[id]);
+                    PanelVarRightClickPos = Cursor.Position;
+                    menuClicDroit.Show(PanelVarRightClickPos);
                 }
                 
-                menuInfo.setDataId(id);
-                menuInfo.setColor(DatasColor[id]);
-                menuInfo.setName(DatasName[id]);
-                PanelVarRightClickPos = Cursor.Position;
-                menu.Show(PanelVarRightClickPos);
+                
             }
         }
 
@@ -110,10 +115,9 @@ namespace ProjectC_ {
             DatasName[id] = newName;
             
             foreach(int plotNb in DataFromPlot[id]) {
-                DataInfos info = new DataInfos(newName, DatasColor[id], id+1);
+                DataInfos info = new DataInfos(newName, DatasColor[id], id);
                 Plots[plotNb].UpdateDataInfo(info);
             }
-
 
             PanelVarControl v = (PanelVarControl)FlowVarPanel.Controls[id];
             v.setVarName(newName);
@@ -123,7 +127,7 @@ namespace ProjectC_ {
             DatasColor[id] = color;
 
             foreach (int plotNb in DataFromPlot[id]) {
-                DataInfos info = new DataInfos(DatasName[id], color, id + 1);
+                DataInfos info = new DataInfos(DatasName[id], color, id);
                 Plots[plotNb].UpdateDataInfo(info);
             }
 
