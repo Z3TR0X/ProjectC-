@@ -1,3 +1,9 @@
 <Solution>
-  <Project Path="ProjectC#/ProjectC#.csproj" Id="80561291-f508-410b-9964-a4e9f2d2e3ac" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="ProjectC#/ProjectC#.csproj" Id="80561291-f508-410b-9964-a4e9f2d2e3ac">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
 </Solution>

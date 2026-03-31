@@ -5,8 +5,8 @@ using System.Windows.Forms;
 namespace ProjectC_.UserContent {
     public partial class ConsoleWindow : UserControl{
         public int id;
-        private bool forceBottom = true; //Si le défilement automatique est désactivé
-        private bool isTimestampActive = false;
+        public bool forceBottom = true; //Si le défilement automatique est désactivé
+        public bool isTimestampActive = false;
 
         public ConsoleWindow(int _id) {
             InitializeComponent();

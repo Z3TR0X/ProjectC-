@@ -72,7 +72,7 @@ namespace ProjectC_
                     KryptonButtonCorrection(control.Controls);
                 }
             }
-        }      
+        }
     }
 }
 
