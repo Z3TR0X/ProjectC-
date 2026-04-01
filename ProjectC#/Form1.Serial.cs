@@ -17,7 +17,7 @@ namespace ProjectC_
 
         int[] speed = { 3600, 9600, 19200, 38400, 56000, 57600, 76800, 115200, 460800, 921600 };
         string SerialComChoosed = "";
-        int SerialSpeedChoosed = 0;
+        int SerialSpeedChoosed = 115200;
         SerialDataReceivedEventHandler SerialHander;
         bool pauseSerial;
 

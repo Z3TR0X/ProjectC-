@@ -411,7 +411,6 @@
             this.SerialText.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.SerialText.Size = new System.Drawing.Size(102, 26);
             this.SerialText.TabIndex = 0;
-            this.SerialText.Text = "COM1";
             this.SerialText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // SerialExpand

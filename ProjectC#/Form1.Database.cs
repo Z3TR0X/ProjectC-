@@ -150,7 +150,10 @@ namespace ProjectC_ {
 					";
                 }
 
-
+				if(timeY.Count == 0 || Datas.Count == 0) {
+                    insertCommand.ExecuteNonQuery();
+					return;
+                }
 
 				//Stocker les variables 
 				EqualizeDatas();
@@ -170,7 +173,6 @@ namespace ProjectC_ {
                 insertCommand.CommandText = insertCommand.CommandText.Remove(insertCommand.CommandText.Length - 1);
                 insertCommand.CommandText += ";";
 
-				Debug.WriteLine(insertCommand.CommandText);
                 insertCommand.ExecuteNonQuery();
             }
         }

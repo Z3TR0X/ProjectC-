@@ -69,7 +69,7 @@ namespace ProjectC_ {
             DatasName.Add(DefaultName);
             DataFromPlot.Add(Datas.Count - 1, new List<int>());
             isDataCutomised.Add(true);
-            expressions.Add("helooo");
+            expressions.Add("");
             functions.Add(null);
             datasParameters.Add(null);
 

@@ -129,7 +129,6 @@
             this.NameTextBox.StateCommon.Border.Rounding = 3F;
             this.NameTextBox.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
             this.NameTextBox.TabIndex = 6;
-            this.NameTextBox.Text = "coucou";
             this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
             // Separator
