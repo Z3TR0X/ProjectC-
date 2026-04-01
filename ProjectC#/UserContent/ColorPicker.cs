@@ -16,9 +16,8 @@ namespace ProjectC_.VarPanel {
         PanelVarMenu parent;
 
 
-        public ColorPicker(PanelVarMenu p) {
+        public ColorPicker() {
             InitializeComponent();
-            parent = p;
         }
 
         public void setLastColor(Color color) {
@@ -29,6 +28,10 @@ namespace ProjectC_.VarPanel {
             WheelColorPicker.Color = ActualColor;
             ManualColorPicker.Color = ActualColor; 
             NewColorPanel.StateCommon.Color1 = ActualColor;
+        }
+
+        public void setParent(PanelVarMenu p) {
+            parent = p;
         }
 
         public Color getActualColor() {

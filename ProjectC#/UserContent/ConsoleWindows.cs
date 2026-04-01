@@ -56,6 +56,10 @@ namespace ProjectC_.UserContent {
             ConsoleName.Text = name;
         }
 
+        public string getName() {
+            return ConsoleName.Text;
+        }
+
         public void addData(string data) {
             string line = "";
             if (isTimestampActive) line += DateTime.Now.ToString("[HH:mm:ss] ");
@@ -88,6 +92,26 @@ namespace ProjectC_.UserContent {
             }
 
             isTimestampActive = !isTimestampActive;
+        }
+    
+        public void setTimeStamp(bool timestamp) {
+            if (timestamp) {
+                TimeButton.Values.Image = Properties.Resources.AddTime;
+            } else {
+                TimeButton.Values.Image = Properties.Resources.StopTime;
+            }
+
+            isTimestampActive = timestamp;
+        }
+
+        public void setForceBottom(bool force) {
+            if (force) {
+                ScrollButton.Values.Image = Properties.Resources.AllowScroll;
+            } else {
+                ScrollButton.Values.Image = Properties.Resources.FreeScroll;
+            }
+
+            forceBottom = force;
         }
     }
 }

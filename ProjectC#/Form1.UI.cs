@@ -92,8 +92,11 @@ namespace ProjectC_
             return new Cursor(hCursorLibre);
         }
 
+        private void UpdateDatasPanelsTick(object sender, EventArgs e) {
+            UpdateDatasPanels();
+        }
 
-        private void UpdateDatasPanels(object sender, EventArgs e) {
+        private void UpdateDatasPanels() {
             if(Datas.Count != DatasName.Count || Datas.Count == 0 || isClosing) {
                 return;
             }
@@ -109,6 +112,8 @@ namespace ProjectC_
             }
             
         }
+
+
 
         private PanelVarMenu menuVar;
         private ToolStripDropDown menuClicDroit;
@@ -161,7 +166,7 @@ namespace ProjectC_
         private ToolStripDropDown menuColor;
 
         private void createColorPickerMenu() {
-            menuContentColor = new ColorPicker(menuVar);
+            menuContentColor = new ColorPicker();
 
             ToolStripControlHost host = new ToolStripControlHost(menuContentColor);
             host.AutoSize = false;
@@ -191,9 +196,11 @@ namespace ProjectC_
         public void BeginPickColor(bool isCustom) { //La variable booléenne permet de savoir si le menu ouvert est custom ou non
             if (menuClicDroit.Visible || CustomMenuClicDroit.Visible) {
                 if (isCustom) {
+                    menuContentColor.setParent(MenuCustomVar);
                     CustomMenuClicDroit.AutoClose = false;
                     isOpennedMenuCustom = true;
                 } else {
+                    menuContentColor.setParent(menuVar);
                     menuClicDroit.AutoClose = false;
                     isOpennedMenuCustom = false;
                 }

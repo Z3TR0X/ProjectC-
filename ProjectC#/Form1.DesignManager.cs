@@ -76,7 +76,7 @@ namespace ProjectC_ {
         private bool isClosing = false;
         private async void button_close_Click(object sender, EventArgs e) {
 
-            DataPanelTimer.Tick -= UpdateDatasPanels;
+            DataPanelTimer.Tick -= UpdateDatasPanelsTick;
 
             DataPanelTimer.Stop();
             DataPanelTimer.Dispose();

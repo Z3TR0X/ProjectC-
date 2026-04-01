@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProjectC_ {
+    public static class Utils {
+        public static bool IsFileLocked(string pathFile) {
+            FileInfo fichier = new FileInfo(pathFile);
+
+
+            if (!fichier.Exists) return false;
+
+            try {
+                using (FileStream stream = fichier.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
+                    stream.Close();
+                }
+            } catch (IOException) {
+                return true;
+            }
+            return false;
+        }
+
+        public static void MakeNumberOfElemEven<T>(List<T> list, int normalSize, T valueToAdd) {
+            int missingElem = normalSize - list.Count;
+
+            if (missingElem > 0) {
+                list.InsertRange(0, Enumerable.Repeat(valueToAdd, missingElem));
+            }
+        }
+    }
+}

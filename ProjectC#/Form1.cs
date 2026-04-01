@@ -41,7 +41,7 @@ namespace ProjectC_
 
             DataPanelTimer = new System.Windows.Forms.Timer();
             DataPanelTimer.Interval = 100;
-            DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanels);
+            DataPanelTimer.Tick += new System.EventHandler(UpdateDatasPanelsTick);
 
             refreshPlotTick.Interval = 10;
             refreshPlotTick.Tick += RenderPlots;

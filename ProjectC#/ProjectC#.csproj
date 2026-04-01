@@ -321,6 +321,7 @@
     <Compile Include="UserContent\ConsoleWindows.Designer.cs">
       <DependentUpon>ConsoleWindows.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

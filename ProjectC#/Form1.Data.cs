@@ -1,8 +1,8 @@
-﻿using ProjectC_.UserContent;
-using DynamicExpresso;
+﻿using DynamicExpresso;
 using Krypton.Toolkit;
 using NCalc;
 using NCalc.Domain;
+using ProjectC_.UserContent;
 using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ProjectC_ {
     public partial class Form1 {
@@ -63,10 +65,10 @@ namespace ProjectC_ {
         }
 
         private void AddNewCustomData() {
-            String DefaultName = "Custom Data" + (Datas.Count + 1).ToString();
+            string defaultName = "Custom Data " + Datas.Count;
             Datas.Add(new List<float>());
             DatasColor.Add(Color.CadetBlue);
-            DatasName.Add(DefaultName);
+            DatasName.Add(defaultName);
             DataFromPlot.Add(Datas.Count - 1, new List<int>());
             isDataCutomised.Add(true);
             expressions.Add("");
@@ -79,9 +81,32 @@ namespace ProjectC_ {
             v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
             v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
             v.GiveFeedback += DragFeedback;
-            v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+            v.Init(defaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
             CustomsDatasPanels.Add(v);
             FlowVarPanel.Controls.Add(v);
+        }
+
+        private void AddNewCustomData(string name, Color color, string expression) {
+            Datas.Add(new List<float>());
+            DatasColor.Add(color);
+            DatasName.Add(name);
+            DataFromPlot.Add(Datas.Count - 1, new List<int>());
+            isDataCutomised.Add(true);
+            expressions.Add("");
+            functions.Add(null);
+            datasParameters.Add(null);
+
+
+            PanelCustomVar v = new PanelCustomVar();
+            v.setColor(color);
+            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+            v.GiveFeedback += DragFeedback;
+            v.Init(name, Datas.Count, FlowVarPanel.ClientSize.Width);
+            CustomsDatasPanels.Add(v);
+            FlowVarPanel.Controls.Add(v);
+
+            ChangeExpression(Datas.Count-1, expression);
         }
 
         private void OnPanelVarRightClic(object sender, MouseEventArgs e) {
@@ -194,6 +219,26 @@ namespace ProjectC_ {
             v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
             v.GiveFeedback += DragFeedback;
             v.Init(DefaultName, Datas.Count, FlowVarPanel.ClientSize.Width);
+            FlowVarPanel.Controls.Add(v);
+        }
+
+        private void AddNewData(string name, Color color) {
+            Datas.Add(new List<float>());
+            DatasColor.Add(color);
+            DatasName.Add(name);
+            DataFromPlot.Add(Datas.Count - 1, new List<int>());
+            isDataCutomised.Add(false);
+            expressions.Add("");
+            functions.Add(null);
+            datasParameters.Add(null);
+
+
+            PanelVarControl v = new PanelVarControl();
+            v.setColor(color);
+            v.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnPanelVarRightClic);
+            v.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DragAndDropStart);
+            v.GiveFeedback += DragFeedback;
+            v.Init(name, Datas.Count, FlowVarPanel.ClientSize.Width);
             FlowVarPanel.Controls.Add(v);
         }
 

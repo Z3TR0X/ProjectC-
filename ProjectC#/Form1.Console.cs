@@ -27,6 +27,24 @@ namespace ProjectC_ {
             consoles.Add((cons, panel));
         }
 
+        private void CreateNewConsole(String name, bool _forceBottom, bool _isTimestamp) {
+            ConsoleWindow cons = new ConsoleWindow(consoles.Count);
+            cons.Dock = DockStyle.Right;
+            cons.Padding = new Padding(1, 0, 0, 0);
+            cons.Width = 300;
+            cons.setName(name);
+            cons.setTimeStamp(_isTimestamp);
+            cons.setForceBottom(_forceBottom);
+
+            PanelConsoleControl panel = new PanelConsoleControl();
+            panel.MouseClick += OnClicWindowEvent;
+            panel.Init(FlowLayoutWindow.ClientSize.Width, consoles.Count);
+            panel.setName(name);
+            FlowLayoutWindow.Controls.Add(panel);
+
+            consoles.Add((cons, panel));
+        }
+
         private void DeleteConsole(int consoleId) {
             if (consoles[consoleId] == activeConsole) {
                 MainPage.Controls.Remove(activeConsole.Item1);

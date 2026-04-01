@@ -1,13 +1,18 @@
-﻿using ProjectC_.UserContent;
+﻿using DynamicExpresso;
+using OpenTK;
+using ProjectC_.UserContent;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectC_ {
@@ -16,11 +21,11 @@ namespace ProjectC_ {
 			SaveFileDialog FileDialog = new SaveFileDialog();
 			FileDialog.Filter = "Fichier SQLite (*.db)|*.db|Tous les fichiers (*.*)|*.*";
 			FileDialog.Title = "Exporter le projet";
-			FileDialog.FileName = "Project Plotter " + DateTime.Now.ToString("dd-MM-yy") + ".db"; ;
+			FileDialog.FileName = "Project Plotter " + DateTime.Now.ToString("dd-MM-yy") + ".db";
 
 			if (FileDialog.ShowDialog() != DialogResult.OK) return;
 
-			if (IsFileLocked(FileDialog.FileName)) {
+			if (Utils.IsFileLocked(FileDialog.FileName)) {
                 MessageBox.Show("Le fichier est déja\n utilisé par un\nautre processus", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
             }
@@ -31,6 +36,17 @@ namespace ProjectC_ {
 
 			MessageBox.Show("Projet Sauvegardé\navec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
+
+		private void LoadConfig(object sender, EventArgs e) {
+            SaveFileDialog FileDialog = new SaveFileDialog();
+            FileDialog.Filter = "Fichier SQLite (*.db)|*.db|Tous les fichiers (*.*)|*.*";
+            FileDialog.Title = "Importer un projet";
+			FileDialog.FileName = "";
+
+            if (FileDialog.ShowDialog() != DialogResult.OK) return;
+
+			LoadDatabase(FileDialog.FileName);
+        }
 
         private void CreateDataBase(string path) {
             using (var connection = new SQLiteConnection($"Data Source={path}")) {
@@ -120,9 +136,9 @@ namespace ProjectC_ {
 							VALUES ('{plot.plotName}', 
 								{plot.plotId}, '{JsonSerializer.Serialize(plot.dataPloted.Keys)}',
 								'{JsonSerializer.Serialize(plot.dataPloted.Values)}', 
-								'{{{lAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + lAxis.Item2.ToString(CultureInfo.InvariantCulture)}}}',
-								'{{{rAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + rAxis.Item2.ToString(CultureInfo.InvariantCulture)}}}',
-								'{{{bAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + bAxis.Item2.ToString(CultureInfo.InvariantCulture)}}}',
+								'[{lAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + lAxis.Item2.ToString(CultureInfo.InvariantCulture)}]',
+								'[{rAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + rAxis.Item2.ToString(CultureInfo.InvariantCulture)}]',
+								'[{bAxis.Item1.ToString(CultureInfo.InvariantCulture) + "," + bAxis.Item2.ToString(CultureInfo.InvariantCulture)}]',
 								{id}
 							);						
 						";
@@ -133,7 +149,7 @@ namespace ProjectC_ {
 				foreach ((ConsoleWindow, PanelConsoleControl) cons in consoles) {
 					ConsoleWindow cw = cons.Item1;
 					insertCommand.CommandText += $@"
-						INSERT INTO console VALUES ({cw.id}, '{cw.Name}', {cw.forceBottom}, {cw.isTimestampActive}, {(activeConsole.Equals(cons) ? 1 : 0)});						
+						INSERT INTO console VALUES ({cw.id}, '{cw.getName()}', {cw.forceBottom}, {cw.isTimestampActive}, {(activeConsole.Equals(cons) ? 1 : 0)});						
 					";
 				}
 
@@ -177,37 +193,125 @@ namespace ProjectC_ {
             }
         }
 
+		private void LoadDatabase(string path) {
+			using (var connection = new SQLiteConnection($"Data Source={path}")) {
+				connection.Open();
+				ClearAllData();
+
+                //Construction des consoles 
+                SQLiteCommand consoleCommand = connection.CreateCommand();
+				consoleCommand.CommandText = @"SELECT Id, Name, IsForcedBottom, IsTimeStampActive, IsSelected FROM console ORDER BY Id;";
+                using (var reader = consoleCommand.ExecuteReader()) {
+                    while (reader.Read()) {
+						CreateNewConsole(reader.GetString(1), reader.GetBoolean(2), reader.GetBoolean(3));
+						if(reader.GetBoolean(4)) SelectConsole(reader.GetInt32(0));
+
+                    }
+                }
+
+                //Reconstruction des infos des datas
+                SQLiteCommand dataInfoCommand = connection.CreateCommand();
+				dataInfoCommand.CommandText = @"SELECT Id, Name, Color, IsDataCustomised, Expression FROM DataInfo ORDER BY Id;";
+                using (var reader = dataInfoCommand.ExecuteReader()) {
+					while (reader.Read()) {
+						string name = reader.GetString(1);
+						Color color = Color.FromArgb(reader.GetInt32(2));
+						string expression = reader.GetString(4);
+
+						if (reader.GetInt32(3) > 0) {
+							AddNewCustomData(name, color, expression);
+						} else {
+							AddNewData(name, color);
+						}
+                    }
+				}
+
+				int windowSelectedId = -1;
+                //Reconstruction des windows
+                SQLiteCommand windowCommand = connection.CreateCommand();
+				windowCommand.CommandText = @"SELECT Id, Name, IsSelected FROM window ORDER BY Id";
+                using (var reader = windowCommand.ExecuteReader()) {
+					while (reader.Read()) {
+						CreateNewWindow(reader.GetString(1));
+						windowSelectedId = reader.GetBoolean(2) ? reader.GetInt32(0) : -1;
+
+                    }
+                }
+
+                //Reconstruction des plots
+                SQLiteCommand plotCommand = connection.CreateCommand();
+                plotCommand.CommandText = @"SELECT Id, Name, PlotId, DataPloted, DataLoc, LeftAxisLimit, RightAxisLimit, BottomAxisLimit, windowId FROM PlotInfoWindow ORDER BY Id";
+                using (var reader = plotCommand.ExecuteReader()) {
+					while (reader.Read()) {
+						PlotWindow pw = new PlotWindow(reader.GetString(1), reader.GetInt32(2));
+						Dictionary<int, char> plots = new Dictionary<int, char>();
+						int[] plotIds = JsonSerializer.Deserialize<int[]>(reader.GetString(3));
+						char[] plotLocs = JsonSerializer.Deserialize<char[]>(reader.GetString(4));
+						for (int i = 0; i < plotIds.Length; i++) {
+							plots.Add(plotIds[i], plotLocs[i]);
+						}
+						double[] leftAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(5));
+                        double[] rightAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(6));
+                        double[] bottomAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(7));
+
+                        pw.axisLimit.Add('l', (leftAxis[0], leftAxis[1]));
+                        pw.axisLimit.Add('r', (rightAxis[0], rightAxis[1]));
+                        pw.axisLimit.Add('b', (bottomAxis[0], bottomAxis[1]));
+
+                        pw.dataPloted = plots;
+						windows[reader.GetInt32(8)].Item1.plots.Add(pw);
+					}
+                }
+
+                //Ajout des données
+                SQLiteCommand dataValuesCommand = connection.CreateCommand();
+                for(int dataId = 0; dataId < Datas.Count; dataId++) {
+                    dataValuesCommand.CommandText = $@"SELECT Id, Value FROM ""{DatasName[dataId]}"" ORDER BY Id";
+                    using (var reader = dataValuesCommand.ExecuteReader()) {
+                        while (reader.Read()) {
+							Datas[dataId].Add(reader.GetFloat(1));
+                        }
+                    }
+                }
+                dataValuesCommand.CommandText = $@"SELECT Id, Value FROM ""Time"" ORDER BY Id";
+                using (var reader = dataValuesCommand.ExecuteReader()) {
+					while (reader.Read()) {
+                        timeY.Add(reader.GetFloat(1));
+                    }
+                }
+
+
+				if(windowSelectedId != -1) selectWindow(windowSelectedId);
+                UpdateDatasPanels();
+            }
+		}
+
+
 		public void EqualizeDatas() {
 			int normalSize = timeY.Count;
 			foreach (var data in Datas) {
 				Debug.WriteLine(normalSize - data.Count + " valeurs ont été ajoutées");
-				MakeNumberOfElemEven(data, normalSize, 0);
+				Utils.MakeNumberOfElemEven(data, normalSize, 0);
 			}
 		}
 
-		public bool IsFileLocked(string pathFile) {
-            FileInfo fichier = new FileInfo(pathFile);
+		private void ClearAllData() {
+			Datas.Clear();
+			timeY.Clear();
+            DatasName.Clear();
+            DatasColor.Clear();
+            isDataCutomised.Clear();
+            expressions.Clear();
+            functions.Clear();
+            datasParameters.Clear();
+            DatasPanels.Clear();
+            CustomsDatasPanels.Clear();
+			DataFromPlot.Clear();
+			windows.Clear();
+			consoles.Clear();
 
-
-            if (!fichier.Exists) return false;
-
-            try {
-                using (FileStream stream = fichier.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
-                    stream.Close();
-                }
-            } catch (IOException) {
-                return true;
-            }
-            return false;
+			FlowLayoutWindow.Controls.Clear();
+            FlowVarPanel.Controls.Clear();
         }
-		
-		public void MakeNumberOfElemEven<T>(List<T> list, int normalSize, T valueToAdd) {
-			int missingElem = normalSize - list.Count;
-
-			if (missingElem > 0) {
-				list.InsertRange(0, Enumerable.Repeat(valueToAdd, missingElem));
-			}
-		}
-	
 	}
 }

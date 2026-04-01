@@ -40,6 +40,20 @@ namespace ProjectC_ {
             FlowLayoutWindow.Controls.Add(panel);
         }
 
+        private void CreateNewWindow(string _name) {
+            PanelWindowControl panel = new PanelWindowControl();
+            panel.MouseClick += OnClicWindowEvent;
+            string name = _name;
+            panel.Init(name, FlowLayoutWindow.ClientSize.Width, windows.Count);
+            Window w = new Window(name, 0);
+            if (windows.Count == 0) {
+                activeWindow = (w, panel);
+                panel.setSelected(true);
+            }
+            windows.Add((w, panel));
+            FlowLayoutWindow.Controls.Add(panel);
+        }
+
         private void DeleteWindow(int windowId) {
             if (windows.Count == 1) {
                 MessageBox.Show("Vous devez avoir au\nminimum une fenêtre", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);

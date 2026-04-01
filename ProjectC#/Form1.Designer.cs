@@ -562,6 +562,7 @@
             this.ImportConfigButton.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.ImportConfigButton.Values.Image = global::ProjectC_.Properties.Resources.ImportConfig;
             this.ImportConfigButton.Values.Text = "Import";
+            this.ImportConfigButton.Click += new System.EventHandler(this.LoadConfig);
             // 
             // ExportConfigButton
             // 

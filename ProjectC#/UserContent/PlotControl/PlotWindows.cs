@@ -70,7 +70,6 @@ namespace ProjectC_.UserContent {
             this.Disposed += Destructor;
         }
 
-
         private void Destructor(object sender, EventArgs e) {
             //Permet de liberer de la mémoire le timer à la destuction du UserContent
             if(timerEndResize != null) {
@@ -121,6 +120,9 @@ namespace ProjectC_.UserContent {
             logger.ManageAxisLimits = false;
             logger.Color = ScottPlot.Color.FromColor(info.color);
 
+            Plot.Plot.Axes.Right.Min = -5;
+            Plot.Plot.Axes.Right.Max = 5;
+
             legends.Add(info.varIndex, new LegendItem());
             legends[info.varIndex].MarkerColor = ScottPlot.Color.FromColor(info.color);
             legends[info.varIndex].MarkerShape = ScottPlot.MarkerShape.FilledSquare;
@@ -155,7 +157,6 @@ namespace ProjectC_.UserContent {
             return location[varId];
         }
 
-
         public void RefreshPlot(double last_value) {
             Plot.Plot.Axes.SetLimitsX(last_value - 5, last_value);
 
@@ -177,14 +178,19 @@ namespace ProjectC_.UserContent {
 
         public (double, double) GetAxesLimits(char axe) {
             AxisManager Axes = Plot.Plot.Axes;
+            (double, double) vals;
             switch (axe) {
                 case 'r':
-                    return (Axes.Right.Min, Axes.Right.Max);
+                    vals = (Axes.Right.Min, Axes.Right.Max);
+                    break;
                 case 'b':
-                    return (Axes.Bottom.Min, Axes.Bottom.Max);
+                    vals = (Axes.Bottom.Min, Axes.Bottom.Max);
+                    break;
                 default:
-                    return (Axes.Left.Min, Axes.Left.Max);
+                    vals = (Axes.Left.Min, Axes.Left.Max);
+                    break;
             }
+            return vals;
         }
 
         public void SetAxesLimits(char axe, (double,double) limit) {
@@ -205,6 +211,17 @@ namespace ProjectC_.UserContent {
                 default:
                     return;
             }
+        }
+    
+        public void PlotCurve(int dataId, double[] x, double[] y) {
+            if (!loggers.Keys.Contains(dataId)) return;
+
+            DataLogger log = loggers[dataId];
+            for (int i = 0; i < x.Length; i++) {
+                log.Add(x[i], y[i]);
+            }
+
+            Plot.Refresh();
         }
     } 
 }
