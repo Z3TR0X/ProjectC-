@@ -45,6 +45,7 @@ namespace ProjectC_ {
 
             if (FileDialog.ShowDialog() != DialogResult.OK) return;
 
+			SetPauseState(true);
 			LoadDatabase(FileDialog.FileName);
         }
 
@@ -127,9 +128,9 @@ namespace ProjectC_ {
 					";
 
 					foreach(PlotWindow plot in win.plots) {
-						var lAxis = plot.axisLimit['l'];
-						var rAxis = plot.axisLimit['r'];
-						var bAxis = plot.axisLimit['b'];
+						(double, double) lAxis = Utils.TupleOrMOneIfNan(plot.axisLimit['l']);
+                        (double, double) rAxis = Utils.TupleOrMOneIfNan(plot.axisLimit['r']); ;
+                        (double, double) bAxis = Utils.TupleOrMOneIfNan(plot.axisLimit['b']); ;
 
                         insertCommand.CommandText += $@"
 							INSERT INTO PlotInfoWindow(Name, PlotId, DataPloted, DataLoc, LeftAxisLimit, RightAxisLimit, BottomAxisLimit, windowId)
@@ -250,13 +251,15 @@ namespace ProjectC_ {
 						for (int i = 0; i < plotIds.Length; i++) {
 							plots.Add(plotIds[i], plotLocs[i]);
 						}
+
+
 						double[] leftAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(5));
                         double[] rightAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(6));
                         double[] bottomAxis = JsonSerializer.Deserialize<double[]>(reader.GetString(7));
 
-                        pw.axisLimit.Add('l', (leftAxis[0], leftAxis[1]));
-                        pw.axisLimit.Add('r', (rightAxis[0], rightAxis[1]));
-                        pw.axisLimit.Add('b', (bottomAxis[0], bottomAxis[1]));
+						if (leftAxis[0] != -1) pw.axisLimit.Add('l', (leftAxis[0], leftAxis[1]));
+                        if (rightAxis[0] != -1) pw.axisLimit.Add('r', (rightAxis[0], rightAxis[1]));
+                        if (bottomAxis[0] != -1) pw.axisLimit.Add('b', (bottomAxis[0], bottomAxis[1]));
 
                         pw.dataPloted = plots;
 						windows[reader.GetInt32(8)].Item1.plots.Add(pw);
@@ -280,6 +283,7 @@ namespace ProjectC_ {
                     }
                 }
 				millisOffset = timeY[timeY.Count - 1];
+				millis.Reset();
 
 				if(windowSelectedId != -1) selectWindow(windowSelectedId);
                 UpdateDatasPanels();

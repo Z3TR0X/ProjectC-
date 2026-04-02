@@ -66,6 +66,14 @@ namespace ProjectC_ {
         public void setName(String name) {
             NameTextBox.Text = name;
         }
+
+        private void FreePlotButton_Click(object sender, EventArgs e) {
+            mainForm.DeleteVarFromPlots(dataId);
+        }
+
+        private void EmptyButton_Click(object sender, EventArgs e) {
+            mainForm.DeleteData(dataId);
+        }
     }
 }
 

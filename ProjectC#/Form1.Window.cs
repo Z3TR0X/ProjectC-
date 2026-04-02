@@ -212,7 +212,9 @@ namespace ProjectC_ {
                 Plot.NewVariableToPlott += PlotNewVariable;
                 Plot.SetAquisitionActive(SerialConn.IsOpen);
                 foreach(char axe in new char[] {'l', 'r', 'b'}){
-                    Plot.SetAxesLimits(axe, wp.axisLimit[axe]);
+                    if (wp.axisLimit.ContainsKey(axe)) {
+                        Plot.SetAxesLimits(axe, wp.axisLimit[axe]);
+                    }
                 }
                 
                 foreach(int dp in wp.dataPloted.Keys) {

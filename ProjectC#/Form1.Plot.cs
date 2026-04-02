@@ -59,7 +59,7 @@ namespace ProjectC_ {
             }
             activeWindow.Item1.plots.RemoveAt(index);
         }
-z
+
         private void RearrangePlot() {
             switch (Plots.Count) {
                 case 1:
@@ -161,6 +161,18 @@ z
             }
         }
 
+        public void DeleteVarFromPlots(int dataId) {
+            foreach (int plotNumber in DataFromPlot[dataId]) {
+                Plots[plotNumber].StopPlottingData(dataId);
+            }
+            foreach(var win in windows) {
+                Window window = win.Item1;
+                foreach(PlotWindow plot in window.plots) {
+                    if(plot.dataPloted.ContainsKey(dataId)) plot.dataPloted.Remove(dataId);
+                }
+            }
+            DataFromPlot[dataId] = new List<int>();
+        }
 
         private void PlotRightClic(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Right) {

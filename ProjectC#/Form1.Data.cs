@@ -308,5 +308,14 @@ namespace ProjectC_ {
                 }
             }
         }
+
+        public void DeleteData(int dataId) {
+            DeleteVarFromPlots(dataId);
+            List<float> zeros = new List<float>();
+            for(int i = 0; i < timeY.Count;i++) {
+                zeros.Add(0);
+            }
+            Datas[dataId] = zeros;
+        }
     }
 }

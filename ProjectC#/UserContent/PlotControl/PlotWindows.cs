@@ -120,9 +120,6 @@ namespace ProjectC_.UserContent {
             logger.ManageAxisLimits = false;
             logger.Color = ScottPlot.Color.FromColor(info.color);
 
-            Plot.Plot.Axes.Right.Min = -5;
-            Plot.Plot.Axes.Right.Max = 5;
-
             legends.Add(info.varIndex, new LegendItem());
             legends[info.varIndex].MarkerColor = ScottPlot.Color.FromColor(info.color);
             legends[info.varIndex].MarkerShape = ScottPlot.MarkerShape.FilledSquare;
@@ -158,12 +155,14 @@ namespace ProjectC_.UserContent {
         }
 
         public void RefreshPlot(double last_value) {
-            Plot.Plot.Axes.SetLimitsX(last_value - 5, last_value);
+            double range = Plot.Plot.Axes.Bottom.Max - Plot.Plot.Axes.Bottom.Min;
+            Plot.Plot.Axes.SetLimitsX(last_value - range, last_value);
 
             Plot.Plot.Axes.Rules.Clear();
             Plot.Plot.Axes.Rules.Add(maxSpanRule);
             Plot.Plot.Axes.Rules.Add(minSpanRule);
-            lockHorizRule.XMin = last_value-5;
+            
+            lockHorizRule.XMin = last_value- range;
             lockHorizRule.XMax = last_value;
             Plot.Plot.Axes.Rules.Add(lockHorizRule);
 
@@ -221,6 +220,16 @@ namespace ProjectC_.UserContent {
                 log.Add(x[i], y[i]);
             }
 
+            Plot.Refresh();
+        }
+        
+        public void StopPlottingData(int dataId) {
+            if (!loggers.Keys.Contains(dataId)) return;
+
+            Plot.Plot.Remove(loggers[dataId]);
+            loggers.Remove(dataId);
+            location.Remove(dataId);
+            legends.Remove(dataId);
             Plot.Refresh();
         }
     } 

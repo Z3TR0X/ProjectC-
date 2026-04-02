@@ -231,5 +231,44 @@ namespace ProjectC_
                 pauseSerial = true;
             }
         }
+
+        private void SetPauseState(bool forcedState) {
+            if (!forcedState) {
+                PausContButton.StateCommon.Back.Color1 = Color.FromArgb(166, 88, 0);
+                PausContButton.StateTracking.Back.Color1 = Color.FromArgb(194, 104, 2);
+                PausContButton.StatePressed.Back.Color1 = Color.FromArgb(220, 120, 4);
+                PausContButton.OverrideDefault.Back.Color1 = Color.FromArgb(166, 88, 0);
+                PausContButton.Values.Text = "Pause";
+
+                DataPanelTimer.Start();
+
+                foreach (PlotWindows plot in Plots) {
+                    plot.SetAquisitionActive(true);
+                }
+
+                refreshPlotTick.Start();
+
+
+                millis.Start();
+
+                pauseSerial = false;
+            } else {
+                PausContButton.StateCommon.Back.Color1 = Color.DarkGreen;
+                PausContButton.StateTracking.Back.Color1 = Color.FromArgb(0, 120, 0);
+                PausContButton.StatePressed.Back.Color1 = Color.FromArgb(0, 140, 0);
+                PausContButton.OverrideDefault.Back.Color1 = Color.DarkGreen;
+                PausContButton.Values.Text = "Lancer";
+
+                DataPanelTimer.Stop();
+                millis.Stop();
+                refreshPlotTick.Stop();
+
+                foreach (PlotWindows plot in Plots) {
+                    plot.SetAquisitionActive(false);
+                }
+
+                pauseSerial = true;
+            }
+        }
     }        
 }

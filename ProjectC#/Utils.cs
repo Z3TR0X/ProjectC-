@@ -30,5 +30,19 @@ namespace ProjectC_ {
                 list.InsertRange(0, Enumerable.Repeat(valueToAdd, missingElem));
             }
         }
+
+        public static double IsNumberNaN(double nb) {
+            if(double.IsNaN(nb) || double.IsInfinity(nb)) {
+                return -1;
+            }
+            return nb;
+        }
+
+        public static (double, double) TupleOrMOneIfNan((double, double) nb) {
+            if (double.IsInfinity(nb.Item1) || double.IsInfinity(nb.Item2) || double.IsNaN(nb.Item1) && double.IsNaN(nb.Item2)) {
+                return (-1, -1);
+            }
+            return nb;
+        }
     }
 }
