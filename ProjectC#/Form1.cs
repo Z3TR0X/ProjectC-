@@ -23,7 +23,7 @@ namespace ProjectC_
 
     public partial class Form1 : Form
     {
-
+        private double millisOffset = 0;
         private Stopwatch millis = new Stopwatch();
         private Timer refreshPlotTick = new Timer();
 

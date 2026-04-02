@@ -122,6 +122,7 @@ namespace ProjectC_
             ComPanel.BringToFront();
             ComPanel.Enabled = true;
             OptionPanel.Enabled = false;
+            pauseSerial = false;
         }
 
 
@@ -147,7 +148,7 @@ namespace ProjectC_
                             AddNewData();
                         }
 
-                        double timer = millis.ElapsedMilliseconds / 1000.0;
+                        double timer = millis.ElapsedMilliseconds / 1000.0 + millisOffset;
                         timeY.Add(timer);
 
                         int nextValue = 0;

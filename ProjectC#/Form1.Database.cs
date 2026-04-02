@@ -38,7 +38,7 @@ namespace ProjectC_ {
 		}
 
 		private void LoadConfig(object sender, EventArgs e) {
-            SaveFileDialog FileDialog = new SaveFileDialog();
+            OpenFileDialog FileDialog = new OpenFileDialog();
             FileDialog.Filter = "Fichier SQLite (*.db)|*.db|Tous les fichiers (*.*)|*.*";
             FileDialog.Title = "Importer un projet";
 			FileDialog.FileName = "";
@@ -233,7 +233,7 @@ namespace ProjectC_ {
                 using (var reader = windowCommand.ExecuteReader()) {
 					while (reader.Read()) {
 						CreateNewWindow(reader.GetString(1));
-						windowSelectedId = reader.GetBoolean(2) ? reader.GetInt32(0) : -1;
+						if (reader.GetBoolean(2)) windowSelectedId = reader.GetInt32(0);
 
                     }
                 }
@@ -279,13 +279,12 @@ namespace ProjectC_ {
                         timeY.Add(reader.GetFloat(1));
                     }
                 }
-
+				millisOffset = timeY[timeY.Count - 1];
 
 				if(windowSelectedId != -1) selectWindow(windowSelectedId);
                 UpdateDatasPanels();
             }
 		}
-
 
 		public void EqualizeDatas() {
 			int normalSize = timeY.Count;

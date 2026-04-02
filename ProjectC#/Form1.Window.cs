@@ -203,6 +203,7 @@ namespace ProjectC_ {
                 dp.Clear();
             }
 
+            EqualizeDatas();
 
             foreach (PlotWindow wp in activeWindow.Item1.plots) {
 
@@ -218,6 +219,7 @@ namespace ProjectC_ {
                     DataFromPlot[dp].Add(wp.plotId);
                     DataInfos info = new DataInfos(DatasName[dp], DatasColor[dp], dp);
                     Plot.PlotNewData(info, wp.dataPloted[dp]);
+                    Plot.PlotCurve(dp, timeY.ToArray(), Array.ConvertAll(Datas[dp].ToArray(), x => (double)x));
                 }
 
                 Plots.Add(Plot);

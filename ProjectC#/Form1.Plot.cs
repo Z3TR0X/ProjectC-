@@ -59,7 +59,7 @@ namespace ProjectC_ {
             }
             activeWindow.Item1.plots.RemoveAt(index);
         }
-
+z
         private void RearrangePlot() {
             switch (Plots.Count) {
                 case 1:
@@ -148,12 +148,14 @@ namespace ProjectC_ {
         }
 
         private void PlotNewVariable(object sender, EventArgs e) {
+            EqualizeDatas();
             for (int PlotsNumber = 0; PlotsNumber < Plots.Count; PlotsNumber++) {
                 if (Plots[PlotsNumber].Equals(sender)) {
                     foreach(int VarId in Plots[PlotsNumber].GetVariablePlotted()) {
                         if (DataFromPlot[VarId].Contains(PlotsNumber)) continue;
                         DataFromPlot[VarId].Add(PlotsNumber);
                         activeWindow.Item1.plots[PlotsNumber].dataPloted[VarId] = Plots[PlotsNumber].getPosition(VarId);
+                        Plots[PlotsNumber].PlotCurve(VarId, timeY.ToArray(), Array.ConvertAll(Datas[VarId].ToArray(), x => (double)x));
                     }
                 }
             }
