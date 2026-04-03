@@ -79,15 +79,13 @@ namespace ProjectC_
                     OptionPanel.BringToFront();
                     OptionPanel.Enabled = true;
                     ComPanel.Enabled = false;
-                    pauseSerial = false;
 
                     foreach (PlotWindows plot in Plots) {
                         plot.SetAquisitionActive(true);
                     }
-                    refreshPlotTick.Start();
 
+                    SetPauseState(false);
 
-                    millis.Start();
                 } catch (Exception ex) {
                     MessageBox.Show("Erreur de connexion : " + ex.Message);
                     SerialConn.DataReceived -= SerialHander;
@@ -131,6 +129,33 @@ namespace ProjectC_
             try {
                 //Permet de vider le buffer du serial -> ligne necessaire meme si on fait rien avec les données
                 string data = SerialConn.ReadLine().Trim();
+
+                if (isTriggerActive > 0) {
+                    if (!this.IsDisposed && !this.Disposing) {
+                        this.Invoke(new MethodInvoker(delegate {
+                            if (isTriggerActive == 1) {
+
+                                string[] values = data.Split(';');
+                                float val = float.Parse(values[triggerDataId], CultureInfo.InvariantCulture.NumberFormat);
+                                if (trigger(val)) {
+                                    isTriggerActive = 0;
+                                    SetPauseState(false);
+                                } else {
+                                    PausContButton.Values.Text = val.ToString();
+                                    return;
+                                }
+                            } else {
+                                if (timeForTrigger.ElapsedMilliseconds / 1000.0 >= targetTriggerTime) {
+                                    isTriggerActive = 0;
+                                    SetPauseState(false);
+                                    timeForTrigger.Stop();
+                                } else {
+                                    PausContButton.Values.Text = (timeForTrigger.ElapsedMilliseconds / 1000).ToString() + "s";
+                                }
+                            }
+                        }));
+                    }
+                }
 
                 if (pauseSerial) return;
 

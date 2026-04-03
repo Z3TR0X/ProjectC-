@@ -25,6 +25,7 @@ namespace ProjectC_
     {
         private double millisOffset = 0;
         private Stopwatch millis = new Stopwatch();
+        private Stopwatch timeForTrigger = new Stopwatch();
         private Timer refreshPlotTick = new Timer();
 
 

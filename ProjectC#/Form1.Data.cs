@@ -317,5 +317,9 @@ namespace ProjectC_ {
             }
             Datas[dataId] = zeros;
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e) {
+            ClearAllData();
+        }
     }
 }

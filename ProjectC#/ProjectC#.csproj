@@ -255,6 +255,9 @@
     <Compile Include="Form1.Serial.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form1.Trigger.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.UI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +265,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GlobalStructures.cs" />
+    <Compile Include="TriggerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TriggerWindow.Designer.cs">
+      <DependentUpon>TriggerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserContent\MenuCustomVar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -324,6 +333,9 @@
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TriggerWindow.resx">
+      <DependentUpon>TriggerWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserContent\ColorPicker.resx">
       <DependentUpon>ColorPicker.cs</DependentUpon>

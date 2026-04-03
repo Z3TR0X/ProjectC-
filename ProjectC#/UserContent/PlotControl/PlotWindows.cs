@@ -229,6 +229,7 @@ namespace ProjectC_.UserContent {
             Plot.Plot.Remove(loggers[dataId]);
             loggers.Remove(dataId);
             location.Remove(dataId);
+            Plot.Plot.Legend.ManualItems.Remove(legends[dataId]);
             legends.Remove(dataId);
             Plot.Refresh();
         }

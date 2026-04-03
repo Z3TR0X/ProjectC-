@@ -198,6 +198,7 @@ namespace ProjectC_ {
 			using (var connection = new SQLiteConnection($"Data Source={path}")) {
 				connection.Open();
 				ClearAllData();
+				ClearAllWindows();
 
                 //Construction des consoles 
                 SQLiteCommand consoleCommand = connection.CreateCommand();
@@ -299,6 +300,10 @@ namespace ProjectC_ {
 		}
 
 		private void ClearAllData() {
+			for(int i = 0; i < Datas.Count; i++) {
+				DeleteVarFromPlots(i);
+            }
+
 			Datas.Clear();
 			timeY.Clear();
             DatasName.Clear();
@@ -310,11 +315,14 @@ namespace ProjectC_ {
             DatasPanels.Clear();
             CustomsDatasPanels.Clear();
 			DataFromPlot.Clear();
-			windows.Clear();
-			consoles.Clear();
-
-			FlowLayoutWindow.Controls.Clear();
+			
             FlowVarPanel.Controls.Clear();
+        }
+
+		private void ClearAllWindows() {
+            windows.Clear();
+            consoles.Clear();
+            FlowLayoutWindow.Controls.Clear();
         }
 	}
 }
