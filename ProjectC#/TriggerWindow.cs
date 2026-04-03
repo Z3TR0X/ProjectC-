@@ -18,6 +18,13 @@ namespace ProjectC_ {
         public TriggerWindow(string[] dataNames) {
             InitializeComponent();
             DataNameCB.DataSource = dataNames;
+            ValueLabel.ForeColor = Color.Gray;
+            label3.ForeColor = Color.Gray;
+            label2.ForeColor = Color.Gray;
+            ValVal.Enabled = false;
+            comboBox1.Enabled = false;
+            DataNameCB.Enabled = false;
+
         }
 
         private void OkButton_Click(object sender, EventArgs e) {
@@ -53,12 +60,35 @@ namespace ProjectC_ {
         }
 
         private void ValueCheck_CheckedChanged(object sender, EventArgs e) {
-            if (ValueCheck.Checked) TimeCheck.Checked = false;
+            if (ValueCheck.Checked) {
+                TimeCheck.Checked = false;
+                TimeLabel.ForeColor = Color.Gray;
+                label1.ForeColor = Color.Gray;
+                TimeVal.Enabled = false;
+            }
+
+            ValueLabel.ForeColor = Color.White;
+            label3.ForeColor = Color.White;
+            label2.ForeColor = Color.White;
+            ValVal.Enabled = true;
+            comboBox1.Enabled = true;
+            DataNameCB.Enabled = true;
             triggerValueNTime = true;
         }
 
         private void TimeCheck_CheckedChanged(object sender, EventArgs e) {
-            if(TimeCheck.Checked) ValueCheck.Checked = false;
+            if (TimeCheck.Checked) {
+                ValueCheck.Checked = false;
+                ValueLabel.ForeColor = Color.Gray;
+                label3.ForeColor = Color.Gray;
+                label2.ForeColor = Color.Gray;
+                ValVal.Enabled = false;
+                comboBox1.Enabled = false;
+                DataNameCB.Enabled = false;
+            }
+            TimeLabel.ForeColor = Color.White;
+            label1.ForeColor = Color.White;
+            TimeVal.Enabled = true;
             triggerValueNTime = false;
         }
     }
