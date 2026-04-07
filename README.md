@@ -50,4 +50,5 @@
     - Périphériques qui envoient des données via le port série (comme une carte Arduino connecté sur l'ordinateur)
     - ScottPlot, qui permet de tracer les graphiques
     - SQLite, la sauvegarde du projet se fera sous forme d'une BDD, et SQLite fait des BDD sous forme de fichiers
-    - Krypton est une librairie qui améliore les outils de base de Winform (panel,bouton...) 
+    - Krypton est une librairie qui améliore les outils de base de Winform (panel,bouton...)
+    - DynamicExpresso est une librarie peremttant de convertir les chaînes de caractères en fonctions mathématiques
